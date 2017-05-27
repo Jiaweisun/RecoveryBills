@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/RecoveryBills.iml" filepath="$PROJECT_DIR$/RecoveryBills.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bill-core/bill-core.iml" filepath="$PROJECT_DIR$/bill-core/bill-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bill-dao/bill-dao.iml" filepath="$PROJECT_DIR$/bill-dao/bill-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bill-server/bill-server.iml" filepath="$PROJECT_DIR$/bill-server/bill-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bill-services/bill-services.iml" filepath="$PROJECT_DIR$/bill-services/bill-services.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bill-web/bill-web.iml" filepath="$PROJECT_DIR$/bill-web/bill-web.iml" />
+    </modules>
+  </component>
+</project>

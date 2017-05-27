@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--&lt;!&ndash;[if lt IE 7 ]><html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js ie6"> <![endif]&ndash;&gt;-->
+<!--&lt;!&ndash;[if IE 7 ]><html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js ie7"> <![endif]&ndash;&gt;-->
+<!--&lt;!&ndash;[if IE 8 ]><html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js ie8"> <![endif]&ndash;&gt;-->
+<!--&lt;!&ndash;[if IE 9 ]><html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js ie9"> <![endif]&ndash;&gt;-->
+<!--&lt;!&ndash;[if (gt IE 9)|!(IE)]>&lt;!&ndash;><html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js"-->
+                                    <!--xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+                                    <!--layout:decorator="layout"> &lt;!&ndash;<![endif]&ndash;&gt;-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+
+<head>
+    <title>Register</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title></title>
+
+    <!-- main JS libs -->
+    <script src="../../../static/vanilla-cream-css/js/libs/modernizr.min.js" th:src="@{/vanilla-cream-css/js/libs/modernizr.min.js}"></script>
+    <script src="../../../static/vanilla-cream-css/js/libs/jquery-1.10.0.js" th:src="@{/vanilla-cream-css/js/libs/jquery-1.10.0.js}"></script>
+    <script src="../../../static/vanilla-cream-css/js/libs/jquery-ui.min.js" th:src="@{/vanilla-cream-css/js/libs/jquery-ui.min.js}"></script>
+    <script src="../../../static/vanilla-cream-css/js/libs/bootstrap.min.js" th:src="@{/vanilla-cream-css/js/libs/bootstrap.min.js}"></script>
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="../../../static/vanilla-cream-css/css/bootstrap.css" th:href="@{/vanilla-cream-css/css/bootstrap.css}" />
+    <link rel="stylesheet" href="../../../static/vanilla-cream-css/style.css" th:href="@{/vanilla-cream-css/style.css}"  />
+    <!-- scripts -->
+    <script src="../../../static/vanilla-cream-css/js/general.js" th:src="@{/vanilla-cream-css/js/general.js}"></script>
+
+    <!-- Include all needed stylesheets and scripts here -->
+    <!--[if lt IE 9]>
+    <script src="../../../static/vanilla-cream-css/js/respond.min.js"
+            th:src="@{/vanilla-cream-css/js/respond.min.js}"></script><![endif]-->
+    <!--[if gte IE 9]>
+    <style type="text/css">
+        .gradient {filter: none !important;}
+    </style>
+    <![endif]-->
+
+    </head>
+
+    <body layout:fragment="content">
+        <div class="container" >
+
+           <div class="col-sm-6 col-sm-offset-1">
+               <h6 class="foo"> Register</h6>
+               <div class="widget-container widget_login styled boxed boxed-cream gradient">
+                   <div class="inner">
+
+                       <form action="register" method="post" class="loginform">
+                           <div class="field_text">
+                               <label for="nickName" class="label_title">用户名</label>
+                               <input type="text" name="nickName" id="nickName" value="" placeholder="用户名" hidefocus="true" class="gradient"/>
+                               <span class="input_icon input_email"></span>
+                           </div>
+                           <div class="field_text">
+                               <label for="realName" class="label_title">真实姓名</label>
+                               <input type="text" name="realName" id="realName" value="" placeholder="真实姓名" hidefocus="true" class="gradient"/>
+                               <span class="input_icon input_email"></span>
+                           </div>
+                           <div class="field_text">
+                               <label for="userEmail" class="label_title">Eamil</label>
+                               <input type="text" name="userEmail" id="userEmail" value="" placeholder="邮箱" hidefocus="true" class="gradient"/>
+                               <span class="input_icon input_email"></span>
+                           </div>
+                           <div class="field_text">
+                               <label for="userPassword" class="label_title">Password</label>
+                               <input type="text" name="userPassword" id="userPassword" value="" placeholder="密码" hidefocus="true" class="gradient"/>
+                               <span class="input_icon input_pass"></span>
+                           </div>
+                           <div class="rowSubmit">
+                               <span class="btn btn-hover">
+                                   <input type="submit" id="login-submit" value="注册" class="gradient"/>
+                               </span>
+                           </div>
+
+                       </form>
+                   </div>
+               </div>
+           </div>
+        </div>
+    </body>
+
+    </html>

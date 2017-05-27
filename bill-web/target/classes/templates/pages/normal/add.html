@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--&lt;!&ndash;[if lt IE 7 ]><html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js ie6"> <![endif]&ndash;&gt;-->
+<!--&lt;!&ndash;[if IE 7 ]><html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js ie7"> <![endif]&ndash;&gt;-->
+<!--&lt;!&ndash;[if IE 8 ]><html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js ie8"> <![endif]&ndash;&gt;-->
+<!--&lt;!&ndash;[if IE 9 ]><html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js ie9"> <![endif]&ndash;&gt;-->
+<!--&lt;!&ndash;[if (gt IE 9)|!(IE)]>&lt;!&ndash;><html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js"-->
+                                    <!--xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+                                    <!--layout:decorator="layout"> &lt;!&ndash;<![endif]&ndash;&gt;-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+
+<head>
+    <title>单边账新增</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <!-- main JS libs -->
+    <script th:src="@{/vanilla-cream-css/js/libs/modernizr.min.js}"></script>
+    <script th:src="@{/vanilla-cream-css/js/libs/jquery-1.10.0.js}"></script>
+    <script th:src="@{/vanilla-cream-css/js/libs/jquery-ui.min.js}"></script>
+    <script th:src="@{/vanilla-cream-css/js/libs/bootstrap.min.js}"></script>
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" th:href="@{/vanilla-cream-css/css/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/vanilla-cream-css/style.css}"  />
+    <!-- scripts -->
+    <script th:src="@{/vanilla-cream-css/js/general.js}"></script>
+
+    <!-- Include all needed stylesheets and scripts here -->
+    <!--[if lt IE 9]>
+    <script th:src="@{/vanilla-cream-css/js/respond.min.js}"></script><![endif]-->
+    <!--[if gte IE 9]>
+    <style type="text/css">
+        .gradient {filter: none !important;}
+    </style>
+    <![endif]-->
+
+    </head>
+
+    <body layout:fragment="content">
+        <div class="container" >
+
+           <div class="col-sm-8 col-sm-offset-1">
+
+               <h6 class="foo"> 新增单边账</h6>
+               <div class="widget-container widget_login styled boxed boxed-cream gradient">
+                   <div class="inner">
+                       <form action="/normal/add" method="post" class="comment-form">
+
+                           <!-- 食物类型-->
+                           <!--<div class="field_select">-->
+                           <!--<select class="gradient" name="foodCode" hidefocus="true" style="width: 100%; background-color: initial">-->
+                           <!--<option value="">食物</option>-->
+                           <!--<option th:each="food : ${foods}" th:value="${food.foodCode}" th:text="${food.name}"></option>-->
+                           <!--</select>-->
+                           <!--</div>-->
+                           <!--<div class="field_select">-->
+                               <!--<select class="gradient" name="foodCode" hidefocus="true" style="width: 100%; background-color: initial">-->
+                                   <!--<option value="">食物</option>-->
+                                   <!--<option th:each="food : ${foods}" th:value="${food.foodCode}" th:text="${food.name}"></option>-->
+                               <!--</select>-->
+                           <!--</div>-->
+
+
+                           <div class="field_text">
+                               <input type="text" name="merchantId" placeholder="商户号" class="gradient"/>
+                               <span class="input_icon"></span>
+                           </div>
+                           <div class="field_text">
+                               <input type="text" name="storeId" placeholder="门店号" class="gradient"/>
+                               <span class="input_icon"></span>
+                           </div>
+                           <div class="field_text">
+                               <input type="text" name="deviceSn" placeholder="设备SN" class="gradient"/>
+                               <span class="input_icon"></span>
+                           </div>
+
+                           <!--<div class="filed_text">-->
+                               <!--<input type="text" name="transDate" placeholder="交易日期，如：2017-05-22" class="gradient"/>-->
+                               <!--<span class="input_icon"></span>-->
+                           <!--</div>-->
+
+                           <div class="field_text">
+                               <input type="text" name="totalAmount" placeholder="总金额" class="gradient"/>
+                               <span class="input_icon input_pass"></span>
+                           </div>
+
+                           <div class="field_text">
+                               <input type="text" name="payAmount" placeholder="实付金额" class="gradient"/>
+                               <span class="input_icon input_pass"></span>
+                           </div>
+                           <div class="field_select">
+                               <select class="gradient" name="paymentType" hidefocus="true" style="width: 100%; background-color: initial">
+                                   <option value="">支付方式编码</option>
+                                   <option value="WECHAT">WECHAT</option>
+                                   <option value="ALIPAY">ALIPAY</option>
+                                   <option value="BANK">BANK</option>
+
+                               </select>
+                           </div>
+
+                           <div class="rowSubmit">
+                               <span class="btn btn-hover">
+                                   <input type="submit" value="Save" class="gradient"/>
+                               </span>
+                               <span class="btn btn-hover">
+                                   <input type="reset" value="Cancel" class="gradient"/>
+                               </span>
+                           </div>
+                       </form>
+                   </div>
+               </div>
+           </div>
+        </div>
+    </body>
+
+    </html>

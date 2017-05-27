@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--&lt;!&ndash;[if lt IE 7 ]><html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js ie6"> <![endif]&ndash;&gt;-->
+<!--&lt;!&ndash;[if IE 7 ]><html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js ie7"> <![endif]&ndash;&gt;-->
+<!--&lt;!&ndash;[if IE 8 ]><html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js ie8"> <![endif]&ndash;&gt;-->
+<!--&lt;!&ndash;[if IE 9 ]><html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js ie9"> <![endif]&ndash;&gt;-->
+<!--&lt;!&ndash;[if (gt IE 9)|!(IE)]>&lt;!&ndash;><html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js"-->
+                                    <!--xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+                                    <!--layout:decorator="layout"> &lt;!&ndash;<![endif]&ndash;&gt;-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+
+<head>
+    <title>login</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title></title>
+
+    <!-- main JS libs -->
+    <script th:src="@{/vanilla-cream-css/js/libs/modernizr.min.js}"></script>
+    <script th:src="@{/vanilla-cream-css/js/libs/jquery-1.10.0.js}"></script>
+    <script th:src="@{/vanilla-cream-css/js/libs/jquery-ui.min.js}"></script>
+    <script th:src="@{/vanilla-cream-css/js/libs/bootstrap.min.js}"></script>
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" th:href="@{/vanilla-cream-css/css/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/vanilla-cream-css/style.css}"  />
+    <!-- scripts -->
+    <script th:src="@{/vanilla-cream-css/js/general.js}"></script>
+    <!--<script th:src="@{/jquery/jquery-3.0.0.min.js}"></script>-->
+
+    <!-- Include all needed stylesheets and scripts here -->
+    <!--[if lt IE 9]>
+    <script th:src="@{/vanilla-cream-css/js/respond.min.js}"></script><![endif]-->
+    <!--[if gte IE 9]>
+    <style type="text/css">
+        .gradient {filter: none !important;}
+    </style>
+    <![endif]-->
+    <!--<script type="text/javascript" th:inline="javascript">-->
+        <!--/*<![CDATA[*/-->
+        <!--alert('Welcome to js');-->
+
+        <!--function submitBtn(){-->
+            <!--alert('should I ... ?');-->
+            <!--$.ajax({-->
+                <!--type: "POST",-->
+                <!--url: "login1",//"@{login1}",-->
+                <!--data:{-->
+                    <!--username:'',-->
+                    <!--password:''-->
+                <!--},-->
+                <!--beforeSend: function(request) {-->
+                    <!--this.username = $("#username").val();-->
+                    <!--this.password = $("#password").val();-->
+                    <!--alert("hello"+$("#username").val());-->
+                    <!--request.setRequestHeader("X-Token-Header", "X-Token-Header");-->
+                <!--},-->
+                <!--success: function(result) {-->
+                    <!--alert(result+"741");-->
+                <!--},-->
+                <!--failed: function (result) {-->
+                    <!--alert("failed");-->
+                <!--}-->
+            <!--});-->
+        <!--}-->
+        <!--$(function() {-->
+
+            <!--$("#loginBtn").click(function(event) {-->
+                <!--alert("event: "+event);-->
+                <!--alert('login button onclick');-->
+
+            <!--});-->
+        <!--});-->
+        <!--/*]]>*/-->
+    <!--</script>-->
+    </head>
+
+    <body layout:fragment="content">
+        <div class="container" >
+
+           <div class="col-sm-6 col-sm-offset-1">
+               <h6 class="foo"> Sign in</h6>
+               <div class="widget-container widget_login styled boxed boxed-cream gradient">
+                   <div class="inner">
+
+                       <!-- runat="server"  action="login1" method="post" -->
+                       <form  class="loginform"  action="login1" method="post">
+                           <div class="field_text">
+                               <label for="username" class="label_title">用户名</label>
+                               <input type="text" name="username" id="username" placeholder="用户名" hidefocus="true" class="gradient"/>
+                               <!--<span class="input_icon input_email"></span>-->
+                           </div>
+                           <div class="field_text">
+                               <label for="password" class="label_title">Password</label>
+                               <input type="text" name="password" id="password" placeholder="密码" hidefocus="true" class="gradient"/>
+                               <span class="input_icon input_pass"></span>
+                           </div>
+                           <div class="checkbox">
+                               <input type="checkbox" id="Remember-me" name="remember-me"/>
+                               <label for="Remember-me">记住密码</label>
+                               <div class="checkbox"></div>
+                           </div>
+                           <div class="rowSubmit">
+                               <span class="btn btn-hover">
+                                   <input type="submit" value="登录" class="gradient"/>
+                               </span>
+
+                           </div>
+                           <div class="footer"><a href="#">忘记密码?</a></div>
+                       </form>
+
+                       <!--<form action="login" method="post" class="loginform">-->
+                           <!--<div class="field_text">-->
+                               <!--&lt;!&ndash;<label for="mobile" class="label_title">Mobile</label>&ndash;&gt;-->
+                               <!--<input type="text" name="mobile" placeholder="Mobile" hidefocus="true" class="gradient"/>-->
+                               <!--<span class="input_icon input_email"></span>-->
+                           <!--</div>-->
+                           <!--<div class="rowSubmit">-->
+                               <!--<span class="btn btn-hover">-->
+                                   <!--<input type="submit" value="发送" th:action="'sendMsg?mobile='" class="gradient"/>-->
+                               <!--</span>-->
+                           <!--</div>-->
+                           <!--<div class="field_text">-->
+                               <!--&lt;!&ndash;<label for="validCode" class="label_title">ValidCode</label>&ndash;&gt;-->
+                               <!--<input type="text" name="validCode" placeholder="ValidCode" hidefocus="true" class="gradient"/>-->
+                               <!--<span class="input_icon input_pass"></span>-->
+                           <!--</div>-->
+                           <!--<div class="rowSubmit">-->
+                               <!--<span class="btn btn-hover">-->
+                                   <!--<input type="submit" value="登录" class="gradient"/>-->
+                               <!--</span>-->
+                           <!--</div>-->
+
+                       <!--</form>-->
+                   </div>
+               </div>
+           </div>
+        </div>
+    </body>
+
+    </html>

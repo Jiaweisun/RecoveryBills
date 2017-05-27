@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+      <!--xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">-->
+<head>
+    ...
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top" th:fragment="header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" th:href="@{/about}">漏单处理</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#" th:href="@{/normal}">单边账</a></li>
+                <li><a href="/food/list" th:href="@{/bank}">银行漏单</a></li>
+                <li><a href="/receipt/list" th:href="'/contact'">联系我们</a></li>
+            </ul>
+
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!--<li th:if="${#authorization.expression('!isAuthenticated()')}">-->
+                    <!--<a href="/login" th:href="@{/login}">登录</a>-->
+                <!--</li>-->
+                <!--<li th:if="${#authorization.expression('!isAuthenticated()')}">-->
+                    <!--<a href="/login" th:href="@{/register}">注册</a>-->
+                <!--</li>-->
+                <!--<li th:if="${#authorization.expression('isAuthenticated()')}">-->
+                    <!--<div sec:authentication="name" style=" font-size: large; color: antiquewhite; margin-top: 50%;"></div>-->
+                <!--</li>-->
+                <!--<li th:if="${#authorization.expression('isAuthenticated()')}">-->
+                    <!--<a href="/logout" th:href="@{/logout}">登出</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,751 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kashuo.kap.bill.dao.TransactionMapper" >
+  <resultMap id="BaseResultMap" type="com.kashuo.kap.bill.domain.Transaction" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="trans_no" property="transNo" jdbcType="VARCHAR" />
+    <result column="trans_channel" property="transChannel" jdbcType="CHAR" />
+    <result column="activity_id" property="activityId" jdbcType="VARCHAR" />
+    <result column="activity_name" property="activityName" jdbcType="VARCHAR" />
+    <result column="prefer_type" property="preferType" jdbcType="VARCHAR" />
+    <result column="acquirer_trans_no" property="acquirerTransNo" jdbcType="VARCHAR" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="trans_type" property="transType" jdbcType="INTEGER" />
+    <result column="emi_type" property="emiType" jdbcType="INTEGER" />
+    <result column="emi_months" property="emiMonths" jdbcType="INTEGER" />
+    <result column="emi_threshold" property="emiThreshold" jdbcType="DECIMAL" />
+    <result column="busi_gross_profit" property="busiGrossProfit" jdbcType="DECIMAL" />
+    <result column="merchant_id" property="merchantId" jdbcType="INTEGER" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="store_channel" property="storeChannel" jdbcType="VARCHAR" />
+    <result column="acquirer_id" property="acquirerId" jdbcType="INTEGER" />
+    <result column="agency_id" property="agencyId" jdbcType="INTEGER" />
+    <result column="trans_rate" property="transRate" jdbcType="DECIMAL" />
+    <result column="device_sn" property="deviceSn" jdbcType="VARCHAR" />
+    <result column="store_number" property="storeNumber" jdbcType="CHAR" />
+    <result column="terminal_number" property="terminalNumber" jdbcType="CHAR" />
+    <result column="payment_type" property="paymentType" jdbcType="CHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="profit_status" property="profitStatus" jdbcType="INTEGER" />
+    <result column="profit_status_msg" property="profitStatusMsg" jdbcType="VARCHAR" />
+    <result column="trans_date" property="transDate" jdbcType="DATE" />
+    <result column="trans_time" property="transTime" jdbcType="TIME" />
+    <result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+    <result column="dis_amount" property="disAmount" jdbcType="DECIMAL" />
+    <result column="can_dis_amount" property="canDisAmount" jdbcType="DECIMAL" />
+    <result column="pay_amount" property="payAmount" jdbcType="DECIMAL" />
+    <result column="subsidy_amount" property="subsidyAmount" jdbcType="DECIMAL" />
+    <result column="busi_get_amount" property="busiGetAmount" jdbcType="DECIMAL" />
+    <result column="bank_money" property="bankMoney" jdbcType="DECIMAL" />
+    <result column="prepay_money" property="prepayMoney" jdbcType="DECIMAL" />
+    <result column="prereal_money" property="prerealMoney" jdbcType="DECIMAL" />
+    <result column="total_profit" property="totalProfit" jdbcType="DECIMAL" />
+    <result column="ks_profit" property="ksProfit" jdbcType="DECIMAL" />
+    <result column="acquirer_profit" property="acquirerProfit" jdbcType="DECIMAL" />
+    <result column="acquirer_terminal_number" property="acquirerTerminalNumber" jdbcType="VARCHAR" />
+    <result column="acquirer_merchant_number" property="acquirerMerchantNumber" jdbcType="VARCHAR" />
+    <result column="ref_number" property="refNumber" jdbcType="VARCHAR" />
+    <result column="batch_number" property="batchNumber" jdbcType="VARCHAR" />
+    <result column="voucher_number" property="voucherNumber" jdbcType="VARCHAR" />
+    <result column="bill_date" property="billDate" jdbcType="DATE" />
+    <result column="acq_channel" property="acqChannel" jdbcType="CHAR" />
+    <result column="acquirer_commission_amount" property="acquirerCommissionAmount" jdbcType="DECIMAL" />
+    <result column="commission_amount" property="commissionAmount" jdbcType="DECIMAL" />
+    <result column="service_charge_amount" property="serviceChargeAmount" jdbcType="DECIMAL" />
+    <result column="card_number" property="cardNumber" jdbcType="VARCHAR" />
+    <result column="card_enc" property="cardEnc" jdbcType="VARCHAR" />
+    <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+    <result column="account_number" property="accountNumber" jdbcType="VARCHAR" />
+    <result column="user_mobile" property="userMobile" jdbcType="VARCHAR" />
+    <result column="coupons" property="coupons" jdbcType="VARCHAR" />
+    <result column="trans_comment" property="transComment" jdbcType="VARCHAR" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, trans_no, trans_channel, activity_id, activity_name, prefer_type, acquirer_trans_no, 
+    order_no, trans_type, emi_type, emi_months, emi_threshold, busi_gross_profit, merchant_id, 
+    store_id, store_channel, acquirer_id, agency_id, trans_rate, device_sn, store_number, 
+    terminal_number, payment_type, status, profit_status, profit_status_msg, trans_date, 
+    trans_time, total_amount, dis_amount, can_dis_amount, pay_amount, subsidy_amount, 
+    busi_get_amount, bank_money, prepay_money, prereal_money, total_profit, ks_profit, 
+    acquirer_profit, acquirer_terminal_number, acquirer_merchant_number, ref_number, 
+    batch_number, voucher_number, bill_date, acq_channel, acquirer_commission_amount, 
+    commission_amount, service_charge_amount, card_number, card_enc, bank_name, account_number, 
+    user_mobile, coupons, trans_comment, created_at, updated_at
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from transaction
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from transaction
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kashuo.kap.bill.domain.Transaction" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into transaction (trans_no, trans_channel, activity_id, 
+      activity_name, prefer_type, acquirer_trans_no, 
+      order_no, trans_type, emi_type, 
+      emi_months, emi_threshold, busi_gross_profit, 
+      merchant_id, store_id, store_channel, 
+      acquirer_id, agency_id, trans_rate, 
+      device_sn, store_number, terminal_number, 
+      payment_type, status, profit_status, 
+      profit_status_msg, trans_date, trans_time, 
+      total_amount, dis_amount, can_dis_amount, 
+      pay_amount, subsidy_amount, busi_get_amount, 
+      bank_money, prepay_money, prereal_money, 
+      total_profit, ks_profit, acquirer_profit, 
+      acquirer_terminal_number, acquirer_merchant_number, 
+      ref_number, batch_number, voucher_number, 
+      bill_date, acq_channel, acquirer_commission_amount, 
+      commission_amount, service_charge_amount, 
+      card_number, card_enc, bank_name, 
+      account_number, user_mobile, coupons, 
+      trans_comment, created_at, updated_at
+      )
+    values (#{transNo,jdbcType=VARCHAR}, #{transChannel,jdbcType=CHAR}, #{activityId,jdbcType=VARCHAR}, 
+      #{activityName,jdbcType=VARCHAR}, #{preferType,jdbcType=VARCHAR}, #{acquirerTransNo,jdbcType=VARCHAR}, 
+      #{orderNo,jdbcType=VARCHAR}, #{transType,jdbcType=INTEGER}, #{emiType,jdbcType=INTEGER}, 
+      #{emiMonths,jdbcType=INTEGER}, #{emiThreshold,jdbcType=DECIMAL}, #{busiGrossProfit,jdbcType=DECIMAL}, 
+      #{merchantId,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER}, #{storeChannel,jdbcType=VARCHAR}, 
+      #{acquirerId,jdbcType=INTEGER}, #{agencyId,jdbcType=INTEGER}, #{transRate,jdbcType=DECIMAL}, 
+      #{deviceSn,jdbcType=VARCHAR}, #{storeNumber,jdbcType=CHAR}, #{terminalNumber,jdbcType=CHAR}, 
+      #{paymentType,jdbcType=CHAR}, #{status,jdbcType=INTEGER}, #{profitStatus,jdbcType=INTEGER}, 
+      #{profitStatusMsg,jdbcType=VARCHAR}, #{transDate,jdbcType=DATE}, #{transTime,jdbcType=TIME}, 
+      #{totalAmount,jdbcType=DECIMAL}, #{disAmount,jdbcType=DECIMAL}, #{canDisAmount,jdbcType=DECIMAL}, 
+      #{payAmount,jdbcType=DECIMAL}, #{subsidyAmount,jdbcType=DECIMAL}, #{busiGetAmount,jdbcType=DECIMAL}, 
+      #{bankMoney,jdbcType=DECIMAL}, #{prepayMoney,jdbcType=DECIMAL}, #{prerealMoney,jdbcType=DECIMAL}, 
+      #{totalProfit,jdbcType=DECIMAL}, #{ksProfit,jdbcType=DECIMAL}, #{acquirerProfit,jdbcType=DECIMAL}, 
+      #{acquirerTerminalNumber,jdbcType=VARCHAR}, #{acquirerMerchantNumber,jdbcType=VARCHAR}, 
+      #{refNumber,jdbcType=VARCHAR}, #{batchNumber,jdbcType=VARCHAR}, #{voucherNumber,jdbcType=VARCHAR}, 
+      #{billDate,jdbcType=DATE}, #{acqChannel,jdbcType=CHAR}, #{acquirerCommissionAmount,jdbcType=DECIMAL}, 
+      #{commissionAmount,jdbcType=DECIMAL}, #{serviceChargeAmount,jdbcType=DECIMAL}, 
+      #{cardNumber,jdbcType=VARCHAR}, #{cardEnc,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, 
+      #{accountNumber,jdbcType=VARCHAR}, #{userMobile,jdbcType=VARCHAR}, #{coupons,jdbcType=VARCHAR}, 
+      #{transComment,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kashuo.kap.bill.domain.Transaction" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into transaction
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="transNo != null" >
+        trans_no,
+      </if>
+      <if test="transChannel != null" >
+        trans_channel,
+      </if>
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="activityName != null" >
+        activity_name,
+      </if>
+      <if test="preferType != null" >
+        prefer_type,
+      </if>
+      <if test="acquirerTransNo != null" >
+        acquirer_trans_no,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="transType != null" >
+        trans_type,
+      </if>
+      <if test="emiType != null" >
+        emi_type,
+      </if>
+      <if test="emiMonths != null" >
+        emi_months,
+      </if>
+      <if test="emiThreshold != null" >
+        emi_threshold,
+      </if>
+      <if test="busiGrossProfit != null" >
+        busi_gross_profit,
+      </if>
+      <if test="merchantId != null" >
+        merchant_id,
+      </if>
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="storeChannel != null" >
+        store_channel,
+      </if>
+      <if test="acquirerId != null" >
+        acquirer_id,
+      </if>
+      <if test="agencyId != null" >
+        agency_id,
+      </if>
+      <if test="transRate != null" >
+        trans_rate,
+      </if>
+      <if test="deviceSn != null" >
+        device_sn,
+      </if>
+      <if test="storeNumber != null" >
+        store_number,
+      </if>
+      <if test="terminalNumber != null" >
+        terminal_number,
+      </if>
+      <if test="paymentType != null" >
+        payment_type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="profitStatus != null" >
+        profit_status,
+      </if>
+      <if test="profitStatusMsg != null" >
+        profit_status_msg,
+      </if>
+      <if test="transDate != null" >
+        trans_date,
+      </if>
+      <if test="transTime != null" >
+        trans_time,
+      </if>
+      <if test="totalAmount != null" >
+        total_amount,
+      </if>
+      <if test="disAmount != null" >
+        dis_amount,
+      </if>
+      <if test="canDisAmount != null" >
+        can_dis_amount,
+      </if>
+      <if test="payAmount != null" >
+        pay_amount,
+      </if>
+      <if test="subsidyAmount != null" >
+        subsidy_amount,
+      </if>
+      <if test="busiGetAmount != null" >
+        busi_get_amount,
+      </if>
+      <if test="bankMoney != null" >
+        bank_money,
+      </if>
+      <if test="prepayMoney != null" >
+        prepay_money,
+      </if>
+      <if test="prerealMoney != null" >
+        prereal_money,
+      </if>
+      <if test="totalProfit != null" >
+        total_profit,
+      </if>
+      <if test="ksProfit != null" >
+        ks_profit,
+      </if>
+      <if test="acquirerProfit != null" >
+        acquirer_profit,
+      </if>
+      <if test="acquirerTerminalNumber != null" >
+        acquirer_terminal_number,
+      </if>
+      <if test="acquirerMerchantNumber != null" >
+        acquirer_merchant_number,
+      </if>
+      <if test="refNumber != null" >
+        ref_number,
+      </if>
+      <if test="batchNumber != null" >
+        batch_number,
+      </if>
+      <if test="voucherNumber != null" >
+        voucher_number,
+      </if>
+      <if test="billDate != null" >
+        bill_date,
+      </if>
+      <if test="acqChannel != null" >
+        acq_channel,
+      </if>
+      <if test="acquirerCommissionAmount != null" >
+        acquirer_commission_amount,
+      </if>
+      <if test="commissionAmount != null" >
+        commission_amount,
+      </if>
+      <if test="serviceChargeAmount != null" >
+        service_charge_amount,
+      </if>
+      <if test="cardNumber != null" >
+        card_number,
+      </if>
+      <if test="cardEnc != null" >
+        card_enc,
+      </if>
+      <if test="bankName != null" >
+        bank_name,
+      </if>
+      <if test="accountNumber != null" >
+        account_number,
+      </if>
+      <if test="userMobile != null" >
+        user_mobile,
+      </if>
+      <if test="coupons != null" >
+        coupons,
+      </if>
+      <if test="transComment != null" >
+        trans_comment,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="transNo != null" >
+        #{transNo,jdbcType=VARCHAR},
+      </if>
+      <if test="transChannel != null" >
+        #{transChannel,jdbcType=CHAR},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=VARCHAR},
+      </if>
+      <if test="activityName != null" >
+        #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="preferType != null" >
+        #{preferType,jdbcType=VARCHAR},
+      </if>
+      <if test="acquirerTransNo != null" >
+        #{acquirerTransNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="transType != null" >
+        #{transType,jdbcType=INTEGER},
+      </if>
+      <if test="emiType != null" >
+        #{emiType,jdbcType=INTEGER},
+      </if>
+      <if test="emiMonths != null" >
+        #{emiMonths,jdbcType=INTEGER},
+      </if>
+      <if test="emiThreshold != null" >
+        #{emiThreshold,jdbcType=DECIMAL},
+      </if>
+      <if test="busiGrossProfit != null" >
+        #{busiGrossProfit,jdbcType=DECIMAL},
+      </if>
+      <if test="merchantId != null" >
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="storeChannel != null" >
+        #{storeChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="acquirerId != null" >
+        #{acquirerId,jdbcType=INTEGER},
+      </if>
+      <if test="agencyId != null" >
+        #{agencyId,jdbcType=INTEGER},
+      </if>
+      <if test="transRate != null" >
+        #{transRate,jdbcType=DECIMAL},
+      </if>
+      <if test="deviceSn != null" >
+        #{deviceSn,jdbcType=VARCHAR},
+      </if>
+      <if test="storeNumber != null" >
+        #{storeNumber,jdbcType=CHAR},
+      </if>
+      <if test="terminalNumber != null" >
+        #{terminalNumber,jdbcType=CHAR},
+      </if>
+      <if test="paymentType != null" >
+        #{paymentType,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="profitStatus != null" >
+        #{profitStatus,jdbcType=INTEGER},
+      </if>
+      <if test="profitStatusMsg != null" >
+        #{profitStatusMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="transDate != null" >
+        #{transDate,jdbcType=DATE},
+      </if>
+      <if test="transTime != null" >
+        #{transTime,jdbcType=TIME},
+      </if>
+      <if test="totalAmount != null" >
+        #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="disAmount != null" >
+        #{disAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="canDisAmount != null" >
+        #{canDisAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payAmount != null" >
+        #{payAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="subsidyAmount != null" >
+        #{subsidyAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="busiGetAmount != null" >
+        #{busiGetAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="bankMoney != null" >
+        #{bankMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="prepayMoney != null" >
+        #{prepayMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="prerealMoney != null" >
+        #{prerealMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="totalProfit != null" >
+        #{totalProfit,jdbcType=DECIMAL},
+      </if>
+      <if test="ksProfit != null" >
+        #{ksProfit,jdbcType=DECIMAL},
+      </if>
+      <if test="acquirerProfit != null" >
+        #{acquirerProfit,jdbcType=DECIMAL},
+      </if>
+      <if test="acquirerTerminalNumber != null" >
+        #{acquirerTerminalNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="acquirerMerchantNumber != null" >
+        #{acquirerMerchantNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="refNumber != null" >
+        #{refNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNumber != null" >
+        #{batchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherNumber != null" >
+        #{voucherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="billDate != null" >
+        #{billDate,jdbcType=DATE},
+      </if>
+      <if test="acqChannel != null" >
+        #{acqChannel,jdbcType=CHAR},
+      </if>
+      <if test="acquirerCommissionAmount != null" >
+        #{acquirerCommissionAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="commissionAmount != null" >
+        #{commissionAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceChargeAmount != null" >
+        #{serviceChargeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="cardNumber != null" >
+        #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cardEnc != null" >
+        #{cardEnc,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNumber != null" >
+        #{accountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userMobile != null" >
+        #{userMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="coupons != null" >
+        #{coupons,jdbcType=VARCHAR},
+      </if>
+      <if test="transComment != null" >
+        #{transComment,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kashuo.kap.bill.domain.Transaction" >
+    update transaction
+    <set >
+      <if test="transNo != null" >
+        trans_no = #{transNo,jdbcType=VARCHAR},
+      </if>
+      <if test="transChannel != null" >
+        trans_channel = #{transChannel,jdbcType=CHAR},
+      </if>
+      <if test="activityId != null" >
+        activity_id = #{activityId,jdbcType=VARCHAR},
+      </if>
+      <if test="activityName != null" >
+        activity_name = #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="preferType != null" >
+        prefer_type = #{preferType,jdbcType=VARCHAR},
+      </if>
+      <if test="acquirerTransNo != null" >
+        acquirer_trans_no = #{acquirerTransNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="transType != null" >
+        trans_type = #{transType,jdbcType=INTEGER},
+      </if>
+      <if test="emiType != null" >
+        emi_type = #{emiType,jdbcType=INTEGER},
+      </if>
+      <if test="emiMonths != null" >
+        emi_months = #{emiMonths,jdbcType=INTEGER},
+      </if>
+      <if test="emiThreshold != null" >
+        emi_threshold = #{emiThreshold,jdbcType=DECIMAL},
+      </if>
+      <if test="busiGrossProfit != null" >
+        busi_gross_profit = #{busiGrossProfit,jdbcType=DECIMAL},
+      </if>
+      <if test="merchantId != null" >
+        merchant_id = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="storeChannel != null" >
+        store_channel = #{storeChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="acquirerId != null" >
+        acquirer_id = #{acquirerId,jdbcType=INTEGER},
+      </if>
+      <if test="agencyId != null" >
+        agency_id = #{agencyId,jdbcType=INTEGER},
+      </if>
+      <if test="transRate != null" >
+        trans_rate = #{transRate,jdbcType=DECIMAL},
+      </if>
+      <if test="deviceSn != null" >
+        device_sn = #{deviceSn,jdbcType=VARCHAR},
+      </if>
+      <if test="storeNumber != null" >
+        store_number = #{storeNumber,jdbcType=CHAR},
+      </if>
+      <if test="terminalNumber != null" >
+        terminal_number = #{terminalNumber,jdbcType=CHAR},
+      </if>
+      <if test="paymentType != null" >
+        payment_type = #{paymentType,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="profitStatus != null" >
+        profit_status = #{profitStatus,jdbcType=INTEGER},
+      </if>
+      <if test="profitStatusMsg != null" >
+        profit_status_msg = #{profitStatusMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="transDate != null" >
+        trans_date = #{transDate,jdbcType=DATE},
+      </if>
+      <if test="transTime != null" >
+        trans_time = #{transTime,jdbcType=TIME},
+      </if>
+      <if test="totalAmount != null" >
+        total_amount = #{totalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="disAmount != null" >
+        dis_amount = #{disAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="canDisAmount != null" >
+        can_dis_amount = #{canDisAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="payAmount != null" >
+        pay_amount = #{payAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="subsidyAmount != null" >
+        subsidy_amount = #{subsidyAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="busiGetAmount != null" >
+        busi_get_amount = #{busiGetAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="bankMoney != null" >
+        bank_money = #{bankMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="prepayMoney != null" >
+        prepay_money = #{prepayMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="prerealMoney != null" >
+        prereal_money = #{prerealMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="totalProfit != null" >
+        total_profit = #{totalProfit,jdbcType=DECIMAL},
+      </if>
+      <if test="ksProfit != null" >
+        ks_profit = #{ksProfit,jdbcType=DECIMAL},
+      </if>
+      <if test="acquirerProfit != null" >
+        acquirer_profit = #{acquirerProfit,jdbcType=DECIMAL},
+      </if>
+      <if test="acquirerTerminalNumber != null" >
+        acquirer_terminal_number = #{acquirerTerminalNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="acquirerMerchantNumber != null" >
+        acquirer_merchant_number = #{acquirerMerchantNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="refNumber != null" >
+        ref_number = #{refNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="batchNumber != null" >
+        batch_number = #{batchNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="voucherNumber != null" >
+        voucher_number = #{voucherNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="billDate != null" >
+        bill_date = #{billDate,jdbcType=DATE},
+      </if>
+      <if test="acqChannel != null" >
+        acq_channel = #{acqChannel,jdbcType=CHAR},
+      </if>
+      <if test="acquirerCommissionAmount != null" >
+        acquirer_commission_amount = #{acquirerCommissionAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="commissionAmount != null" >
+        commission_amount = #{commissionAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="serviceChargeAmount != null" >
+        service_charge_amount = #{serviceChargeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="cardNumber != null" >
+        card_number = #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cardEnc != null" >
+        card_enc = #{cardEnc,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNumber != null" >
+        account_number = #{accountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userMobile != null" >
+        user_mobile = #{userMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="coupons != null" >
+        coupons = #{coupons,jdbcType=VARCHAR},
+      </if>
+      <if test="transComment != null" >
+        trans_comment = #{transComment,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kashuo.kap.bill.domain.Transaction" >
+    update transaction
+    set trans_no = #{transNo,jdbcType=VARCHAR},
+      trans_channel = #{transChannel,jdbcType=CHAR},
+      activity_id = #{activityId,jdbcType=VARCHAR},
+      activity_name = #{activityName,jdbcType=VARCHAR},
+      prefer_type = #{preferType,jdbcType=VARCHAR},
+      acquirer_trans_no = #{acquirerTransNo,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      trans_type = #{transType,jdbcType=INTEGER},
+      emi_type = #{emiType,jdbcType=INTEGER},
+      emi_months = #{emiMonths,jdbcType=INTEGER},
+      emi_threshold = #{emiThreshold,jdbcType=DECIMAL},
+      busi_gross_profit = #{busiGrossProfit,jdbcType=DECIMAL},
+      merchant_id = #{merchantId,jdbcType=INTEGER},
+      store_id = #{storeId,jdbcType=INTEGER},
+      store_channel = #{storeChannel,jdbcType=VARCHAR},
+      acquirer_id = #{acquirerId,jdbcType=INTEGER},
+      agency_id = #{agencyId,jdbcType=INTEGER},
+      trans_rate = #{transRate,jdbcType=DECIMAL},
+      device_sn = #{deviceSn,jdbcType=VARCHAR},
+      store_number = #{storeNumber,jdbcType=CHAR},
+      terminal_number = #{terminalNumber,jdbcType=CHAR},
+      payment_type = #{paymentType,jdbcType=CHAR},
+      status = #{status,jdbcType=INTEGER},
+      profit_status = #{profitStatus,jdbcType=INTEGER},
+      profit_status_msg = #{profitStatusMsg,jdbcType=VARCHAR},
+      trans_date = #{transDate,jdbcType=DATE},
+      trans_time = #{transTime,jdbcType=TIME},
+      total_amount = #{totalAmount,jdbcType=DECIMAL},
+      dis_amount = #{disAmount,jdbcType=DECIMAL},
+      can_dis_amount = #{canDisAmount,jdbcType=DECIMAL},
+      pay_amount = #{payAmount,jdbcType=DECIMAL},
+      subsidy_amount = #{subsidyAmount,jdbcType=DECIMAL},
+      busi_get_amount = #{busiGetAmount,jdbcType=DECIMAL},
+      bank_money = #{bankMoney,jdbcType=DECIMAL},
+      prepay_money = #{prepayMoney,jdbcType=DECIMAL},
+      prereal_money = #{prerealMoney,jdbcType=DECIMAL},
+      total_profit = #{totalProfit,jdbcType=DECIMAL},
+      ks_profit = #{ksProfit,jdbcType=DECIMAL},
+      acquirer_profit = #{acquirerProfit,jdbcType=DECIMAL},
+      acquirer_terminal_number = #{acquirerTerminalNumber,jdbcType=VARCHAR},
+      acquirer_merchant_number = #{acquirerMerchantNumber,jdbcType=VARCHAR},
+      ref_number = #{refNumber,jdbcType=VARCHAR},
+      batch_number = #{batchNumber,jdbcType=VARCHAR},
+      voucher_number = #{voucherNumber,jdbcType=VARCHAR},
+      bill_date = #{billDate,jdbcType=DATE},
+      acq_channel = #{acqChannel,jdbcType=CHAR},
+      acquirer_commission_amount = #{acquirerCommissionAmount,jdbcType=DECIMAL},
+      commission_amount = #{commissionAmount,jdbcType=DECIMAL},
+      service_charge_amount = #{serviceChargeAmount,jdbcType=DECIMAL},
+      card_number = #{cardNumber,jdbcType=VARCHAR},
+      card_enc = #{cardEnc,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      account_number = #{accountNumber,jdbcType=VARCHAR},
+      user_mobile = #{userMobile,jdbcType=VARCHAR},
+      coupons = #{coupons,jdbcType=VARCHAR},
+      trans_comment = #{transComment,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="SelectOne" resultMap="BaseResultMap" parameterType="com.kashuo.kap.bill.model.dto.TransactionCondition">
+    select
+    <include refid="Base_Column_List" />
+    from transaction
+    where 1=1
+    <if test="deviceSn !=null and deviceSn !=''">
+     and device_sn = #{deviceSn}
+    </if>
+    <if test="totalAmount != null" >
+     and  total_amount = #{totalAmount}
+    </if>
+    <if test="payAmount != null" >
+      and total_amount = #{totalAmount}
+    </if>
+<!-- transDate-->
+  </select>
+</mapper>

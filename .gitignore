@@ -1,0 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea
+RecoveryBills.iml
+bill-core/target
+bill-dao/target
+bill-server/target
+bill-services/target
+bill-web/target
