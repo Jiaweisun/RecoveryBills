@@ -1,0 +1,920 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kashuo.kap.bill.dao.StoreMapper" >
+  <resultMap id="BaseResultMap" type="com.kashuo.kap.bill.domain.Store" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="logo" property="logo" jdbcType="VARCHAR" />
+    <result column="channel_code" property="channelCode" jdbcType="VARCHAR" />
+    <result column="merchant_id" property="merchantId" jdbcType="INTEGER" />
+    <result column="longitude" property="longitude" jdbcType="DECIMAL" />
+    <result column="latitude" property="latitude" jdbcType="DECIMAL" />
+    <result column="region_id" property="regionId" jdbcType="INTEGER" />
+    <result column="company" property="company" jdbcType="VARCHAR" />
+    <result column="province_id" property="provinceId" jdbcType="INTEGER" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="district_id" property="districtId" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="fax_number" property="faxNumber" jdbcType="VARCHAR" />
+    <result column="presale_phone_number" property="presalePhoneNumber" jdbcType="VARCHAR" />
+    <result column="business_hours" property="businessHours" jdbcType="VARCHAR" />
+    <result column="business_start_hours" property="businessStartHours" jdbcType="VARCHAR" />
+    <result column="business_end_hours" property="businessEndHours" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="contact_person" property="contactPerson" jdbcType="VARCHAR" />
+    <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="sales_contact" property="salesContact" jdbcType="VARCHAR" />
+    <result column="sales_phone" property="salesPhone" jdbcType="VARCHAR" />
+    <result column="company_account_id" property="companyAccountId" jdbcType="INTEGER" />
+    <result column="has_ali_pay" property="hasAliPay" jdbcType="BIT" />
+    <result column="has_wechat_pay" property="hasWechatPay" jdbcType="BIT" />
+    <result column="has_cash_pay" property="hasCashPay" jdbcType="BIT" />
+    <result column="has_pre_pay_card" property="hasPrePayCard" jdbcType="BIT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="audit_opinion" property="auditOpinion" jdbcType="VARCHAR" />
+    <result column="store_type" property="storeType" jdbcType="INTEGER" />
+    <result column="role_type" property="roleType" jdbcType="INTEGER" />
+    <result column="mobile_pay_type" property="mobilePayType" jdbcType="VARCHAR" />
+    <result column="mobile_merchant_no" property="mobileMerchantNo" jdbcType="VARCHAR" />
+    <result column="mobile_terminal_no" property="mobileTerminalNo" jdbcType="VARCHAR" />
+    <result column="mobile_wechat_rate" property="mobileWechatRate" jdbcType="DECIMAL" />
+    <result column="mobile_alipay_rate" property="mobileAlipayRate" jdbcType="DECIMAL" />
+    <result column="commission_type" property="commissionType" jdbcType="INTEGER" />
+    <result column="commission_fee" property="commissionFee" jdbcType="DECIMAL" />
+    <result column="cash_bonus" property="cashBonus" jdbcType="DECIMAL" />
+    <result column="tax_fee" property="taxFee" jdbcType="DECIMAL" />
+    <result column="settlement_type" property="settlementType" jdbcType="INTEGER" />
+    <result column="registry_name" property="registryName" jdbcType="VARCHAR" />
+    <result column="registry_code" property="registryCode" jdbcType="VARCHAR" />
+    <result column="company_type" property="companyType" jdbcType="VARCHAR" />
+    <result column="legal_user" property="legalUser" jdbcType="VARCHAR" />
+    <result column="card_type" property="cardType" jdbcType="INTEGER" />
+    <result column="card_code" property="cardCode" jdbcType="VARCHAR" />
+    <result column="business" property="business" jdbcType="VARCHAR" />
+    <result column="store_account_type" property="storeAccountType" jdbcType="INTEGER" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="updated_by" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="delete_mark" property="deleteMark" jdbcType="BIT" />
+    <result column="sm_store_id" property="smStoreId" jdbcType="INTEGER" />
+    <result column="audit_at" property="auditAt" jdbcType="TIMESTAMP" />
+    <result column="system_id" property="systemId" jdbcType="INTEGER" />
+    <result column="normal_discount" property="normalDiscount" jdbcType="DECIMAL" />
+    <result column="fit_card" property="fitCard" jdbcType="VARCHAR" />
+    <result column="store_area" property="storeArea" jdbcType="DECIMAL" />
+    <result column="store_category_id" property="storeCategoryId" jdbcType="BIGINT" />
+    <result column="floor" property="floor" jdbcType="VARCHAR" />
+    <result column="merchant_region_id" property="merchantRegionId" jdbcType="INTEGER" />
+    <result column="merchant_region_name" property="merchantRegionName" jdbcType="VARCHAR" />
+    <result column="guide_discount" property="guideDiscount" jdbcType="DECIMAL" />
+    <result column="audit_by" property="auditBy" jdbcType="VARCHAR" />
+    <result column="pax_shop_id" property="paxShopId" jdbcType="VARCHAR" />
+    <result column="pax_mid" property="paxMid" jdbcType="VARCHAR" />
+    <result column="pax_request_id" property="paxRequestId" jdbcType="VARCHAR" />
+    <result column="position_num" property="positionNum" jdbcType="VARCHAR" />
+    <result column="store_contactor" property="storeContactor" jdbcType="VARCHAR" />
+    <result column="store_phone" property="storePhone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, code, logo, channel_code, merchant_id, longitude, latitude, region_id, 
+    company, province_id, city_id, district_id, address, fax_number, presale_phone_number, 
+    business_hours, business_start_hours, business_end_hours, description, contact_person, 
+    phone_number, email, sales_contact, sales_phone, company_account_id, has_ali_pay, 
+    has_wechat_pay, has_cash_pay, has_pre_pay_card, status, audit_opinion, store_type, 
+    role_type, mobile_pay_type, mobile_merchant_no, mobile_terminal_no, mobile_wechat_rate, 
+    mobile_alipay_rate, commission_type, commission_fee, cash_bonus, tax_fee, settlement_type, 
+    registry_name, registry_code, company_type, legal_user, card_type, card_code, business, 
+    store_account_type, created_at, created_by, updated_at, updated_by, delete_mark, 
+    sm_store_id, audit_at, system_id, normal_discount, fit_card, store_area, store_category_id, 
+    floor, merchant_region_id, merchant_region_name, guide_discount, audit_by, pax_shop_id, 
+    pax_mid, pax_request_id, position_num, store_contactor, store_phone
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from store
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from store
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kashuo.kap.bill.domain.Store" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into store (name, code, logo, 
+      channel_code, merchant_id, longitude, 
+      latitude, region_id, company, 
+      province_id, city_id, district_id, 
+      address, fax_number, presale_phone_number, 
+      business_hours, business_start_hours, business_end_hours, 
+      description, contact_person, phone_number, 
+      email, sales_contact, sales_phone, 
+      company_account_id, has_ali_pay, has_wechat_pay, 
+      has_cash_pay, has_pre_pay_card, status, 
+      audit_opinion, store_type, role_type, 
+      mobile_pay_type, mobile_merchant_no, mobile_terminal_no, 
+      mobile_wechat_rate, mobile_alipay_rate, commission_type, 
+      commission_fee, cash_bonus, tax_fee, 
+      settlement_type, registry_name, registry_code, 
+      company_type, legal_user, card_type, 
+      card_code, business, store_account_type, 
+      created_at, created_by, updated_at, 
+      updated_by, delete_mark, sm_store_id, 
+      audit_at, system_id, normal_discount, 
+      fit_card, store_area, store_category_id, 
+      floor, merchant_region_id, merchant_region_name, 
+      guide_discount, audit_by, pax_shop_id, 
+      pax_mid, pax_request_id, position_num, 
+      store_contactor, store_phone)
+    values (#{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, 
+      #{channelCode,jdbcType=VARCHAR}, #{merchantId,jdbcType=INTEGER}, #{longitude,jdbcType=DECIMAL}, 
+      #{latitude,jdbcType=DECIMAL}, #{regionId,jdbcType=INTEGER}, #{company,jdbcType=VARCHAR}, 
+      #{provinceId,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER}, #{districtId,jdbcType=INTEGER}, 
+      #{address,jdbcType=VARCHAR}, #{faxNumber,jdbcType=VARCHAR}, #{presalePhoneNumber,jdbcType=VARCHAR}, 
+      #{businessHours,jdbcType=VARCHAR}, #{businessStartHours,jdbcType=VARCHAR}, #{businessEndHours,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{contactPerson,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{salesContact,jdbcType=VARCHAR}, #{salesPhone,jdbcType=VARCHAR}, 
+      #{companyAccountId,jdbcType=INTEGER}, #{hasAliPay,jdbcType=BIT}, #{hasWechatPay,jdbcType=BIT}, 
+      #{hasCashPay,jdbcType=BIT}, #{hasPrePayCard,jdbcType=BIT}, #{status,jdbcType=INTEGER}, 
+      #{auditOpinion,jdbcType=VARCHAR}, #{storeType,jdbcType=INTEGER}, #{roleType,jdbcType=INTEGER}, 
+      #{mobilePayType,jdbcType=VARCHAR}, #{mobileMerchantNo,jdbcType=VARCHAR}, #{mobileTerminalNo,jdbcType=VARCHAR}, 
+      #{mobileWechatRate,jdbcType=DECIMAL}, #{mobileAlipayRate,jdbcType=DECIMAL}, #{commissionType,jdbcType=INTEGER}, 
+      #{commissionFee,jdbcType=DECIMAL}, #{cashBonus,jdbcType=DECIMAL}, #{taxFee,jdbcType=DECIMAL}, 
+      #{settlementType,jdbcType=INTEGER}, #{registryName,jdbcType=VARCHAR}, #{registryCode,jdbcType=VARCHAR}, 
+      #{companyType,jdbcType=VARCHAR}, #{legalUser,jdbcType=VARCHAR}, #{cardType,jdbcType=INTEGER}, 
+      #{cardCode,jdbcType=VARCHAR}, #{business,jdbcType=VARCHAR}, #{storeAccountType,jdbcType=INTEGER}, 
+      #{createdAt,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{updatedBy,jdbcType=VARCHAR}, #{deleteMark,jdbcType=BIT}, #{smStoreId,jdbcType=INTEGER}, 
+      #{auditAt,jdbcType=TIMESTAMP}, #{systemId,jdbcType=INTEGER}, #{normalDiscount,jdbcType=DECIMAL}, 
+      #{fitCard,jdbcType=VARCHAR}, #{storeArea,jdbcType=DECIMAL}, #{storeCategoryId,jdbcType=BIGINT}, 
+      #{floor,jdbcType=VARCHAR}, #{merchantRegionId,jdbcType=INTEGER}, #{merchantRegionName,jdbcType=VARCHAR}, 
+      #{guideDiscount,jdbcType=DECIMAL}, #{auditBy,jdbcType=VARCHAR}, #{paxShopId,jdbcType=VARCHAR}, 
+      #{paxMid,jdbcType=VARCHAR}, #{paxRequestId,jdbcType=VARCHAR}, #{positionNum,jdbcType=VARCHAR}, 
+      #{storeContactor,jdbcType=VARCHAR}, #{storePhone,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kashuo.kap.bill.domain.Store" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into store
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="logo != null" >
+        logo,
+      </if>
+      <if test="channelCode != null" >
+        channel_code,
+      </if>
+      <if test="merchantId != null" >
+        merchant_id,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="regionId != null" >
+        region_id,
+      </if>
+      <if test="company != null" >
+        company,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="districtId != null" >
+        district_id,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="faxNumber != null" >
+        fax_number,
+      </if>
+      <if test="presalePhoneNumber != null" >
+        presale_phone_number,
+      </if>
+      <if test="businessHours != null" >
+        business_hours,
+      </if>
+      <if test="businessStartHours != null" >
+        business_start_hours,
+      </if>
+      <if test="businessEndHours != null" >
+        business_end_hours,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="contactPerson != null" >
+        contact_person,
+      </if>
+      <if test="phoneNumber != null" >
+        phone_number,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="salesContact != null" >
+        sales_contact,
+      </if>
+      <if test="salesPhone != null" >
+        sales_phone,
+      </if>
+      <if test="companyAccountId != null" >
+        company_account_id,
+      </if>
+      <if test="hasAliPay != null" >
+        has_ali_pay,
+      </if>
+      <if test="hasWechatPay != null" >
+        has_wechat_pay,
+      </if>
+      <if test="hasCashPay != null" >
+        has_cash_pay,
+      </if>
+      <if test="hasPrePayCard != null" >
+        has_pre_pay_card,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="auditOpinion != null" >
+        audit_opinion,
+      </if>
+      <if test="storeType != null" >
+        store_type,
+      </if>
+      <if test="roleType != null" >
+        role_type,
+      </if>
+      <if test="mobilePayType != null" >
+        mobile_pay_type,
+      </if>
+      <if test="mobileMerchantNo != null" >
+        mobile_merchant_no,
+      </if>
+      <if test="mobileTerminalNo != null" >
+        mobile_terminal_no,
+      </if>
+      <if test="mobileWechatRate != null" >
+        mobile_wechat_rate,
+      </if>
+      <if test="mobileAlipayRate != null" >
+        mobile_alipay_rate,
+      </if>
+      <if test="commissionType != null" >
+        commission_type,
+      </if>
+      <if test="commissionFee != null" >
+        commission_fee,
+      </if>
+      <if test="cashBonus != null" >
+        cash_bonus,
+      </if>
+      <if test="taxFee != null" >
+        tax_fee,
+      </if>
+      <if test="settlementType != null" >
+        settlement_type,
+      </if>
+      <if test="registryName != null" >
+        registry_name,
+      </if>
+      <if test="registryCode != null" >
+        registry_code,
+      </if>
+      <if test="companyType != null" >
+        company_type,
+      </if>
+      <if test="legalUser != null" >
+        legal_user,
+      </if>
+      <if test="cardType != null" >
+        card_type,
+      </if>
+      <if test="cardCode != null" >
+        card_code,
+      </if>
+      <if test="business != null" >
+        business,
+      </if>
+      <if test="storeAccountType != null" >
+        store_account_type,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="updatedBy != null" >
+        updated_by,
+      </if>
+      <if test="deleteMark != null" >
+        delete_mark,
+      </if>
+      <if test="smStoreId != null" >
+        sm_store_id,
+      </if>
+      <if test="auditAt != null" >
+        audit_at,
+      </if>
+      <if test="systemId != null" >
+        system_id,
+      </if>
+      <if test="normalDiscount != null" >
+        normal_discount,
+      </if>
+      <if test="fitCard != null" >
+        fit_card,
+      </if>
+      <if test="storeArea != null" >
+        store_area,
+      </if>
+      <if test="storeCategoryId != null" >
+        store_category_id,
+      </if>
+      <if test="floor != null" >
+        floor,
+      </if>
+      <if test="merchantRegionId != null" >
+        merchant_region_id,
+      </if>
+      <if test="merchantRegionName != null" >
+        merchant_region_name,
+      </if>
+      <if test="guideDiscount != null" >
+        guide_discount,
+      </if>
+      <if test="auditBy != null" >
+        audit_by,
+      </if>
+      <if test="paxShopId != null" >
+        pax_shop_id,
+      </if>
+      <if test="paxMid != null" >
+        pax_mid,
+      </if>
+      <if test="paxRequestId != null" >
+        pax_request_id,
+      </if>
+      <if test="positionNum != null" >
+        position_num,
+      </if>
+      <if test="storeContactor != null" >
+        store_contactor,
+      </if>
+      <if test="storePhone != null" >
+        store_phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="channelCode != null" >
+        #{channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null" >
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="regionId != null" >
+        #{regionId,jdbcType=INTEGER},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="districtId != null" >
+        #{districtId,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="faxNumber != null" >
+        #{faxNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="presalePhoneNumber != null" >
+        #{presalePhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="businessHours != null" >
+        #{businessHours,jdbcType=VARCHAR},
+      </if>
+      <if test="businessStartHours != null" >
+        #{businessStartHours,jdbcType=VARCHAR},
+      </if>
+      <if test="businessEndHours != null" >
+        #{businessEndHours,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPerson != null" >
+        #{contactPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="salesContact != null" >
+        #{salesContact,jdbcType=VARCHAR},
+      </if>
+      <if test="salesPhone != null" >
+        #{salesPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAccountId != null" >
+        #{companyAccountId,jdbcType=INTEGER},
+      </if>
+      <if test="hasAliPay != null" >
+        #{hasAliPay,jdbcType=BIT},
+      </if>
+      <if test="hasWechatPay != null" >
+        #{hasWechatPay,jdbcType=BIT},
+      </if>
+      <if test="hasCashPay != null" >
+        #{hasCashPay,jdbcType=BIT},
+      </if>
+      <if test="hasPrePayCard != null" >
+        #{hasPrePayCard,jdbcType=BIT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="auditOpinion != null" >
+        #{auditOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="storeType != null" >
+        #{storeType,jdbcType=INTEGER},
+      </if>
+      <if test="roleType != null" >
+        #{roleType,jdbcType=INTEGER},
+      </if>
+      <if test="mobilePayType != null" >
+        #{mobilePayType,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileMerchantNo != null" >
+        #{mobileMerchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileTerminalNo != null" >
+        #{mobileTerminalNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileWechatRate != null" >
+        #{mobileWechatRate,jdbcType=DECIMAL},
+      </if>
+      <if test="mobileAlipayRate != null" >
+        #{mobileAlipayRate,jdbcType=DECIMAL},
+      </if>
+      <if test="commissionType != null" >
+        #{commissionType,jdbcType=INTEGER},
+      </if>
+      <if test="commissionFee != null" >
+        #{commissionFee,jdbcType=DECIMAL},
+      </if>
+      <if test="cashBonus != null" >
+        #{cashBonus,jdbcType=DECIMAL},
+      </if>
+      <if test="taxFee != null" >
+        #{taxFee,jdbcType=DECIMAL},
+      </if>
+      <if test="settlementType != null" >
+        #{settlementType,jdbcType=INTEGER},
+      </if>
+      <if test="registryName != null" >
+        #{registryName,jdbcType=VARCHAR},
+      </if>
+      <if test="registryCode != null" >
+        #{registryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null" >
+        #{companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="legalUser != null" >
+        #{legalUser,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null" >
+        #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="cardCode != null" >
+        #{cardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="business != null" >
+        #{business,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAccountType != null" >
+        #{storeAccountType,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteMark != null" >
+        #{deleteMark,jdbcType=BIT},
+      </if>
+      <if test="smStoreId != null" >
+        #{smStoreId,jdbcType=INTEGER},
+      </if>
+      <if test="auditAt != null" >
+        #{auditAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="systemId != null" >
+        #{systemId,jdbcType=INTEGER},
+      </if>
+      <if test="normalDiscount != null" >
+        #{normalDiscount,jdbcType=DECIMAL},
+      </if>
+      <if test="fitCard != null" >
+        #{fitCard,jdbcType=VARCHAR},
+      </if>
+      <if test="storeArea != null" >
+        #{storeArea,jdbcType=DECIMAL},
+      </if>
+      <if test="storeCategoryId != null" >
+        #{storeCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="floor != null" >
+        #{floor,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantRegionId != null" >
+        #{merchantRegionId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantRegionName != null" >
+        #{merchantRegionName,jdbcType=VARCHAR},
+      </if>
+      <if test="guideDiscount != null" >
+        #{guideDiscount,jdbcType=DECIMAL},
+      </if>
+      <if test="auditBy != null" >
+        #{auditBy,jdbcType=VARCHAR},
+      </if>
+      <if test="paxShopId != null" >
+        #{paxShopId,jdbcType=VARCHAR},
+      </if>
+      <if test="paxMid != null" >
+        #{paxMid,jdbcType=VARCHAR},
+      </if>
+      <if test="paxRequestId != null" >
+        #{paxRequestId,jdbcType=VARCHAR},
+      </if>
+      <if test="positionNum != null" >
+        #{positionNum,jdbcType=VARCHAR},
+      </if>
+      <if test="storeContactor != null" >
+        #{storeContactor,jdbcType=VARCHAR},
+      </if>
+      <if test="storePhone != null" >
+        #{storePhone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kashuo.kap.bill.domain.Store" >
+    update store
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="channelCode != null" >
+        channel_code = #{channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantId != null" >
+        merchant_id = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="regionId != null" >
+        region_id = #{regionId,jdbcType=INTEGER},
+      </if>
+      <if test="company != null" >
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="districtId != null" >
+        district_id = #{districtId,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="faxNumber != null" >
+        fax_number = #{faxNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="presalePhoneNumber != null" >
+        presale_phone_number = #{presalePhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="businessHours != null" >
+        business_hours = #{businessHours,jdbcType=VARCHAR},
+      </if>
+      <if test="businessStartHours != null" >
+        business_start_hours = #{businessStartHours,jdbcType=VARCHAR},
+      </if>
+      <if test="businessEndHours != null" >
+        business_end_hours = #{businessEndHours,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPerson != null" >
+        contact_person = #{contactPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="salesContact != null" >
+        sales_contact = #{salesContact,jdbcType=VARCHAR},
+      </if>
+      <if test="salesPhone != null" >
+        sales_phone = #{salesPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAccountId != null" >
+        company_account_id = #{companyAccountId,jdbcType=INTEGER},
+      </if>
+      <if test="hasAliPay != null" >
+        has_ali_pay = #{hasAliPay,jdbcType=BIT},
+      </if>
+      <if test="hasWechatPay != null" >
+        has_wechat_pay = #{hasWechatPay,jdbcType=BIT},
+      </if>
+      <if test="hasCashPay != null" >
+        has_cash_pay = #{hasCashPay,jdbcType=BIT},
+      </if>
+      <if test="hasPrePayCard != null" >
+        has_pre_pay_card = #{hasPrePayCard,jdbcType=BIT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="auditOpinion != null" >
+        audit_opinion = #{auditOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="storeType != null" >
+        store_type = #{storeType,jdbcType=INTEGER},
+      </if>
+      <if test="roleType != null" >
+        role_type = #{roleType,jdbcType=INTEGER},
+      </if>
+      <if test="mobilePayType != null" >
+        mobile_pay_type = #{mobilePayType,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileMerchantNo != null" >
+        mobile_merchant_no = #{mobileMerchantNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileTerminalNo != null" >
+        mobile_terminal_no = #{mobileTerminalNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileWechatRate != null" >
+        mobile_wechat_rate = #{mobileWechatRate,jdbcType=DECIMAL},
+      </if>
+      <if test="mobileAlipayRate != null" >
+        mobile_alipay_rate = #{mobileAlipayRate,jdbcType=DECIMAL},
+      </if>
+      <if test="commissionType != null" >
+        commission_type = #{commissionType,jdbcType=INTEGER},
+      </if>
+      <if test="commissionFee != null" >
+        commission_fee = #{commissionFee,jdbcType=DECIMAL},
+      </if>
+      <if test="cashBonus != null" >
+        cash_bonus = #{cashBonus,jdbcType=DECIMAL},
+      </if>
+      <if test="taxFee != null" >
+        tax_fee = #{taxFee,jdbcType=DECIMAL},
+      </if>
+      <if test="settlementType != null" >
+        settlement_type = #{settlementType,jdbcType=INTEGER},
+      </if>
+      <if test="registryName != null" >
+        registry_name = #{registryName,jdbcType=VARCHAR},
+      </if>
+      <if test="registryCode != null" >
+        registry_code = #{registryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null" >
+        company_type = #{companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="legalUser != null" >
+        legal_user = #{legalUser,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null" >
+        card_type = #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="cardCode != null" >
+        card_code = #{cardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="business != null" >
+        business = #{business,jdbcType=VARCHAR},
+      </if>
+      <if test="storeAccountType != null" >
+        store_account_type = #{storeAccountType,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteMark != null" >
+        delete_mark = #{deleteMark,jdbcType=BIT},
+      </if>
+      <if test="smStoreId != null" >
+        sm_store_id = #{smStoreId,jdbcType=INTEGER},
+      </if>
+      <if test="auditAt != null" >
+        audit_at = #{auditAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="systemId != null" >
+        system_id = #{systemId,jdbcType=INTEGER},
+      </if>
+      <if test="normalDiscount != null" >
+        normal_discount = #{normalDiscount,jdbcType=DECIMAL},
+      </if>
+      <if test="fitCard != null" >
+        fit_card = #{fitCard,jdbcType=VARCHAR},
+      </if>
+      <if test="storeArea != null" >
+        store_area = #{storeArea,jdbcType=DECIMAL},
+      </if>
+      <if test="storeCategoryId != null" >
+        store_category_id = #{storeCategoryId,jdbcType=BIGINT},
+      </if>
+      <if test="floor != null" >
+        floor = #{floor,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantRegionId != null" >
+        merchant_region_id = #{merchantRegionId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantRegionName != null" >
+        merchant_region_name = #{merchantRegionName,jdbcType=VARCHAR},
+      </if>
+      <if test="guideDiscount != null" >
+        guide_discount = #{guideDiscount,jdbcType=DECIMAL},
+      </if>
+      <if test="auditBy != null" >
+        audit_by = #{auditBy,jdbcType=VARCHAR},
+      </if>
+      <if test="paxShopId != null" >
+        pax_shop_id = #{paxShopId,jdbcType=VARCHAR},
+      </if>
+      <if test="paxMid != null" >
+        pax_mid = #{paxMid,jdbcType=VARCHAR},
+      </if>
+      <if test="paxRequestId != null" >
+        pax_request_id = #{paxRequestId,jdbcType=VARCHAR},
+      </if>
+      <if test="positionNum != null" >
+        position_num = #{positionNum,jdbcType=VARCHAR},
+      </if>
+      <if test="storeContactor != null" >
+        store_contactor = #{storeContactor,jdbcType=VARCHAR},
+      </if>
+      <if test="storePhone != null" >
+        store_phone = #{storePhone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kashuo.kap.bill.domain.Store" >
+    update store
+    set name = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      logo = #{logo,jdbcType=VARCHAR},
+      channel_code = #{channelCode,jdbcType=VARCHAR},
+      merchant_id = #{merchantId,jdbcType=INTEGER},
+      longitude = #{longitude,jdbcType=DECIMAL},
+      latitude = #{latitude,jdbcType=DECIMAL},
+      region_id = #{regionId,jdbcType=INTEGER},
+      company = #{company,jdbcType=VARCHAR},
+      province_id = #{provinceId,jdbcType=INTEGER},
+      city_id = #{cityId,jdbcType=INTEGER},
+      district_id = #{districtId,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      fax_number = #{faxNumber,jdbcType=VARCHAR},
+      presale_phone_number = #{presalePhoneNumber,jdbcType=VARCHAR},
+      business_hours = #{businessHours,jdbcType=VARCHAR},
+      business_start_hours = #{businessStartHours,jdbcType=VARCHAR},
+      business_end_hours = #{businessEndHours,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      contact_person = #{contactPerson,jdbcType=VARCHAR},
+      phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      sales_contact = #{salesContact,jdbcType=VARCHAR},
+      sales_phone = #{salesPhone,jdbcType=VARCHAR},
+      company_account_id = #{companyAccountId,jdbcType=INTEGER},
+      has_ali_pay = #{hasAliPay,jdbcType=BIT},
+      has_wechat_pay = #{hasWechatPay,jdbcType=BIT},
+      has_cash_pay = #{hasCashPay,jdbcType=BIT},
+      has_pre_pay_card = #{hasPrePayCard,jdbcType=BIT},
+      status = #{status,jdbcType=INTEGER},
+      audit_opinion = #{auditOpinion,jdbcType=VARCHAR},
+      store_type = #{storeType,jdbcType=INTEGER},
+      role_type = #{roleType,jdbcType=INTEGER},
+      mobile_pay_type = #{mobilePayType,jdbcType=VARCHAR},
+      mobile_merchant_no = #{mobileMerchantNo,jdbcType=VARCHAR},
+      mobile_terminal_no = #{mobileTerminalNo,jdbcType=VARCHAR},
+      mobile_wechat_rate = #{mobileWechatRate,jdbcType=DECIMAL},
+      mobile_alipay_rate = #{mobileAlipayRate,jdbcType=DECIMAL},
+      commission_type = #{commissionType,jdbcType=INTEGER},
+      commission_fee = #{commissionFee,jdbcType=DECIMAL},
+      cash_bonus = #{cashBonus,jdbcType=DECIMAL},
+      tax_fee = #{taxFee,jdbcType=DECIMAL},
+      settlement_type = #{settlementType,jdbcType=INTEGER},
+      registry_name = #{registryName,jdbcType=VARCHAR},
+      registry_code = #{registryCode,jdbcType=VARCHAR},
+      company_type = #{companyType,jdbcType=VARCHAR},
+      legal_user = #{legalUser,jdbcType=VARCHAR},
+      card_type = #{cardType,jdbcType=INTEGER},
+      card_code = #{cardCode,jdbcType=VARCHAR},
+      business = #{business,jdbcType=VARCHAR},
+      store_account_type = #{storeAccountType,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      delete_mark = #{deleteMark,jdbcType=BIT},
+      sm_store_id = #{smStoreId,jdbcType=INTEGER},
+      audit_at = #{auditAt,jdbcType=TIMESTAMP},
+      system_id = #{systemId,jdbcType=INTEGER},
+      normal_discount = #{normalDiscount,jdbcType=DECIMAL},
+      fit_card = #{fitCard,jdbcType=VARCHAR},
+      store_area = #{storeArea,jdbcType=DECIMAL},
+      store_category_id = #{storeCategoryId,jdbcType=BIGINT},
+      floor = #{floor,jdbcType=VARCHAR},
+      merchant_region_id = #{merchantRegionId,jdbcType=INTEGER},
+      merchant_region_name = #{merchantRegionName,jdbcType=VARCHAR},
+      guide_discount = #{guideDiscount,jdbcType=DECIMAL},
+      audit_by = #{auditBy,jdbcType=VARCHAR},
+      pax_shop_id = #{paxShopId,jdbcType=VARCHAR},
+      pax_mid = #{paxMid,jdbcType=VARCHAR},
+      pax_request_id = #{paxRequestId,jdbcType=VARCHAR},
+      position_num = #{positionNum,jdbcType=VARCHAR},
+      store_contactor = #{storeContactor,jdbcType=VARCHAR},
+      store_phone = #{storePhone,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kashuo.kap.bill.dao.MerchantMapper" >
+  <resultMap id="BaseResultMap" type="com.kashuo.kap.bill.domain.Merchant" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="logo" property="logo" jdbcType="VARCHAR" />
+    <result column="slogans" property="slogans" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="channel_code" property="channelCode" jdbcType="VARCHAR" />
+    <result column="spelling" property="spelling" jdbcType="VARCHAR" />
+    <result column="short_selling" property="shortSelling" jdbcType="VARCHAR" />
+    <result column="company" property="company" jdbcType="VARCHAR" />
+    <result column="province_id" property="provinceId" jdbcType="INTEGER" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="district_id" property="districtId" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="contact_person" property="contactPerson" jdbcType="VARCHAR" />
+    <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="company_account_id" property="companyAccountId" jdbcType="INTEGER" />
+    <result column="has_ali_pay" property="hasAliPay" jdbcType="BIT" />
+    <result column="has_wechat_pay" property="hasWechatPay" jdbcType="BIT" />
+    <result column="has_cash_pay" property="hasCashPay" jdbcType="BIT" />
+    <result column="has_pre_pay_card" property="hasPrePayCard" jdbcType="BIT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="commission_type" property="commissionType" jdbcType="INTEGER" />
+    <result column="commission_fee" property="commissionFee" jdbcType="DECIMAL" />
+    <result column="cash_bonus" property="cashBonus" jdbcType="DECIMAL" />
+    <result column="tax_fee" property="taxFee" jdbcType="DECIMAL" />
+    <result column="settlement_type" property="settlementType" jdbcType="INTEGER" />
+    <result column="registry_name" property="registryName" jdbcType="VARCHAR" />
+    <result column="registry_code" property="registryCode" jdbcType="VARCHAR" />
+    <result column="company_type" property="companyType" jdbcType="VARCHAR" />
+    <result column="legal_user" property="legalUser" jdbcType="VARCHAR" />
+    <result column="card_type" property="cardType" jdbcType="INTEGER" />
+    <result column="card_code" property="cardCode" jdbcType="VARCHAR" />
+    <result column="business" property="business" jdbcType="VARCHAR" />
+    <result column="merchant_account_type" property="merchantAccountType" jdbcType="INTEGER" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="updated_by" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="delete_mark" property="deleteMark" jdbcType="BIT" />
+    <result column="data_type" property="dataType" jdbcType="INTEGER" />
+    <result column="system_id" property="systemId" jdbcType="INTEGER" />
+    <result column="guide_discount" property="guideDiscount" jdbcType="DECIMAL" />
+    <result column="pax_cid" property="paxCid" jdbcType="VARCHAR" />
+    <result column="has_papers" property="hasPapers" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, logo, slogans, code, type, channel_code, spelling, short_selling, company, 
+    province_id, city_id, district_id, address, contact_person, phone_number, email, 
+    company_account_id, has_ali_pay, has_wechat_pay, has_cash_pay, has_pre_pay_card, 
+    status, category_id, commission_type, commission_fee, cash_bonus, tax_fee, settlement_type, 
+    registry_name, registry_code, company_type, legal_user, card_type, card_code, business, 
+    merchant_account_type, created_at, created_by, updated_at, updated_by, delete_mark, 
+    data_type, system_id, guide_discount, pax_cid, has_papers
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from merchant
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from merchant
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kashuo.kap.bill.domain.Merchant" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into merchant (name, logo, slogans, 
+      code, type, channel_code, 
+      spelling, short_selling, company, 
+      province_id, city_id, district_id, 
+      address, contact_person, phone_number, 
+      email, company_account_id, has_ali_pay, 
+      has_wechat_pay, has_cash_pay, has_pre_pay_card, 
+      status, category_id, commission_type, 
+      commission_fee, cash_bonus, tax_fee, 
+      settlement_type, registry_name, registry_code, 
+      company_type, legal_user, card_type, 
+      card_code, business, merchant_account_type, 
+      created_at, created_by, updated_at, 
+      updated_by, delete_mark, data_type, 
+      system_id, guide_discount, pax_cid, 
+      has_papers)
+    values (#{name,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, #{slogans,jdbcType=VARCHAR}, 
+      #{code,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{channelCode,jdbcType=VARCHAR}, 
+      #{spelling,jdbcType=VARCHAR}, #{shortSelling,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, 
+      #{provinceId,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER}, #{districtId,jdbcType=INTEGER}, 
+      #{address,jdbcType=VARCHAR}, #{contactPerson,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{companyAccountId,jdbcType=INTEGER}, #{hasAliPay,jdbcType=BIT}, 
+      #{hasWechatPay,jdbcType=BIT}, #{hasCashPay,jdbcType=BIT}, #{hasPrePayCard,jdbcType=BIT}, 
+      #{status,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{commissionType,jdbcType=INTEGER}, 
+      #{commissionFee,jdbcType=DECIMAL}, #{cashBonus,jdbcType=DECIMAL}, #{taxFee,jdbcType=DECIMAL}, 
+      #{settlementType,jdbcType=INTEGER}, #{registryName,jdbcType=VARCHAR}, #{registryCode,jdbcType=VARCHAR}, 
+      #{companyType,jdbcType=VARCHAR}, #{legalUser,jdbcType=VARCHAR}, #{cardType,jdbcType=INTEGER}, 
+      #{cardCode,jdbcType=VARCHAR}, #{business,jdbcType=VARCHAR}, #{merchantAccountType,jdbcType=INTEGER}, 
+      #{createdAt,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{updatedBy,jdbcType=VARCHAR}, #{deleteMark,jdbcType=BIT}, #{dataType,jdbcType=INTEGER}, 
+      #{systemId,jdbcType=INTEGER}, #{guideDiscount,jdbcType=DECIMAL}, #{paxCid,jdbcType=VARCHAR}, 
+      #{hasPapers,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kashuo.kap.bill.domain.Merchant" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into merchant
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="logo != null" >
+        logo,
+      </if>
+      <if test="slogans != null" >
+        slogans,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="channelCode != null" >
+        channel_code,
+      </if>
+      <if test="spelling != null" >
+        spelling,
+      </if>
+      <if test="shortSelling != null" >
+        short_selling,
+      </if>
+      <if test="company != null" >
+        company,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="districtId != null" >
+        district_id,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="contactPerson != null" >
+        contact_person,
+      </if>
+      <if test="phoneNumber != null" >
+        phone_number,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="companyAccountId != null" >
+        company_account_id,
+      </if>
+      <if test="hasAliPay != null" >
+        has_ali_pay,
+      </if>
+      <if test="hasWechatPay != null" >
+        has_wechat_pay,
+      </if>
+      <if test="hasCashPay != null" >
+        has_cash_pay,
+      </if>
+      <if test="hasPrePayCard != null" >
+        has_pre_pay_card,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="commissionType != null" >
+        commission_type,
+      </if>
+      <if test="commissionFee != null" >
+        commission_fee,
+      </if>
+      <if test="cashBonus != null" >
+        cash_bonus,
+      </if>
+      <if test="taxFee != null" >
+        tax_fee,
+      </if>
+      <if test="settlementType != null" >
+        settlement_type,
+      </if>
+      <if test="registryName != null" >
+        registry_name,
+      </if>
+      <if test="registryCode != null" >
+        registry_code,
+      </if>
+      <if test="companyType != null" >
+        company_type,
+      </if>
+      <if test="legalUser != null" >
+        legal_user,
+      </if>
+      <if test="cardType != null" >
+        card_type,
+      </if>
+      <if test="cardCode != null" >
+        card_code,
+      </if>
+      <if test="business != null" >
+        business,
+      </if>
+      <if test="merchantAccountType != null" >
+        merchant_account_type,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="updatedBy != null" >
+        updated_by,
+      </if>
+      <if test="deleteMark != null" >
+        delete_mark,
+      </if>
+      <if test="dataType != null" >
+        data_type,
+      </if>
+      <if test="systemId != null" >
+        system_id,
+      </if>
+      <if test="guideDiscount != null" >
+        guide_discount,
+      </if>
+      <if test="paxCid != null" >
+        pax_cid,
+      </if>
+      <if test="hasPapers != null" >
+        has_papers,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="slogans != null" >
+        #{slogans,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="channelCode != null" >
+        #{channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="spelling != null" >
+        #{spelling,jdbcType=VARCHAR},
+      </if>
+      <if test="shortSelling != null" >
+        #{shortSelling,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="districtId != null" >
+        #{districtId,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPerson != null" >
+        #{contactPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAccountId != null" >
+        #{companyAccountId,jdbcType=INTEGER},
+      </if>
+      <if test="hasAliPay != null" >
+        #{hasAliPay,jdbcType=BIT},
+      </if>
+      <if test="hasWechatPay != null" >
+        #{hasWechatPay,jdbcType=BIT},
+      </if>
+      <if test="hasCashPay != null" >
+        #{hasCashPay,jdbcType=BIT},
+      </if>
+      <if test="hasPrePayCard != null" >
+        #{hasPrePayCard,jdbcType=BIT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="commissionType != null" >
+        #{commissionType,jdbcType=INTEGER},
+      </if>
+      <if test="commissionFee != null" >
+        #{commissionFee,jdbcType=DECIMAL},
+      </if>
+      <if test="cashBonus != null" >
+        #{cashBonus,jdbcType=DECIMAL},
+      </if>
+      <if test="taxFee != null" >
+        #{taxFee,jdbcType=DECIMAL},
+      </if>
+      <if test="settlementType != null" >
+        #{settlementType,jdbcType=INTEGER},
+      </if>
+      <if test="registryName != null" >
+        #{registryName,jdbcType=VARCHAR},
+      </if>
+      <if test="registryCode != null" >
+        #{registryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null" >
+        #{companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="legalUser != null" >
+        #{legalUser,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null" >
+        #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="cardCode != null" >
+        #{cardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="business != null" >
+        #{business,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantAccountType != null" >
+        #{merchantAccountType,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteMark != null" >
+        #{deleteMark,jdbcType=BIT},
+      </if>
+      <if test="dataType != null" >
+        #{dataType,jdbcType=INTEGER},
+      </if>
+      <if test="systemId != null" >
+        #{systemId,jdbcType=INTEGER},
+      </if>
+      <if test="guideDiscount != null" >
+        #{guideDiscount,jdbcType=DECIMAL},
+      </if>
+      <if test="paxCid != null" >
+        #{paxCid,jdbcType=VARCHAR},
+      </if>
+      <if test="hasPapers != null" >
+        #{hasPapers,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kashuo.kap.bill.domain.Merchant" >
+    update merchant
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="slogans != null" >
+        slogans = #{slogans,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="channelCode != null" >
+        channel_code = #{channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="spelling != null" >
+        spelling = #{spelling,jdbcType=VARCHAR},
+      </if>
+      <if test="shortSelling != null" >
+        short_selling = #{shortSelling,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="districtId != null" >
+        district_id = #{districtId,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPerson != null" >
+        contact_person = #{contactPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNumber != null" >
+        phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAccountId != null" >
+        company_account_id = #{companyAccountId,jdbcType=INTEGER},
+      </if>
+      <if test="hasAliPay != null" >
+        has_ali_pay = #{hasAliPay,jdbcType=BIT},
+      </if>
+      <if test="hasWechatPay != null" >
+        has_wechat_pay = #{hasWechatPay,jdbcType=BIT},
+      </if>
+      <if test="hasCashPay != null" >
+        has_cash_pay = #{hasCashPay,jdbcType=BIT},
+      </if>
+      <if test="hasPrePayCard != null" >
+        has_pre_pay_card = #{hasPrePayCard,jdbcType=BIT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="commissionType != null" >
+        commission_type = #{commissionType,jdbcType=INTEGER},
+      </if>
+      <if test="commissionFee != null" >
+        commission_fee = #{commissionFee,jdbcType=DECIMAL},
+      </if>
+      <if test="cashBonus != null" >
+        cash_bonus = #{cashBonus,jdbcType=DECIMAL},
+      </if>
+      <if test="taxFee != null" >
+        tax_fee = #{taxFee,jdbcType=DECIMAL},
+      </if>
+      <if test="settlementType != null" >
+        settlement_type = #{settlementType,jdbcType=INTEGER},
+      </if>
+      <if test="registryName != null" >
+        registry_name = #{registryName,jdbcType=VARCHAR},
+      </if>
+      <if test="registryCode != null" >
+        registry_code = #{registryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null" >
+        company_type = #{companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="legalUser != null" >
+        legal_user = #{legalUser,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null" >
+        card_type = #{cardType,jdbcType=INTEGER},
+      </if>
+      <if test="cardCode != null" >
+        card_code = #{cardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="business != null" >
+        business = #{business,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantAccountType != null" >
+        merchant_account_type = #{merchantAccountType,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteMark != null" >
+        delete_mark = #{deleteMark,jdbcType=BIT},
+      </if>
+      <if test="dataType != null" >
+        data_type = #{dataType,jdbcType=INTEGER},
+      </if>
+      <if test="systemId != null" >
+        system_id = #{systemId,jdbcType=INTEGER},
+      </if>
+      <if test="guideDiscount != null" >
+        guide_discount = #{guideDiscount,jdbcType=DECIMAL},
+      </if>
+      <if test="paxCid != null" >
+        pax_cid = #{paxCid,jdbcType=VARCHAR},
+      </if>
+      <if test="hasPapers != null" >
+        has_papers = #{hasPapers,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kashuo.kap.bill.domain.Merchant" >
+    update merchant
+    set name = #{name,jdbcType=VARCHAR},
+      logo = #{logo,jdbcType=VARCHAR},
+      slogans = #{slogans,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      channel_code = #{channelCode,jdbcType=VARCHAR},
+      spelling = #{spelling,jdbcType=VARCHAR},
+      short_selling = #{shortSelling,jdbcType=VARCHAR},
+      company = #{company,jdbcType=VARCHAR},
+      province_id = #{provinceId,jdbcType=INTEGER},
+      city_id = #{cityId,jdbcType=INTEGER},
+      district_id = #{districtId,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      contact_person = #{contactPerson,jdbcType=VARCHAR},
+      phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      company_account_id = #{companyAccountId,jdbcType=INTEGER},
+      has_ali_pay = #{hasAliPay,jdbcType=BIT},
+      has_wechat_pay = #{hasWechatPay,jdbcType=BIT},
+      has_cash_pay = #{hasCashPay,jdbcType=BIT},
+      has_pre_pay_card = #{hasPrePayCard,jdbcType=BIT},
+      status = #{status,jdbcType=INTEGER},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      commission_type = #{commissionType,jdbcType=INTEGER},
+      commission_fee = #{commissionFee,jdbcType=DECIMAL},
+      cash_bonus = #{cashBonus,jdbcType=DECIMAL},
+      tax_fee = #{taxFee,jdbcType=DECIMAL},
+      settlement_type = #{settlementType,jdbcType=INTEGER},
+      registry_name = #{registryName,jdbcType=VARCHAR},
+      registry_code = #{registryCode,jdbcType=VARCHAR},
+      company_type = #{companyType,jdbcType=VARCHAR},
+      legal_user = #{legalUser,jdbcType=VARCHAR},
+      card_type = #{cardType,jdbcType=INTEGER},
+      card_code = #{cardCode,jdbcType=VARCHAR},
+      business = #{business,jdbcType=VARCHAR},
+      merchant_account_type = #{merchantAccountType,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      delete_mark = #{deleteMark,jdbcType=BIT},
+      data_type = #{dataType,jdbcType=INTEGER},
+      system_id = #{systemId,jdbcType=INTEGER},
+      guide_discount = #{guideDiscount,jdbcType=DECIMAL},
+      pax_cid = #{paxCid,jdbcType=VARCHAR},
+      has_papers = #{hasPapers,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

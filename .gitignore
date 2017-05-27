@@ -1,8 +1,14 @@
 # Created by .ignore support plugin (hsz.mobi)
-.idea
+.gitignore
+.idea/
 RecoveryBills.iml
-bill-core/target
-bill-dao/target
-bill-server/target
-bill-services/target
-bill-web/target
+bill-core/target/
+bill-dao/target/
+bill-server/target/
+bill-services/target/
+bill-web/target/
+bill-core/src/test/
+bill-dao/src/test/
+bill-server/src/test/
+bill-services/src/test/
+bill-web/src/test/
