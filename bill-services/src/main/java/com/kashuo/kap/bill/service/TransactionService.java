@@ -3,6 +3,7 @@ package com.kashuo.kap.bill.service;
 import com.kashuo.kap.bill.dao.TransactionMapper;
 import com.kashuo.kap.bill.domain.Transaction;
 import com.kashuo.kap.bill.model.dto.TransactionCondition;
+import com.kashuo.kap.bill.model.form.TransactionForm;
 import com.kashuo.kap.bill.utils.ConstantUtil;
 import com.kashuo.kap.bill.utils.CustomCodeUtil;
 import org.slf4j.Logger;
@@ -23,10 +24,12 @@ public class TransactionService {
 
     @Resource
     private TransactionMapper transactionMapper;
-    
+
+    @SuppressWarnings("")
     //单边账
-    public boolean normal(Transaction record){
-        TransactionCondition condition = this.toCondition(record);
+    public boolean normal(TransactionForm form){
+        Transaction record = toEntity(form);//form to entity
+        TransactionCondition condition = this.toCondition(record); // entity to condition
         //检查，若存在，检查状态，若不存在，直接入库
         Transaction result =  SelectOne(condition);
         if(result != null){
@@ -73,11 +76,16 @@ public class TransactionService {
         return transactionMapper.SelectOne(record);
     }
 
+    @Deprecated
     private Transaction SelectOne(String deviceSn, Date transDate,BigDecimal totalAmount, BigDecimal payAmount){
-        //// TODO: 2017/5/24
         return null;
     }
 
+    /**
+     * entity convert into condition
+     * @param record
+     * @return
+     */
     private TransactionCondition toCondition(Transaction record){
         TransactionCondition condition = new TransactionCondition();
         condition.setDeviceSn(record.getDeviceSn());
@@ -87,6 +95,27 @@ public class TransactionService {
         return condition;
     }
 
+    /**
+     * form convert into entity
+     * @param record
+     * @return
+     */
+    private Transaction toEntity(TransactionForm record){
+        Transaction result = new Transaction();
+        result.setDeviceSn(record.getDeviceSn());
+        result.setPayAmount(record.getPayAmount());
+        result.setTotalAmount(record.getTotalAmount());
+        result.setPaymentType(record.getPaymentType());
+        result.setMerchantId(Integer.parseInt(record.getMerchantId()));
+        result.setStoreId(Integer.parseInt(record.getStoreId()));
+        return null;
+    }
+
+    /**
+     *  insert selective
+     * @param record
+     * @return
+     */
     private int insertSelective(Transaction record){
 
         record.setTransNo(CustomCodeUtil.generatedTransNo("2017-05-25","16:43:52"));

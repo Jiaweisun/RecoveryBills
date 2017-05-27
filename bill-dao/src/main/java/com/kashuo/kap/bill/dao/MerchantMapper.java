@@ -1,6 +1,7 @@
 package com.kashuo.kap.bill.dao;
 
 import com.kashuo.kap.bill.domain.Merchant;
+import org.apache.ibatis.annotations.Param;
 
 public interface MerchantMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +15,6 @@ public interface MerchantMapper {
     int updateByPrimaryKeySelective(Merchant record);
 
     int updateByPrimaryKey(Merchant record);
+
+    Merchant selectOne(@Param("name") String name);
 }

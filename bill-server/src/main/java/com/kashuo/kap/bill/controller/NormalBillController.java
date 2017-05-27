@@ -1,13 +1,19 @@
 package com.kashuo.kap.bill.controller;
 
 import com.kashuo.kap.bill.domain.Transaction;
+import com.kashuo.kap.bill.model.form.TransactionForm;
 import com.kashuo.kap.bill.service.TransactionService;
+import com.kashuo.kap.bill.utils.CustomStringUtils;
+import com.kashuo.kap.bill.utils.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -20,18 +26,32 @@ public class NormalBillController extends BaseController{
     @Autowired
     private TransactionService transactionService;
 
+    private  String rootPath = "d:\\upload\\";
+
     @RequestMapping(value="", method = RequestMethod.GET)
     public String normal(){
         log.info("普通单边账 ");
         return "pages/normal/add";
     }
 
+    /**
+     * there is two ways to insert data into db. the one is  load excel file, another is using form.
+     * @param form
+     * @param file
+     * @return
+     */
     @RequestMapping(value="/add", method = RequestMethod.POST)
-    public String normalAdd(@ModelAttribute Transaction record){
-        log.info("普通单边账 ,{0}",record);
-
-        boolean result = transactionService.normal(record);
-        log.info("结果 ,{0}",result);
+    public String normalAdd(@ModelAttribute TransactionForm form, @RequestParam("fileName") MultipartFile file){
+        log.info("普通单边账 ,{},{}",form,file);
+        // one way
+        String fileName = FileUtils.saveFile(file, rootPath);
+        log.info("文件名称 ,{}",fileName);
+        if (!CustomStringUtils.isBlank(fileName)) {
+         //// TODO: 2017/5/27 convert into sql
+        }
+        //another
+        boolean result = transactionService.normal(form);
+        log.info("结果 ,{}",result);
         return "pages/normal/add";
     }
 

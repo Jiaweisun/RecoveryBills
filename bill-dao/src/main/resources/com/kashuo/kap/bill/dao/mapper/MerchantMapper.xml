@@ -586,4 +586,11 @@
       has_papers = #{hasPapers,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectOne" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from merchant
+    where name=#{name}
+  </select>
 </mapper>

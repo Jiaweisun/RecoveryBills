@@ -38,6 +38,34 @@
     </style>
     <![endif]-->
 
+    <script type="text/javascript" th:inline="javascript">
+    /*<![CDATA[*/
+    alert('Welcome to js');
+
+    function submitBtn(event){
+
+        var id = event.currentTarget.id.trim();
+        var file = document.getElementById('fileName').files[0];
+        alert('file path ... ?'+id+",,,,fileName:"+file.pathname);
+        $.ajax({
+            type: 'GET',
+            url: "/file/download?fileName='"+ file.name+"'",
+            data: {
+                uploadUrl:''
+            },
+            success: function (msg) {
+                top.location.reload();
+            },
+            error: function (msg) {
+                this.$KsModal.alert('操作失败', '提示', "", {
+                    mask: true,
+                    type: 'primary'
+                })();
+            }
+        });
+    }
+    /*]]>*/
+    </script>
     </head>
 
     <body layout:fragment="content">
@@ -48,7 +76,7 @@
                <h6 class="foo"> 新增单边账</h6>
                <div class="widget-container widget_login styled boxed boxed-cream gradient">
                    <div class="inner">
-                       <form action="/normal/add" method="post" class="comment-form">
+                       <form action="/normal/add" method="post" class="comment-form" enctype="multipart/form-data">
 
                            <!-- 食物类型-->
                            <!--<div class="field_select">-->
@@ -64,6 +92,11 @@
                                <!--</select>-->
                            <!--</div>-->
 
+                           <!--@{/food/view(code=${food.foodCode})}-->
+                           <div class="filed_text">
+                           <input type="file" th:id="fileName" name="fileName" placeholder="file path" class="gradient"/>
+                               <a  th:href="${uploadUrl}" onclick="submitBtn(event)" class="btn btn-mini btn-info active"></a>
+                           </div>
 
                            <div class="field_text">
                                <input type="text" name="merchantId" placeholder="商户号" class="gradient"/>
@@ -78,10 +111,10 @@
                                <span class="input_icon"></span>
                            </div>
 
-                           <!--<div class="filed_text">-->
-                               <!--<input type="text" name="transDate" placeholder="交易日期，如：2017-05-22" class="gradient"/>-->
-                               <!--<span class="input_icon"></span>-->
-                           <!--</div>-->
+                           <div class="filed_text">
+                               <input type="text" name="transDate" placeholder="交易日期，如：2017-05-22" class="gradient"/>
+                               <span class="input_icon"></span>
+                           </div>
 
                            <div class="field_text">
                                <input type="text" name="totalAmount" placeholder="总金额" class="gradient"/>
