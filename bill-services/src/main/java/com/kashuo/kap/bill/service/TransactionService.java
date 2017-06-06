@@ -28,10 +28,10 @@ public class TransactionService {
     @SuppressWarnings("")
     //单边账
     public boolean normal(TransactionForm form){
-        Transaction record = toEntity(form);//form to entity
-        TransactionCondition condition = this.toCondition(record); // entity to condition
+        Transaction record = this.form2Entity(form);//form to entity
+        TransactionCondition condition = this.form2Condition(form); // entity to condition
         //检查，若存在，检查状态，若不存在，直接入库
-        Transaction result =  SelectOne(condition);
+        Transaction result =  SelectOne(condition);//todo:有可能不止一条
         if(result != null){
             Integer status = result.getStatus();
             log.info("状态，{}",status);
@@ -43,7 +43,6 @@ public class TransactionService {
         }
        int resCount =  insertSelective(record);
         if (resCount<1)
-
             return false;
         return true;
     }
@@ -51,29 +50,38 @@ public class TransactionService {
 
 
 
-    /********************************************************************************/
-    //银行
-    public boolean bank(TransactionCondition condition){
-        Transaction result =  SelectOne(condition);
-        if(result != null){
-            Integer status = result.getStatus();
-            if (status != null && (status ==1 || status == 4)){
-                //// TODO: 2017/5/24
-                //返回消息（status: 1 , trans_no: xxxxxx）
-                //return。。。
-            }
-        }
-        return false;
+    /*******************************   银行   *************************************************/
+
+    //bank search
+    public List<Transaction> bankSelect(TransactionCondition record){
+        return transactionMapper.bankSelect(record);
     }
 
+    //bank update
+    public boolean updateByTransNo(String transNo){
 
-
-
+        Transaction record = this.selectOne(transNo);
+        Integer status = record.getStatus();
+        if (status ==1 || status == 4){
+            ////
+            //返回消息（status: 1 , trans_no: xxxxxx）
+            return false;
+        }
+        // update...
+        updateSelective(record);
+        return true;
+    }
 
     /************************************  内部    ********************************************/
     //根据金额，sn, 交易日期， 查询交易
     private Transaction SelectOne(TransactionCondition record){
-        return transactionMapper.SelectOne(record);
+        Transaction result =transactionMapper.SelectOneForNormal(record);
+        return result;
+    }
+
+
+    public Transaction selectOne(String transNo){
+        return transactionMapper.selectOne(transNo);
     }
 
     @Deprecated
@@ -86,13 +94,24 @@ public class TransactionService {
      * @param record
      * @return
      */
-    private TransactionCondition toCondition(Transaction record){
+    private TransactionCondition entity2Condition(Transaction record){
         TransactionCondition condition = new TransactionCondition();
         condition.setDeviceSn(record.getDeviceSn());
         condition.setPayAmount(record.getPayAmount());
         condition.setTotalAmount(record.getTotalAmount());
-        condition.setTransDate(record.getTransDate());
+        condition.setTransDate(record.getTransDate().toString());
         return condition;
+    }
+
+    private TransactionCondition form2Condition(TransactionForm record){
+        TransactionCondition result = new TransactionCondition();
+        result.setDeviceSn(record.getDeviceSn());
+        result.setPayAmount(record.getPayAmount());
+        result.setTotalAmount(record.getTotalAmount());
+//        result.setPaymentType(record.getPaymentType());
+//        result.setMerchantId(Integer.parseInt(record.getMerchantId().trim()));
+//        result.setStoreId(Integer.parseInt(record.getStoreId().trim()));
+        return result;
     }
 
     /**
@@ -100,15 +119,15 @@ public class TransactionService {
      * @param record
      * @return
      */
-    private Transaction toEntity(TransactionForm record){
+    private Transaction form2Entity(TransactionForm record){
         Transaction result = new Transaction();
         result.setDeviceSn(record.getDeviceSn());
         result.setPayAmount(record.getPayAmount());
         result.setTotalAmount(record.getTotalAmount());
         result.setPaymentType(record.getPaymentType());
-        result.setMerchantId(Integer.parseInt(record.getMerchantId()));
-        result.setStoreId(Integer.parseInt(record.getStoreId()));
-        return null;
+        result.setMerchantId(Integer.parseInt(record.getMerchantId().trim()));
+        result.setStoreId(Integer.parseInt(record.getStoreId().trim()));
+        return result;
     }
 
     /**
@@ -126,4 +145,14 @@ public class TransactionService {
         record.setUpdatedAt(new Date());
         return transactionMapper.insert(record);
     }
+
+
+    //update status
+    private int updateSelective(Transaction record){
+        record.setStatus(ConstantUtil.ONE);
+        record.setUpdatedAt(new Date());
+        return transactionMapper.updateByPrimaryKeySelective(record);
+    }
+
+
 }

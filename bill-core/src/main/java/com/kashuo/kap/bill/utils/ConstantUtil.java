@@ -24,4 +24,6 @@ public class ConstantUtil {
     public static final String transComment = "手工加入单边账";
     public static final String acqChannel = "SXFPAY";
 
+    public static final String BANK = "bank";
+    public static final String NORMAL = "normal";
 }

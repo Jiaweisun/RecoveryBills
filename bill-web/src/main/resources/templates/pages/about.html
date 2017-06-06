@@ -19,12 +19,38 @@
 <body layout:fragment="content">
     <div class="container">
         <div class="jumbotron">
-            <h3>..........About.......</h3>
-            <img src="../../static/images/deduct.png" width="1000"
-                 th:src="@{images/deduct.png}"/>
-
-            <a href="food/add" class="btn btn-hover active"><span>新增食物</span></a>
-            <h2> About</h2>
+            <h3>.漏单处理规则..</h3>
+            <h4>.流水单边账处理规则.</h4>
+            <ul>
+                <li>
+                    补单之前可以先查询漏单信息是否是要补单。（可选）
+                </li>
+                <li>
+                    严格按照表单输入规则输入漏单信息，并点击保存。
+                </li>
+                <li>
+                    结果分为补单成功和补单失败两种。 补单成功后，可点击查询按钮，输入设备号，消费金额，实付金额，以及消费日期等查询参数予以核实。
+                </li>
+                <li>
+                    补单失败后，请查询漏单信息，若不存在，也不能补单，请通知管理员，并告知漏单信息。
+                </li>
+            </ul>
+            <h4>.银行漏单处理规则.</h4>
+            <ul>
+                <li>
+                    补单之前可以先查询漏单信息是否是要补单，注意状态。
+                </li>
+                <li>
+                    如果需要补单，则点击更新按钮。
+                </li>
+                <li>
+                    补单成功，则重新返回更新列表。
+                </li>
+                <li>
+                    补单失败，则提示补单失败原因。
+                </li>
+            </ul>
+            <a href="food/add" class="btn btn-hover active"><span>普通按钮</span></a>
 
         </div>
     </div>

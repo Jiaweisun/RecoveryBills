@@ -9,17 +9,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 @RequestMapping(value = "/")
-public class TestController extends  BaseController{
+public class OthersController extends  BaseController{
 
     @RequestMapping(value="", method = RequestMethod.GET)
     public String hi(){
-        log.info("nihao niahao niaho ");
+        log.info("index page ");
         return "pages/index";
     }
 
     @RequestMapping(value="about", method = RequestMethod.GET)
-    public String ahout(){
-        log.info("nihao niahao niaho ");
+    public String about(){
+        log.info("about page");
         return "pages/about";
+    }
+
+    @RequestMapping(value="contact", method = RequestMethod.GET)
+    public String contact(){
+        log.info("contact page");
+        return "pages/contact";
     }
 }

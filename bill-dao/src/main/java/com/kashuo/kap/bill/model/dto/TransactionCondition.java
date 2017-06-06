@@ -9,23 +9,25 @@ import java.util.Date;
 public class TransactionCondition {
 
     private String deviceSn;
-    private Date transDate;
+    private String transDate;
     private BigDecimal totalAmount;
     private BigDecimal payAmount;
+    private String cardNumber;
+    private Integer status;
 
     public String getDeviceSn() {
-        return deviceSn;
+        return deviceSn==null?"":deviceSn.trim();
     }
 
     public void setDeviceSn(String deviceSn) {
         this.deviceSn = deviceSn;
     }
 
-    public Date getTransDate() {
+    public String getTransDate() {
         return transDate;
     }
 
-    public void setTransDate(Date transDate) {
+    public void setTransDate(String transDate) {
         this.transDate = transDate;
     }
 
@@ -43,5 +45,21 @@ public class TransactionCondition {
 
     public void setPayAmount(BigDecimal payAmount) {
         this.payAmount = payAmount;
+    }
+
+    public String getCardNumber() {
+        return cardNumber==null?"":cardNumber.trim();
+    }
+
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -21,22 +22,22 @@ import java.io.*;
 public class FileController extends BaseController{
 
     private  String rootPath = "d:\\upload\\";
-//    @RequestMapping(value = "/upload", method = RequestMethod.GET)
-//    public void upload(@RequestParam("fileName") String fileName){
-//        log.info("文件开始。。。上传");
-//        FileUtils.saveFile(fileName,rootPath);
-//
-//    }
+    @RequestMapping(value = "/upload", method = RequestMethod.GET)
+    public void upload(@RequestParam("fileName") MultipartFile file){
+        log.info("文件开始。。。上传");
+        FileUtils.saveFile(file,rootPath);
+
+    }
 
 
     @RequestMapping(value = "/download", method = RequestMethod.GET)
     public void download(@RequestParam("fileName") String fileName, HttpServletResponse response) {
 
         log.info("文件开始。。。");
-//        String rootPath = "d:\\upload\\";
         if (!CustomStringUtils.isBlank(rootPath) && !CustomStringUtils.isBlank(fileName)) {
             rootPath = rootPath.endsWith(File.separator) ? rootPath : rootPath + File.separator;
             String filePath = rootPath + fileName;
+
             File file = new File(filePath);
             BufferedInputStream inputStream = null;
             OutputStream outputStream = null;

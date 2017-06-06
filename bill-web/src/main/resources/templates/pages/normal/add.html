@@ -40,8 +40,6 @@
 
     <script type="text/javascript" th:inline="javascript">
     /*<![CDATA[*/
-    alert('Welcome to js');
-
     function submitBtn(event){
 
         var id = event.currentTarget.id.trim();
@@ -49,7 +47,7 @@
         alert('file path ... ?'+id+",,,,fileName:"+file.pathname);
         $.ajax({
             type: 'GET',
-            url: "/file/download?fileName='"+ file.name+"'",
+            url: "/file/upload?fileName='"+ file+"'",
             data: {
                 uploadUrl:''
             },
@@ -95,7 +93,7 @@
                            <!--@{/food/view(code=${food.foodCode})}-->
                            <div class="filed_text">
                            <input type="file" th:id="fileName" name="fileName" placeholder="file path" class="gradient"/>
-                               <a  th:href="${uploadUrl}" onclick="submitBtn(event)" class="btn btn-mini btn-info active"></a>
+                               <!--<a  th:href="${uploadUrl}" onclick="submitBtn(event)" class="btn btn-mini btn-info active"></a>-->
                            </div>
 
                            <div class="field_text">

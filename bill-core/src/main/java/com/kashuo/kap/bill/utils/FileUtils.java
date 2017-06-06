@@ -1,16 +1,13 @@
 package com.kashuo.kap.bill.utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 
-/**
- * 文件操作帮助类
- *
- * @author 李伟伟
- * @create 2017/2/21
- */
 public class FileUtils {
+   private  static Logger log = LoggerFactory.getLogger(FileUtils.class);
 
     /**
      * 保存文件
@@ -20,6 +17,7 @@ public class FileUtils {
      * @return
      */
     public static String saveFile(MultipartFile file, String rootPath) {
+        isExcel(file);
         String fileName = null;
         if (!file.isEmpty()) {
             InputStream inputStream = null;
@@ -67,5 +65,13 @@ public class FileUtils {
             }
         }
         return fileName;
+    }
+
+    public static boolean isExcel(MultipartFile file){
+        int ex = file.getContentType().toLowerCase().compareTo(".xlsx");
+//        if (!file.isEmpty()) {
+            log.info("ex:{},{}",ex,file.getContentType());
+//        }
+        return false;
     }
 }

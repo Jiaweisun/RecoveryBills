@@ -43,6 +43,6 @@ public class CustomCodeUtil {
     }
 
     public static void main(String[] args){
-        generatedTransNo("2017-05-11","13:19:21");
+        generatedTransNo("2017-06-02","13:23:02");
     }
 }

@@ -732,7 +732,27 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="SelectOne" resultMap="BaseResultMap" parameterType="com.kashuo.kap.bill.model.dto.TransactionCondition">
+  <select id="SelectOneForNormal" resultMap="BaseResultMap" parameterType="com.kashuo.kap.bill.model.dto.TransactionCondition">
+    select
+    <include refid="Base_Column_List" />
+    from transaction
+    where 1=1
+    <if test="deviceSn !=null and deviceSn !=''">
+      and device_sn = #{deviceSn}
+    </if>
+    <if test="totalAmount != null" >
+      and  total_amount = #{totalAmount}
+    </if>
+    <if test="payAmount != null" >
+      and total_amount = #{totalAmount}
+    </if>
+    <if test="transDate!=null and transDate !=''">
+      and created_at = #{transDate}
+    </if>
+    <!-- transDate-->
+  </select>
+
+  <select id="bankSelect" resultMap="BaseResultMap" parameterType="com.kashuo.kap.bill.model.dto.TransactionCondition">
     select
     <include refid="Base_Column_List" />
     from transaction
@@ -746,6 +766,23 @@
     <if test="payAmount != null" >
       and total_amount = #{totalAmount}
     </if>
+    <if test="transDate!=null and transDate !=''">
+      and created_at = #{transDate}
+    </if>
+    <if test="cardNumber !=null and cardNumber !=''">
+      and card_number = #{cardNumber}
+    </if>
+    <if test="status !=null and status !=-1">
+      and status = #{status}
+    </if>
+    limit 100
 <!-- transDate-->
+  </select>
+
+  <select id="selectOne" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from transaction
+    where trans_no = #{transNo}
   </select>
 </mapper>

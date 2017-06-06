@@ -3,6 +3,7 @@ package com.kashuo.kap.bill.dao;
 
 import com.kashuo.kap.bill.domain.Transaction;
 import com.kashuo.kap.bill.model.dto.TransactionCondition;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,5 +20,9 @@ public interface TransactionMapper {
 
     int updateByPrimaryKey(Transaction record);
 
-    Transaction SelectOne(TransactionCondition record);
+    Transaction SelectOneForNormal(TransactionCondition record);
+
+    List<Transaction> bankSelect(TransactionCondition record);
+
+    Transaction selectOne(@Param("transNo") String transNo);
 }

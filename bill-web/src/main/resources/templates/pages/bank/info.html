@@ -44,30 +44,40 @@
 
 
     <body layout:fragment="content">
-        <div class="container" >
+        <div class="container" style="height: 100%">
             <div>
                 <h5 th:inline="text">
-                    <form class="search-form" method="POST" action="/food/list">
+                    <form class="search-form" method="POST" action="/bank">
                         <div class="right">
 
-                            <div class="field_text" style="width:30%">
-                                <input type="text" name="deviceSn" placeholder="设备SN" class="gradient"/>
+                            <div class="field_text" style="width:15%">
+                                <input type="text" name="deviceSn" placeholder="设备SN" class="gradient" th:value="${condition.deviceSn}"/>
                                 <span class="input_icon"></span>
                             </div>
 
-                            <div class="field_text" style="width:30%">
-                                <input type="text" name="totalAmount" placeholder="总金额" class="gradient"/>
+                            <div class="field_text" style="width:15%">
+                                <input type="text" name="totalAmount" placeholder="总金额" class="gradient" th:value="${condition.totalAmount}"/>
                                 <span class="input_icon input_pass"></span>
                             </div>
 
-                            <div class="field_text" style="width:30%">
-                                <input type="text" name="payAmount" placeholder="实付金额" class="gradient"/>
+                            <div class="field_text" style="width:15%">
+                                <input type="text" name="payAmount" placeholder="实付金额" class="gradient" th:value="${condition.payAmount}"/>
                                 <span class="input_icon input_pass"></span>
                             </div>
 
-                            <div class="field_text" style="width:30%">
-                                <input type="text" name="cardNumber" placeholder="卡号前6位/卡号后4位" class="gradient"/>
+                            <div class="field_text" style="width:15%">
+                                <input type="text" name="cardNumber" placeholder="卡号前6位/后4位" class="gradient" th:value="${condition.cardNumber}"/>
                                 <span class="input_icon input_pass"></span>
+                            </div>
+                            <div class="field_select" style="width: 15%">
+                                <select class="gradient" name="status" hidefocus="true" style=" background-color: initial">
+                                    <option value="-1">状态</option>
+                                    <option value="0" th:value="${condition.status}">0</option>
+                                    <option value="1" th:value="${condition.status}">1</option>
+                                    <option value="2" th:value="${condition.status}">2</option>
+                                    <option value="4" th:value="${condition.status}">4</option>
+
+                                </select>
                             </div>
 
                             <!--<div class="field_select" style="width:30%">-->
@@ -92,26 +102,39 @@
 
             </div>
 
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered" style="margin-top:8%">
                 <tr>
                     <td>编号</td>
-                    <td>名称</td>
-                    <td>编码</td>
-                    <td>热量(KJ)</td>
-                    <td>状态</td>
+                    <td>交易号</td>
+                    <td>SN号</td>
+                    <td>交易日期</td>
+                    <td>交易时间</td>
+                    <td>交易金额</td>
+                    <td>实付金额</td>
+                    <td>发卡行</td>
+                    <td>卡号</td>
+                    <td>创建时间</td>
+                    <td>更新时间</td>
+                    <td>状态码</td>
                     <td>操作</td>
                 </tr>
-                <tr th:each="food: ${resultList}">
-                    <td th:text="${food.id}"></td>
-                    <td th:text="${food.name}"></td>
-                    <td th:text="${food.foodCode}"></td>
-                    <td th:text="${food.energy}"></td>
-
-                    <td th:if="${food.status} == 0">初始化</td>
+                <tr th:each="transaction: ${transactions}">
+                    <td th:text="${transaction.id}"></td>
+                    <td th:text="${transaction.transNo}"></td>
+                    <td th:text="${transaction.deviceSn}"></td>
+                    <td th:if = "${transaction.transDate}" th:text="${#dates.format(transaction.transDate, 'YYYY-MM-dd')}"></td>
+                    <td th:if = "${transaction.transDate}==null"></td>
+                    <td th:if = "${transaction.transTime}"  th:text="${#dates.format(transaction.transTime, 'HH:mm:ss')} "></td>
+                    <td th:if = "${transaction.transTime}==null"></td>
+                    <td th:text="${transaction.totalAmount}"></td>
+                    <td th:text="${transaction.payAmount}"></td>
+                    <td th:text="${transaction.bankName}"></td>
+                    <td th:text="${transaction.cardNumber}"></td>
+                    <td th:text="${#dates.format(transaction.createdAt, 'YYYY-MM-dd HH:mm:ss')} "></td>
+                    <td th:text="${#dates.format(transaction.updatedAt, 'YYYY-MM-dd HH:mm:ss')} "></td>
+                    <td th:text="${transaction.status}"></td>
                     <td>
-                        <a th:href="@{/food/view(code=${food.foodCode})}" class="btn btn-mini btn-info active"></a>
-                        <a th:href="@{/food/remove(code=${food.foodCode})}" class="btn btn-mini btn-close active"></a>
-                        <!--<a class="shareButton gradient" href="#"><span class="shareIcon"><i></i></span><span class="shareText">分享</span><span class="shareCount gradient">3K</span></a>-->
+                        <a th:href="@{/bank/update(transNo=${transaction.transNo})}" class="btn btn-hover active"><span>更新</span></a>
                     </td>
                 </tr>
             </table>
