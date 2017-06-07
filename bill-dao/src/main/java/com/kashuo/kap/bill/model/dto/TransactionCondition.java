@@ -14,6 +14,7 @@ public class TransactionCondition {
     private BigDecimal payAmount;
     private String cardNumber;
     private Integer status;
+    private Integer agencyId;
 
     public String getDeviceSn() {
         return deviceSn==null?"":deviceSn.trim();
@@ -61,5 +62,13 @@ public class TransactionCondition {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Integer getAgencyId() {
+        return agencyId;
+    }
+
+    public void setAgencyId(Integer agencyId) {
+        this.agencyId = agencyId;
     }
 }

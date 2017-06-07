@@ -23,26 +23,40 @@ public class BankController extends BaseController{
     @Autowired
     private TransactionService transactionService;
 
-//    @RequestMapping(value="", method = {RequestMethod.GET,RequestMethod.POST})
-//    public String bank(@ModelAttribute TransactionCondition condition){
-//
-//        //  1. to page
-//        return "pages/bank/info";
-//    }
+    /**
+     * get, post请求分开是为了避免
+     * @param condition
+     * @return
+     */
+    @RequestMapping(value="", method = RequestMethod.GET)
+    public ModelAndView bank(@ModelAttribute TransactionCondition condition){
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("condition",condition);
+
+        mav.setViewName("pages/bank/info");
+        log.info(".... search end....");
+        return mav;
+    }
 
     /**
      * 当条件为空的时候，默认查询所有，但由于数据量巨大，因此只显示100条。（不推荐无条件查询）
      * @param condition
      * @return
      */
-    @RequestMapping(value = "", method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public ModelAndView search(@ModelAttribute TransactionCondition condition) {
 
         log.info(".... search begin....");
         ModelAndView mav = new ModelAndView();
+        mav.addObject("condition",condition);
+
+//          if (condition.getAgencyId() == 4)//龙支付
+//        {
+                //// TODO: 2017/6/6 龙支付
+//        }
         // 2. search by condition and redirect to parent page
         List<Transaction> transactions = transactionService.bankSelect(condition);
-        mav.addObject("condition",condition);
+
         mav.addObject("transactions",transactions);
         mav.setViewName("pages/bank/info");
         log.info(".... search end....");
@@ -57,7 +71,6 @@ public class BankController extends BaseController{
         Integer status = record.getStatus();
         if (status ==1 || status ==2 || status == 3||status == 4){
             ////
-            //返回消息（status: 1 , trans_no: xxxxxx）
             mav.addObject("transNo",record.getTransNo());
             mav.setViewName("redirect:/bank/status");
             return mav;

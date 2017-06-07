@@ -770,11 +770,12 @@
       and created_at = #{transDate}
     </if>
     <if test="cardNumber !=null and cardNumber !=''">
-      and card_number = #{cardNumber}
+      and card_number LIKE CONCAT('%',#{cardNumber},'%')
     </if>
     <if test="status !=null and status !=-1">
       and status = #{status}
     </if>
+    order by created_at desc
     limit 100
 <!-- transDate-->
   </select>

@@ -56,7 +56,7 @@
                             </div>
 
                             <div class="field_text" style="width:15%">
-                                <input type="text" name="totalAmount" placeholder="总金额" class="gradient" th:value="${condition.totalAmount}"/>
+                                <input type="text" name="totalAmount" placeholder="消费金额" class="gradient" th:value="${condition.totalAmount}"/>
                                 <span class="input_icon input_pass"></span>
                             </div>
 
@@ -68,6 +68,17 @@
                             <div class="field_text" style="width:15%">
                                 <input type="text" name="cardNumber" placeholder="卡号前6位/后4位" class="gradient" th:value="${condition.cardNumber}"/>
                                 <span class="input_icon input_pass"></span>
+                            </div>
+                            <div class="field_select" style="width: 15%">
+                                <select class="gradient" name="agencyId" hidefocus="true" style=" background-color: initial">
+                                    <option value="-1">支付方式</option>
+                                    <option value="0" th:value="${condition.status}">借记卡</option>
+                                    <option value="1" th:value="${condition.status}">信用卡</option>
+                                    <option value="4" th:value="${condition.status}">微信</option>
+                                    <option value="4" th:value="${condition.status}">支付宝</option>
+                                    <option value="2" th:value="${condition.status}">龙支付</option>
+                                </select>
+
                             </div>
                             <div class="field_select" style="width: 15%">
                                 <select class="gradient" name="status" hidefocus="true" style=" background-color: initial">
@@ -109,8 +120,10 @@
                     <td>SN号</td>
                     <td>交易日期</td>
                     <td>交易时间</td>
-                    <td>交易金额</td>
+                    <td>消费金额</td>
                     <td>实付金额</td>
+                    <td>签约扣率</td>
+                    <td>手续费</td>
                     <td>发卡行</td>
                     <td>卡号</td>
                     <td>创建时间</td>
@@ -128,14 +141,19 @@
                     <td th:if = "${transaction.transTime}==null"></td>
                     <td th:text="${transaction.totalAmount}"></td>
                     <td th:text="${transaction.payAmount}"></td>
+                    <td th:text="${transaction.transRate}"></td>
+                    <td th:text="${transaction.ksProfit}"></td>
                     <td th:text="${transaction.bankName}"></td>
                     <td th:text="${transaction.cardNumber}"></td>
                     <td th:text="${#dates.format(transaction.createdAt, 'YYYY-MM-dd HH:mm:ss')} "></td>
                     <td th:text="${#dates.format(transaction.updatedAt, 'YYYY-MM-dd HH:mm:ss')} "></td>
                     <td th:text="${transaction.status}"></td>
-                    <td>
+                    <td th:if="${transaction.status}==1 or ${transaction.status}==4" th:text="已更新"></td>
+                    <td th:if="${transaction.status}==0">
                         <a th:href="@{/bank/update(transNo=${transaction.transNo})}" class="btn btn-hover active"><span>更新</span></a>
                     </td>
+                    <td th:if="${transaction.status}==2 or ${transaction.status}==5" th:text="撤销的原始流水"></td>
+                    <td th:if="${transaction.status}==3" th:text="撤销流水"></td>
                 </tr>
             </table>
         </div>
