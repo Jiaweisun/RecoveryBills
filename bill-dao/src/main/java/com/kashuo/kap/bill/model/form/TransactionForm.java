@@ -11,29 +11,29 @@ import java.util.Date;
  */
 public class TransactionForm {
 
-    private String merchantId;
-    private String storeId;
+    private int merchantId;
+    private int storeId;
     private String deviceSn;
     private String transDate;
     private BigDecimal totalAmount;
     private BigDecimal payAmount;
     private String paymentType;
 
-    public String getMerchantId() {
-        return merchantId;
-    }
-
-    public void setMerchantId(String merchantId) {
-        this.merchantId = merchantId;
-    }
-
-    public String getStoreId() {
-        return storeId;
-    }
-
-    public void setStoreId(String storeId) {
-        this.storeId = storeId;
-    }
+//    public String getMerchantId() {
+//        return merchantId;
+//    }
+//
+//    public void setMerchantId(String merchantId) {
+//        this.merchantId = merchantId;
+//    }
+//
+//    public String getStoreId() {
+//        return storeId;
+//    }
+//
+//    public void setStoreId(String storeId) {
+//        this.storeId = storeId;
+//    }
 
     public String getDeviceSn() {
         return deviceSn;
@@ -73,5 +73,21 @@ public class TransactionForm {
 
     public void setPaymentType(String paymentType) {
         this.paymentType = paymentType;
+    }
+
+    public int getMerchantId() {
+        return merchantId;
+    }
+
+    public void setMerchantId(int merchantId) {
+        this.merchantId = merchantId;
+    }
+
+    public int getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(int storeId) {
+        this.storeId = storeId;
     }
 }

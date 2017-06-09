@@ -50,11 +50,10 @@ public class BankController extends BaseController{
         ModelAndView mav = new ModelAndView();
         mav.addObject("condition",condition);
         getAgency(mav);
-
-//          if (condition.getAgencyId() == 4)//龙支付
-//        {
-                //// TODO: 2017/6/6 龙支付
-//        }
+          if (condition.getPaymentType()== "1")//龙支付
+        {
+                 //TODO: 2017/6/6 龙支付
+        }
         // 2. search by condition and redirect to parent page
         List<Transaction> transactions = transactionService.bankSelect(condition);
 

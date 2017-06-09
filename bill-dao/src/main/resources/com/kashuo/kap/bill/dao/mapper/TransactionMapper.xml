@@ -781,6 +781,9 @@
     <if test="status !=null and status !=-1">
       and status = #{status}
     </if>
+    <if test="paymentType !=null and paymentType !=''">
+      and payment_type = #{paymentType}
+    </if>
     order by created_at desc
     limit 100
 <!-- transDate-->

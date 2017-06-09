@@ -14,4 +14,8 @@ public class StoreService {
     @Resource
     private StoreMapper storeMapper;
 
+    public Store selectByPrimaryKey(int storeId){
+        return storeMapper.selectByPrimaryKey(storeId);
+    }
+
 }

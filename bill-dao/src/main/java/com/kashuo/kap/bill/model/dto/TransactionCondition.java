@@ -16,6 +16,7 @@ public class TransactionCondition {
     private String cardNumber;
     private Integer status;
     private Integer agencyId;
+    private String paymentType;//支付类型
 
     public String getDeviceSn() {
         return deviceSn==null?"":deviceSn.trim();
@@ -79,5 +80,13 @@ public class TransactionCondition {
 
     public void setTransTime(String transTime) {
         this.transTime = transTime;
+    }
+
+    public String getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
     }
 }

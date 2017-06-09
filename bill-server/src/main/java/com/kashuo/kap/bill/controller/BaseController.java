@@ -1,6 +1,7 @@
 package com.kashuo.kap.bill.controller;
 
 import com.kashuo.kap.bill.service.ConditionService;
+import com.kashuo.kap.bill.service.StoreService;
 import com.kashuo.kap.bill.service.TransactionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,5 +21,8 @@ public class BaseController {
 
     @Autowired
     protected TransactionService transactionService;
+
+    @Autowired
+    protected StoreService storeService;
 
 }

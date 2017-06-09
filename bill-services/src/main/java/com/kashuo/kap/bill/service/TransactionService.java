@@ -40,14 +40,10 @@ public class TransactionService {
 
     public boolean normalInsert(TransactionForm form){
         Transaction record = this.form2Entity(form);//form to entity
-        int storeId = record.getStoreId();
-        Store store = storeMapper.selectByPrimaryKey(storeId);
-        if (store == null)
-            return false;
-        String storeChannelCode = store.getChannelCode();
-        int result = insertSelective(record,storeChannelCode);
-        if (result <= 0)
-            return false;
+
+//        int result = insertSelective(record,storeChannelCode);
+//        if (result <= 0)
+//            return false;
         return true;
     }
 
@@ -170,8 +166,8 @@ public class TransactionService {
         result.setPayAmount(record.getPayAmount());
         result.setTotalAmount(record.getTotalAmount());
         result.setPaymentType(record.getPaymentType());
-        result.setMerchantId(Integer.parseInt(record.getMerchantId().trim()));
-        result.setStoreId(Integer.parseInt(record.getStoreId().trim()));
+        result.setMerchantId(record.getMerchantId());
+        result.setStoreId(record.getStoreId());
         return result;
     }
 
