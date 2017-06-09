@@ -26,4 +26,10 @@ public class ConstantUtil {
 
     public static final String BANK = "bank";
     public static final String NORMAL = "normal";
+
+
+    //file template path
+    public static final String NORMAL_SQL = "D:\\workspace\\kap-all\\RecoveryBills\\file\\单边账模板SQL.txt";
+    public static final String BANK_SQL = "D:\\workspace\\kap-all\\RecoveryBills\\file\\银行活动模板SQL.txt";
+    public static final String BASE_FILE_PATH = "D:\\workspace\\kap-all\\RecoveryBills\\file\\";
 }

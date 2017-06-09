@@ -12,10 +12,25 @@
     <artifactId>bill-core</artifactId>
 
     <dependencies>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.poi</groupId>-->
+            <!--<artifactId>poi</artifactId>-->
+        <!--</dependency>-->
+
+        <!-- Excel -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
+            <version>3.13</version>
         </dependency>
+
+        <!-- Excel 版本不兼容问题-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.13</version>
+        </dependency>
+
     </dependencies>
 
 </project>

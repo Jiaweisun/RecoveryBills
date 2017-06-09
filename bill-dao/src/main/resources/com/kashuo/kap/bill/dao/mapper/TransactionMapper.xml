@@ -744,7 +744,7 @@
       and  total_amount = #{totalAmount}
     </if>
     <if test="payAmount != null" >
-      and total_amount = #{totalAmount}
+      and pay_amount = #{payAmount}
     </if>
     <if test="transDate!=null and transDate !=''">
       and created_at = #{transDate}
@@ -764,10 +764,16 @@
      and  total_amount = #{totalAmount}
     </if>
     <if test="payAmount != null" >
-      and total_amount = #{totalAmount}
+      and pay_amount = #{payAmount}
+    </if>
+    <if test="agencyId !=null and agencyId !=-1">
+      and agency_id = #{agencyId}
     </if>
     <if test="transDate!=null and transDate !=''">
-      and created_at = #{transDate}
+      and  DATE_FORMAT(created_at,'%Y-%m-%d')  = #{transDate}
+    </if>
+    <if test="transTime !=null and transTime !=''">
+      and ABS(TIME_TO_SEC(TIMEDIFF(#{transTime},DATE_FORMAT(created_at,'%H:%i:%s ')))) &lt;= 60
     </if>
     <if test="cardNumber !=null and cardNumber !=''">
       and card_number LIKE CONCAT('%',#{cardNumber},'%')

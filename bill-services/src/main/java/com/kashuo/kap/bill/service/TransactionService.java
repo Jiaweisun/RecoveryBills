@@ -1,6 +1,8 @@
 package com.kashuo.kap.bill.service;
 
+import com.kashuo.kap.bill.dao.StoreMapper;
 import com.kashuo.kap.bill.dao.TransactionMapper;
+import com.kashuo.kap.bill.domain.Store;
 import com.kashuo.kap.bill.domain.Transaction;
 import com.kashuo.kap.bill.model.dto.TransactionCondition;
 import com.kashuo.kap.bill.model.form.TransactionForm;
@@ -25,27 +27,66 @@ public class TransactionService {
     @Resource
     private TransactionMapper transactionMapper;
 
+    @Resource
+    private StoreMapper storeMapper;
+
     @SuppressWarnings("")
     //单边账
-    public boolean normal(TransactionForm form){
+    public Transaction SelectOne(TransactionForm form){
+        TransactionCondition record = this.form2Condition(form);
+        Transaction result =transactionMapper.SelectOneForNormal(record);
+        return result;
+    }
+
+    public boolean normalInsert(TransactionForm form){
         Transaction record = this.form2Entity(form);//form to entity
-        TransactionCondition condition = this.form2Condition(form); // entity to condition
-        //检查，若存在，检查状态，若不存在，直接入库
-        Transaction result =  SelectOne(condition);//todo:有可能不止一条
-        if(result != null){
-            Integer status = result.getStatus();
-            log.info("状态，{}",status);
-            if (status != null && (status ==1 || status == 4)){
-                //// TODO: 2017/5/24  
-                //返回消息（status: 1 , trans_no: xxxxxx）
-                //return。。。
-            }
-        }
-       int resCount =  insertSelective(record);
-        if (resCount<1)
+        int storeId = record.getStoreId();
+        Store store = storeMapper.selectByPrimaryKey(storeId);
+        if (store == null)
+            return false;
+        String storeChannelCode = store.getChannelCode();
+        int result = insertSelective(record,storeChannelCode);
+        if (result <= 0)
             return false;
         return true;
     }
+
+    /**
+     *  insert selective
+     * @param record
+     * @return
+     */
+    private int insertSelective(Transaction record, String storeChannelCode){
+
+        record.setTransNo(CustomCodeUtil.generatedTransNo("2017-05-25","16:43:52"));
+        record.setStoreChannel(storeChannelCode);//
+        record.setStatus(ConstantUtil.ONE);
+        record.setAcqChannel(ConstantUtil.acqChannel);
+        record.setTransComment(ConstantUtil.transComment);
+        record.setCreatedAt(new Date());
+        record.setUpdatedAt(new Date());
+        return transactionMapper.insert(record);
+    }
+//
+//    public boolean normal(TransactionForm form){
+//        Transaction record = this.form2Entity(form);//form to entity
+////        TransactionCondition condition = this.form2Condition(form); // entity to condition
+//        //检查，若存在，检查状态，若不存在，直接入库
+//        Transaction result =  SelectOne(form);//todo:有可能不止一条
+//        if(result != null){
+//            Integer status = result.getStatus();
+//            log.info("状态，{}",status);
+//            if (status != null && (status ==1 || status == 4)){
+//                //// TODO: 2017/5/24
+//                //返回消息（status: 1 , trans_no: xxxxxx）
+//                //return。。。
+//            }
+//        }
+////       int resCount =  insertSelective(record);
+//        if (resCount<1)
+//            return false;
+//        return true;
+//    }
 
 
 
@@ -73,11 +114,15 @@ public class TransactionService {
     }
 
     /************************************  内部    ********************************************/
-    //根据金额，sn, 交易日期， 查询交易
-    private Transaction SelectOne(TransactionCondition record){
-        Transaction result =transactionMapper.SelectOneForNormal(record);
-        return result;
-    }
+
+
+//    //根据金额，sn, 交易日期， 查询交易
+//    public Transaction SelectOne(TransactionCondition record){
+//        Transaction record = this.form2Entity(form);
+////        TransactionCondition condition = this.form2Condition(form);
+//        Transaction result =transactionMapper.SelectOneForNormal(record);
+//        return result;
+//    }
 
 
     public Transaction selectOne(String transNo){
@@ -130,26 +175,13 @@ public class TransactionService {
         return result;
     }
 
-    /**
-     *  insert selective
-     * @param record
-     * @return
-     */
-    private int insertSelective(Transaction record){
 
-        record.setTransNo(CustomCodeUtil.generatedTransNo("2017-05-25","16:43:52"));
-        record.setStatus(ConstantUtil.ONE);
-        record.setAcqChannel(ConstantUtil.acqChannel);
-        record.setTransComment(ConstantUtil.transComment);
-        record.setCreatedAt(new Date());
-        record.setUpdatedAt(new Date());
-        return transactionMapper.insert(record);
-    }
 
 
     //update status
     private int updateSelective(Transaction record){
         record.setStatus(ConstantUtil.ONE);
+        record.setTransComment(ConstantUtil.transComment);
         record.setUpdatedAt(new Date());
         return transactionMapper.updateByPrimaryKeySelective(record);
     }

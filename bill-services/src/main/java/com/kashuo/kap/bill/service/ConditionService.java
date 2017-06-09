@@ -1,8 +1,10 @@
 package com.kashuo.kap.bill.service;
 
 import com.kashuo.kap.bill.dao.MerchantMapper;
+import com.kashuo.kap.bill.dao.ProfitAgencyMapper;
 import com.kashuo.kap.bill.dao.StoreMapper;
 import com.kashuo.kap.bill.domain.Merchant;
+import com.kashuo.kap.bill.domain.ProfitAgency;
 import com.kashuo.kap.bill.domain.Store;
 import com.kashuo.kap.bill.model.MerchantWithStore;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,13 @@ public class ConditionService {
     @Resource
     private StoreMapper storeMapper;
 
+    @Resource
+    private ProfitAgencyMapper profitAgencyMapper;
+
+    ///****************************** 支付方式 ***********************************
+    public List<ProfitAgency> agencyAll(){
+        return profitAgencyMapper.selectAll();
+    }
 
     //1. 获取所有商户和从属的门店
     private List<MerchantWithStore> selectAll(){

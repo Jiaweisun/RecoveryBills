@@ -76,21 +76,6 @@
                    <div class="inner">
                        <form action="/normal/add" method="post" class="comment-form" enctype="multipart/form-data">
 
-                           <!-- 食物类型-->
-                           <!--<div class="field_select">-->
-                           <!--<select class="gradient" name="foodCode" hidefocus="true" style="width: 100%; background-color: initial">-->
-                           <!--<option value="">食物</option>-->
-                           <!--<option th:each="food : ${foods}" th:value="${food.foodCode}" th:text="${food.name}"></option>-->
-                           <!--</select>-->
-                           <!--</div>-->
-                           <!--<div class="field_select">-->
-                               <!--<select class="gradient" name="foodCode" hidefocus="true" style="width: 100%; background-color: initial">-->
-                                   <!--<option value="">食物</option>-->
-                                   <!--<option th:each="food : ${foods}" th:value="${food.foodCode}" th:text="${food.name}"></option>-->
-                               <!--</select>-->
-                           <!--</div>-->
-
-                           <!--@{/food/view(code=${food.foodCode})}-->
                            <div class="filed_text">
                            <input type="file" th:id="fileName" name="fileName" placeholder="file path" class="gradient"/>
                                <!--<a  th:href="${uploadUrl}" onclick="submitBtn(event)" class="btn btn-mini btn-info active"></a>-->

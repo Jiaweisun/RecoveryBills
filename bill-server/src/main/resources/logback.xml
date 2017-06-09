@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+http://logback.qos.ch/manual/configuration.html
+-->
+<!--configure logback to globally -->
+<configuration debug="true">
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator"/>
+
+    <property name="APP_LOGGING_PATTERN"
+              value="${log.app.pattern:-%date{ISO8601} [%thread] %-5level %logger{36} - %msg%n}"/>
+
+    <appender name="APP_STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!--<filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+            <!--<level>ERROR</level>-->
+        <!--</filter>-->
+        <encoder>
+            <pattern>${APP_LOGGING_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="APP_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.directory:-./logs}/${log.app.name:-123}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>
+                ${log.directory:-./logs}/${log.app.name:-kap}.%d{yyyy-MM-dd}.%i.log
+            </fileNamePattern>
+            <maxHistory>${log.app.maxHistory:-3}</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${log.app.maxSize:-250MB}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${APP_LOGGING_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    <!--<logger name="org.glassfish.jersey" level="DEBUG"/>-->
+    <logger name="com.kashuo.kap.bill.dao" level="DEBUG"/>
+    <root level="INFO">
+        <appender-ref ref="APP_STDOUT"/>
+        <appender-ref ref="APP_FILE"/>
+    </root>
+</configuration>

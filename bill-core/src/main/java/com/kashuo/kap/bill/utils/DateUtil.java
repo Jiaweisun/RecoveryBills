@@ -73,6 +73,9 @@ public class DateUtil {
      */
     public static String toString(String strTemp){
         StringBuilder sb = new StringBuilder();
+        if (strTemp.contains("\n")){
+            strTemp = strTemp.split("\n")[0];
+        }
 
         if (strTemp.contains("/")||strTemp.contains("-")||strTemp.contains(":")){
             String[] dateArray = strTemp.split("/")==null ?strTemp.split("-"):strTemp.split("/");

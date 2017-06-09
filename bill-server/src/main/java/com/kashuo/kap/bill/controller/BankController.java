@@ -1,5 +1,6 @@
 package com.kashuo.kap.bill.controller;
 
+import com.kashuo.kap.bill.domain.ProfitAgency;
 import com.kashuo.kap.bill.domain.Transaction;
 import com.kashuo.kap.bill.model.dto.TransactionCondition;
 import com.kashuo.kap.bill.service.TransactionService;
@@ -20,8 +21,7 @@ import java.util.List;
 @RequestMapping(value = "/bank")
 public class BankController extends BaseController{
 
-    @Autowired
-    private TransactionService transactionService;
+
 
     /**
      * get, post请求分开是为了避免
@@ -32,7 +32,7 @@ public class BankController extends BaseController{
     public ModelAndView bank(@ModelAttribute TransactionCondition condition){
         ModelAndView mav = new ModelAndView();
         mav.addObject("condition",condition);
-
+        getAgency(mav);
         mav.setViewName("pages/bank/info");
         log.info(".... search end....");
         return mav;
@@ -49,6 +49,7 @@ public class BankController extends BaseController{
         log.info(".... search begin....");
         ModelAndView mav = new ModelAndView();
         mav.addObject("condition",condition);
+        getAgency(mav);
 
 //          if (condition.getAgencyId() == 4)//龙支付
 //        {
@@ -64,17 +65,17 @@ public class BankController extends BaseController{
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.GET)
-    public ModelAndView update(@RequestParam("transNo") String transNo) {
+    public ModelAndView update(@RequestParam("transNo") String transNo,@RequestParam("transTime") String transTime) {
 
         ModelAndView mav = new ModelAndView();
         Transaction record = transactionService.selectOne(transNo);
         Integer status = record.getStatus();
-        if (status ==1 || status ==2 || status == 3||status == 4){
-            ////
-            mav.addObject("transNo",record.getTransNo());
-            mav.setViewName("redirect:/bank/status");
-            return mav;
-        }
+//        if (status ==1 || status ==2 || status == 3||status == 4){
+//            ////
+//            mav.addObject("transNo",record.getTransNo());
+//            mav.setViewName("redirect:/bank/status");
+//            return mav;
+//        }
         // 2. update by a column and redirect to parent page
         transactionService.updateByTransNo(transNo);
         mav.setViewName("redirect:/bank");
@@ -90,5 +91,9 @@ public class BankController extends BaseController{
         return mav;
     }
 
+    private void getAgency(ModelAndView mav){
+        List<ProfitAgency> agencies = conditionService.agencyAll();
+        mav.addObject("agencies",agencies);
 
+    }
 }

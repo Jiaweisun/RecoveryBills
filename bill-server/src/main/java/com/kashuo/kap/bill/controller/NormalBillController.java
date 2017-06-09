@@ -23,8 +23,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping(value = "/normal")
 public class NormalBillController extends BaseController{
-    @Autowired
-    private TransactionService transactionService;
 
     private  String rootPath = "d:\\upload\\";
 
@@ -50,7 +48,14 @@ public class NormalBillController extends BaseController{
          //// TODO: 2017/5/27 convert into sql
         }
         //another
-        boolean result = transactionService.normal(form);
+
+        //1.
+        Transaction searchResult =  transactionService.SelectOne(form);//todo:有可能不止一条
+        if(searchResult != null){
+            Integer status = searchResult.getStatus();
+            log.info("状态，{}",status);
+        }
+        boolean result = transactionService.normalInsert(form);
         log.info("结果 ,{}",result);
         return "pages/normal/add";
     }

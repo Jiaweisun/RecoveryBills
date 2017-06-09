@@ -10,6 +10,7 @@ public class TransactionCondition {
 
     private String deviceSn;
     private String transDate;
+    private String transTime;
     private BigDecimal totalAmount;
     private BigDecimal payAmount;
     private String cardNumber;
@@ -70,5 +71,13 @@ public class TransactionCondition {
 
     public void setAgencyId(Integer agencyId) {
         this.agencyId = agencyId;
+    }
+
+    public String getTransTime() {
+        return transTime;
+    }
+
+    public void setTransTime(String transTime) {
+        this.transTime = transTime;
     }
 }

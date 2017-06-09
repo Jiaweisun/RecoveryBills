@@ -39,10 +39,11 @@ public class CustomCodeUtil {
         timeStr = DateUtil.toString(timeStr);
         sb.append(dateStr).append(timeStr).append(ConstantUtil.handFlag).append(generatedRandomCode(ConstantUtil.ZERO,ConstantUtil.FOUR));
         log.info("sb: {}",sb);
+
         return sb.toString();
     }
 
     public static void main(String[] args){
-        generatedTransNo("2017-06-02","13:23:02");
+        generatedTransNo("2017-06-03\n","13:08:55\n");
     }
 }
