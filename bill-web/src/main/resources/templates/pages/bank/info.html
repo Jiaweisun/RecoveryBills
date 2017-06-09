@@ -88,6 +88,13 @@
                                 </select>
                             </div>
 
+                            <div class="field_select" style="width: 18%">
+                            <select class="gradient" name="paymentType" hidefocus="true" style=" background-color: initial;width: 100%;margin-top: 2%;border: groove;font-family: -webkit-pictograph;font-size: x-small;height: 32px;">
+                            <option value="">支付类型</option>
+                            <option value="1" th:value="${condition.paymentType}">龙支付</option>
+                            </select>
+                            </div>
+
                             <!--<div class="field_select" style="width: 18%">-->
                                 <!--<select class="gradient" name="status" hidefocus="true" style=" background-color: initial;width: 100%;margin-top: 2%;border: groove;font-family: -webkit-pictograph;font-size: x-small;height: 32px;">-->
                                     <!--<option value="-1">状态</option>-->
