@@ -1,0 +1,14 @@
+<-- ${A}
+ select * 
+ from transaction 
+ where 1=1
+ and device_sn = '${T}'
+ and total_amount = ${R}
+ and pay_amount = ${X}
+ and trans_date = '${C}'
+ and trans_time = '${D}';>
+
+<<insert into transaction
+(trans_no,order_no,merchant_id,store_id,trans_date,trans_time,total_amount,agency_id,device_sn,terminal_number,status,trans_type,pay_amount,trans_rate,total_profit,acquirer_id,acq_channel,payment_type,card_number,bank_name,trans_comment,created_at,updated_at) 
+values 
+('${B}','${B}','${L}','${N}','${C}','${D}',${R},${S},'${T}','${U}',${H},${I},${X},${Y},${E},${AB},'${AC}','${AE}','${F}','${G}','手工加入单边账',now(),now());>>

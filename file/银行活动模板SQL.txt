@@ -1,0 +1,20 @@
+<-- ${A}
+select trans_no,status,agency_id,trans_date,trans_time,total_profit,trans_rate,bank_name,card_number,created_at,updated_at 
+from transaction 
+where 1 = 1 
+and device_sn = '${F}' 
+and total_amount = ${I} 
+and pay_amount = ${M} 
+and DATE_FORMAT(created_at,'%Y-%m-%d')  = '${B}' 
+and card_number like '%${O}%'
+and card_number like '%${O}%'
+;>
+
+<<update transaction
+set status = 1,agency_id = ${U},trans_date = '${B}',trans_time = '${C}',total_profit = ${X},trans_rate = ${W},bank_name = '${V}',trans_comment = '手工修改单边账',updated_at = now()
+where trans_no = '{trans_no}';>>
+
+
+
+
+
