@@ -917,4 +917,17 @@
       store_phone = #{storePhone,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByPK" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from store
+    <where>
+      merchant_id = #{mid}
+      <if test="sid !=null">
+        and id = #{sid}
+      </if>
+    </where>
+    limit 1
+  </select>
 </mapper>

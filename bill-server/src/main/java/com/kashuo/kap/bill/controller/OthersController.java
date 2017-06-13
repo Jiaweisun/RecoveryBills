@@ -14,7 +14,7 @@ public class OthersController extends  BaseController{
     @RequestMapping(value="", method = RequestMethod.GET)
     public String hi(){
         log.info("index page ");
-        return "pages/index";
+        return "pages/about";
     }
 
     @RequestMapping(value="about", method = RequestMethod.GET)

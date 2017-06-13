@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--&lt;!&ndash;[if lt IE 7 ]><html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js ie6"> <![endif]&ndash;&gt;-->
+<!--&lt;!&ndash;[if IE 7 ]><html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js ie7"> <![endif]&ndash;&gt;-->
+<!--&lt;!&ndash;[if IE 8 ]><html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js ie8"> <![endif]&ndash;&gt;-->
+<!--&lt;!&ndash;[if IE 9 ]><html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js ie9"> <![endif]&ndash;&gt;-->
+<!--&lt;!&ndash;[if (gt IE 9)|!(IE)]>&lt;!&ndash;><html xmlns:th="http://www.thymeleaf.org" lang="en" class="no-js"-->
+                                    <!--xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+                                    <!--layout:decorator="layout"> &lt;!&ndash;<![endif]&ndash;&gt;-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+
+<head>
+    <title>补单失败</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <!-- main JS libs -->
+    <script th:src="@{/vanilla-cream-css/js/libs/modernizr.min.js}"></script>
+    <script th:src="@{/vanilla-cream-css/js/libs/jquery-1.10.0.js}"></script>
+    <script th:src="@{/vanilla-cream-css/js/libs/jquery-ui.min.js}"></script>
+    <script th:src="@{/vanilla-cream-css/js/libs/bootstrap.min.js}"></script>
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" th:href="@{/vanilla-cream-css/css/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/vanilla-cream-css/style.css}"  />
+    <!-- scripts -->
+    <script th:src="@{/vanilla-cream-css/js/general.js}"></script>
+
+    <!-- Include all needed stylesheets and scripts here -->
+    <!--[if lt IE 9]>
+    <script th:src="@{/vanilla-cream-css/js/respond.min.js}"></script><![endif]-->
+    <!--[if gte IE 9]>
+    <style type="text/css">
+        .gradient {filter: none !important;}
+    </style>
+    <![endif]-->
+
+
+    </head>
+
+    <body layout:fragment="content">
+        <div class="container" >
+
+           <div class="col-sm-8 col-sm-offset-1">
+
+              <h3> 补单失败！</h3>
+
+           </div>
+        </div>
+    </body>
+
+    </html>

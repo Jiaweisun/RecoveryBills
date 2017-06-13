@@ -593,4 +593,17 @@
     from merchant
     where name=#{name}
   </select>
+
+  <select id="merchantSelectByName" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from merchant
+    where name and card_number LIKE CONCAT('%',#{name},'%')
+  </select>
+
+  <select id="merchantAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from merchant
+  </select>
 </mapper>

@@ -10,6 +10,7 @@ import com.kashuo.kap.bill.model.MerchantWithStore;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,14 +34,28 @@ public class ConditionService {
     }
 
     //1. 获取所有商户和从属的门店
-    private List<MerchantWithStore> selectAll(){
-       Merchant merchant = selectOne("");
-        MerchantWithStore.toMerchantWithStore(merchant,selectAllByMCode(merchant.getCode()));
-        //// TODO: 2017/5/27
-        return null;
+    public List<MerchantWithStore> selectAll(){
+        List<Merchant> merchants = this.merchantSelectAll();
+        List<MerchantWithStore> results = new ArrayList<>();
+
+        MerchantWithStore mws = null;
+        for (Merchant merchant: merchants) {
+
+            mws = MerchantWithStore.toMerchantWithStore(merchant,selectAllByPK(merchant.getId()));
+        }
+        results.add(mws);
+        return results;
     }
 
     //2. 根据商户名称，模糊匹配商户
+
+    private List<Merchant> merchantSelectAll(){
+        return merchantMapper.merchantAll();
+    }
+
+    private List<Merchant> merchantSelectByName(String name){
+        return null;
+    }
 
     private MerchantWithStore selectOne(){
         //// TODO: 2017/5/27
@@ -55,10 +70,10 @@ public class ConditionService {
 
     /**
      *
-     * @param mcode merchant code
+     * @param mid merchant id
      * @return
      */
-    private List<Store> selectAllByMCode(String mcode){
-        return null;
+    private List<Store> selectAllByPK(Integer mid){
+        return storeMapper.selectByPK(mid,null);
     }
 }

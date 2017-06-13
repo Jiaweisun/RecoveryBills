@@ -789,6 +789,40 @@
 <!-- transDate-->
   </select>
 
+
+  <select id="bankSelectLong" resultMap="BaseResultMap" parameterType="com.kashuo.kap.bill.model.dto.TransactionCondition">
+    select
+    <include refid="Base_Column_List" />
+    from transaction
+    where 1=1
+    <if test="deviceSn !=null and deviceSn !=''">
+      and device_sn = #{deviceSn}
+    </if>
+    <if test="totalAmount != null" >
+      and  total_amount = #{totalAmount}
+    </if>
+    <if test="payAmount != null" >
+      and pay_amount = #{payAmount}
+    </if>
+    <if test="agencyId !=null and agencyId !=-1">
+      and agency_id = #{agencyId}
+    </if>
+    <if test="transDate!=null and transDate !=''">
+      and  DATE_FORMAT(created_at,'%Y-%m-%d')  = #{transDate}
+    </if>
+    <if test="transTime !=null and transTime !=''">
+      and ABS(TIME_TO_SEC(TIMEDIFF(#{transTime},DATE_FORMAT(created_at,'%H:%i:%s ')))) &lt;= 60
+    </if>
+    <if test="status !=null and status !=-1">
+      and status = #{status}
+    </if>
+    <if test="paymentType !=null and paymentType !=''">
+      and payment_type = #{paymentType}
+    </if>
+    order by created_at desc
+    limit 100
+  </select>
+
   <select id="selectOne" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

@@ -4,6 +4,7 @@ import com.kashuo.kap.bill.domain.ProfitAgency;
 import com.kashuo.kap.bill.domain.Transaction;
 import com.kashuo.kap.bill.model.dto.TransactionCondition;
 import com.kashuo.kap.bill.service.TransactionService;
+import com.kashuo.kap.bill.utils.ConstantUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -50,13 +53,15 @@ public class BankController extends BaseController{
         ModelAndView mav = new ModelAndView();
         mav.addObject("condition",condition);
         getAgency(mav);
-          if (condition.getPaymentType()== "1")//龙支付
+        List<Transaction> transactions = new ArrayList<>();
+          if (condition.getPaymentType()== ConstantUtil.LONG)//龙支付
         {
-                 //TODO: 2017/6/6 龙支付
-        }
-        // 2. search by condition and redirect to parent page
-        List<Transaction> transactions = transactionService.bankSelect(condition);
+            transactions = transactionService.bankSelect(condition, ConstantUtil.LONG);
 
+        }else{
+              // 2. search by condition and redirect to parent page
+              transactions = transactionService.bankSelect(condition,ConstantUtil.OTHER);
+          }
         mav.addObject("transactions",transactions);
         mav.setViewName("pages/bank/info");
         log.info(".... search end....");

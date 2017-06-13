@@ -24,5 +24,7 @@ public interface TransactionMapper {
 
     List<Transaction> bankSelect(TransactionCondition record);
 
+    List<Transaction> bankSelectLong(TransactionCondition record);
+
     Transaction selectOne(@Param("transNo") String transNo);
 }

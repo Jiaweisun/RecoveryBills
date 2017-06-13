@@ -15,25 +15,12 @@ public class TransactionForm {
     private int storeId;
     private String deviceSn;
     private String transDate;
+    private String transTime;
     private BigDecimal totalAmount;
     private BigDecimal payAmount;
     private String paymentType;
 
-//    public String getMerchantId() {
-//        return merchantId;
-//    }
-//
-//    public void setMerchantId(String merchantId) {
-//        this.merchantId = merchantId;
-//    }
-//
-//    public String getStoreId() {
-//        return storeId;
-//    }
-//
-//    public void setStoreId(String storeId) {
-//        this.storeId = storeId;
-//    }
+    private String storeChannel;
 
     public String getDeviceSn() {
         return deviceSn;
@@ -89,5 +76,21 @@ public class TransactionForm {
 
     public void setStoreId(int storeId) {
         this.storeId = storeId;
+    }
+
+    public String getStoreChannel() {
+        return storeChannel;
+    }
+
+    public void setStoreChannel(String storeChannel) {
+        this.storeChannel = storeChannel;
+    }
+
+    public String getTransTime() {
+        return transTime;
+    }
+
+    public void setTransTime(String transTime) {
+        this.transTime = transTime;
     }
 }

@@ -8,12 +8,14 @@ import com.kashuo.kap.bill.model.dto.TransactionCondition;
 import com.kashuo.kap.bill.model.form.TransactionForm;
 import com.kashuo.kap.bill.utils.ConstantUtil;
 import com.kashuo.kap.bill.utils.CustomCodeUtil;
+import com.kashuo.kap.bill.utils.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -41,48 +43,31 @@ public class TransactionService {
     public boolean normalInsert(TransactionForm form){
         Transaction record = this.form2Entity(form);//form to entity
 
-//        int result = insertSelective(record,storeChannelCode);
-//        if (result <= 0)
-//            return false;
+        int result = insertSelective(record,form.getTransDate(),form.getTransTime());
+        if (result <= 0)
+            return false;
         return true;
     }
 
     /**
      *  insert selective
+     *
      * @param record
      * @return
      */
-    private int insertSelective(Transaction record, String storeChannelCode){
+    private int insertSelective(Transaction record,String transDate, String transTime){
 
-        record.setTransNo(CustomCodeUtil.generatedTransNo("2017-05-25","16:43:52"));
-        record.setStoreChannel(storeChannelCode);//
+        record.setTransNo(CustomCodeUtil.generatedTransNo(transDate,transTime));
+        record.setStoreChannel(record.getStoreChannel());
         record.setStatus(ConstantUtil.ONE);
         record.setAcqChannel(ConstantUtil.acqChannel);
         record.setTransComment(ConstantUtil.transComment);
+        record.setTransDate(record.getTransDate());
+        record.setTransTime(record.getTransTime());
         record.setCreatedAt(new Date());
         record.setUpdatedAt(new Date());
         return transactionMapper.insert(record);
     }
-//
-//    public boolean normal(TransactionForm form){
-//        Transaction record = this.form2Entity(form);//form to entity
-////        TransactionCondition condition = this.form2Condition(form); // entity to condition
-//        //检查，若存在，检查状态，若不存在，直接入库
-//        Transaction result =  SelectOne(form);//todo:有可能不止一条
-//        if(result != null){
-//            Integer status = result.getStatus();
-//            log.info("状态，{}",status);
-//            if (status != null && (status ==1 || status == 4)){
-//                //// TODO: 2017/5/24
-//                //返回消息（status: 1 , trans_no: xxxxxx）
-//                //return。。。
-//            }
-//        }
-////       int resCount =  insertSelective(record);
-//        if (resCount<1)
-//            return false;
-//        return true;
-//    }
 
 
 
@@ -90,8 +75,17 @@ public class TransactionService {
     /*******************************   银行   *************************************************/
 
     //bank search
-    public List<Transaction> bankSelect(TransactionCondition record){
-        return transactionMapper.bankSelect(record);
+    public List<Transaction> bankSelect(TransactionCondition record,String paymentType){
+        List<Transaction> results = new ArrayList<>();
+        switch (paymentType){
+            case ConstantUtil.LONG:
+                results = transactionMapper.bankSelectLong(record);
+                break;
+            case ConstantUtil.OTHER:
+                results = transactionMapper.bankSelect(record);
+                break;
+        }
+        return results;
     }
 
     //bank update
@@ -168,6 +162,14 @@ public class TransactionService {
         result.setPaymentType(record.getPaymentType());
         result.setMerchantId(record.getMerchantId());
         result.setStoreId(record.getStoreId());
+        result.setStoreChannel(record.getStoreChannel());
+        try {
+            result.setTransDate(DateUtil.ConverToDate(record.getTransDate()));
+            result.setTransTime(DateUtil.ConverToDateHour(record.getTransTime()));
+        }catch (Exception e){
+
+        }
+
         return result;
     }
 

@@ -50,8 +50,20 @@
                     <form class="search-form" method="POST" action="/bank">
                         <div class="right">
 
+                            <div class="field_select" style="width: 15%">
+                                <select class="gradient" name="paymentType" hidefocus="true" style=" background-color: initial;width: 100%;margin-top: 2%;border: groove;font-family: -webkit-pictograph;font-size: x-small;height: 32px;">
+                                    <option value="">支付类型</option>
+                                    <option value="LONGPAY" th:value="LONGPAY"
+                                            th:selected="${condition!=null and condition.paymentType != null and condition.paymentType==paymentType}">龙支付</option>
+                                </select>
+                            </div>
+
                             <div class="field_text" style="width:15%">
                                 <input type="text" name="totalAmount" placeholder="消费金额" class="gradient" th:value="${condition.totalAmount}"/>
+                                <span class="input_icon input_pass"></span>
+                            </div>
+                            <div class="field_text" style="width:15%">
+                                <input type="text" name="payAmount" placeholder="实付金额" class="gradient" th:value="${condition.payAmount}"/>
                                 <span class="input_icon input_pass"></span>
                             </div>
 
@@ -74,12 +86,7 @@
                                 <span class="input_icon input_pass"></span>
                             </div>
 
-                            <div class="field_text" style="width:15%">
-                                <input type="text" name="payAmount" placeholder="实付金额" class="gradient" th:value="${condition.payAmount}"/>
-                                <span class="input_icon input_pass"></span>
-                            </div>
-
-                            <div class="field_select" style="width: 18%">
+                            <div class="field_select" style="width: 15%">
                                 <select class="gradient" name="agencyId" hidefocus="true" style=" background-color: initial;width: 100%;margin-top: 2%;border: groove;font-family: -webkit-pictograph;font-size: x-small;height: 32px;">
                                     <option value="-1">支付方式</option>
                                     <option th:each="agency : ${agencies}" th:value="${agency.id}" th:text="${agency.name}"
@@ -88,12 +95,6 @@
                                 </select>
                             </div>
 
-                            <div class="field_select" style="width: 18%">
-                            <select class="gradient" name="paymentType" hidefocus="true" style=" background-color: initial;width: 100%;margin-top: 2%;border: groove;font-family: -webkit-pictograph;font-size: x-small;height: 32px;">
-                            <option value="">支付类型</option>
-                            <option value="1" th:value="${condition.paymentType}">龙支付</option>
-                            </select>
-                            </div>
 
                             <!--<div class="field_select" style="width: 18%">-->
                                 <!--<select class="gradient" name="status" hidefocus="true" style=" background-color: initial;width: 100%;margin-top: 2%;border: groove;font-family: -webkit-pictograph;font-size: x-small;height: 32px;">-->
@@ -129,6 +130,7 @@
                     <td>实付金额</td>
                     <td>签约扣率</td>
                     <td>手续费</td>
+                    <td>支付类型</td>
                     <td>支付方式</td>
                     <td>发卡行</td>
                     <td>卡号</td>
@@ -136,6 +138,9 @@
                     <td>更新时间</td>
                     <td>状态码</td>
                     <td>操作</td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(transactions)}" th:colspan="16" style=" text-align: center; font-size: x-large; color: brown">
+                    <td  th:colspan="16" th:rowspan="5" th:text="请选择真实交易数据查询条件查询，谢谢！"></td>
                 </tr>
                 <tr th:each="transaction: ${transactions}">
                     <!--<td th:text="${transaction.id}"></td>-->
@@ -149,13 +154,19 @@
                     <td th:text="${transaction.payAmount}"></td>
                     <td th:text="${transaction.transRate}"></td>
                     <td th:text="${transaction.totalProfit}"></td>
-                    <!--<td th:text="${transaction.agencyId}"></td>-->
+                    <td th:if="${transaction.paymentType}=='WECHAT'" th:text="微信"></td>
+                    <td th:if="${transaction.paymentType}=='ALIPAY'" th:text="支付宝"></td>
+                    <td th:if="${transaction.paymentType}=='BANK'" th:text="银行卡"></td>
+                    <td th:if="${transaction.paymentType}=='BANK_IC'" th:text="IC卡"></td>
+                    <td th:if="${transaction.paymentType}=='BANK_QK'" th:text="QK"></td>
+                    <td th:if="${transaction.paymentType}=='LONGPAY'" th:text="龙支付"></td>
                     <td th:if="${transaction.agencyId}==1" th:text="信用卡"></td>
-                    <td th:if="${transaction.agencyId} !=1" th:text="其他"></td>
+                    <td th:if="${transaction.agencyId} !=1" th:text="${transaction.agencyId}"></td>
                     <td th:text="${transaction.bankName}"></td>
                     <td th:text="${transaction.cardNumber}"></td>
                     <td th:text="${#dates.format(transaction.createdAt, 'YYYY-MM-dd HH:mm:ss')} "></td>
-                    <td th:text="${#dates.format(transaction.updatedAt, 'YYYY-MM-dd HH:mm:ss')} "></td>
+                    <td th:if="${transaction.updatedAt}" th:text="${#dates.format(transaction.updatedAt, 'YYYY-MM-dd HH:mm:ss')} "></td>
+                    <td th:if="${transaction.updatedAt} == null" th:text="无更新时间"></td>
                     <td th:text="${transaction.status}"></td>
                     <td th:if="${transaction.status}==1 or ${transaction.status}==4" th:text="已更新"></td>
                     <td th:if="${transaction.status}==0">

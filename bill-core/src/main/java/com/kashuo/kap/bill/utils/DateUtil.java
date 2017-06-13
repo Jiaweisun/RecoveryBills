@@ -1,8 +1,11 @@
 package com.kashuo.kap.bill.utils;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Date;
 
 /**
  * java 8 中 localDate和localTime
@@ -133,6 +136,19 @@ public class DateUtil {
     private static String convertType(String numberStr){
         int number = Integer.parseInt(numberStr);
         return convertType(number);
+    }
+
+    //把字符串转为日期
+    public static Date ConverToDate(String strDate) throws Exception
+    {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        return df.parse(strDate);
+    }
+
+    public static Date ConverToDateHour(String strDate) throws Exception
+    {
+        DateFormat df = new SimpleDateFormat("hh:MM:ss");
+        return df.parse(strDate);
     }
 
 }

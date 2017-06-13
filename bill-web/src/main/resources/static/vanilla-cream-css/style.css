@@ -1119,7 +1119,7 @@ label, input, button, select, textarea {
 .field_select{
 	float:left;
 	margin-right: 2%;
-	margin-bottom: 12px;
+	/*margin-bottom: 12px;*/
 	width: 48%;
 }
 .field_text.omega,

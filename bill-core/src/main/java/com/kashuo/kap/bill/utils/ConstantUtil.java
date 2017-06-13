@@ -27,6 +27,10 @@ public class ConstantUtil {
     public static final String BANK = "bank";
     public static final String NORMAL = "normal";
 
+// paymentType
+    public static final String LONG = "LONGPAY";
+    public static final String OTHER = "OTHER";
+
 
     //file template path
     public static final String NORMAL_SQL = "D:\\workspace\\kap-all\\RecoveryBills\\file\\单边账模板SQL.txt";
