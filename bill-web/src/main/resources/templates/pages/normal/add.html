@@ -71,30 +71,29 @@
 
            <div class="col-sm-8 col-sm-offset-1">
 
-               <h6 class="foo"> 新增单边账</h6>
+               <!--<h6 class="foo"> 单边账 (以下信息必须全部录入，否则后果自负，谢谢！)</h6>-->
                <div class="widget-container widget_login styled boxed boxed-cream gradient" style="width: 80%">
                    <div class="inner">
-                       <form action="/normal/add" method="post" class="comment-form" enctype="multipart/form-data">
+                       <form action="/normal" method="post" class="comment-form" enctype="multipart/form-data">
+
+                           <div class="field_text" style="width:60%; margin-left: 5%">
+                               <label style="color: brown" th:text=" 以下信息必须全部录入，否则后果自负，谢谢！"></label>
+                           </div>
 
                            <div class="filed_text" style="margin-bottom: 12px; margin-left: 5%">
                            <input type="file" th:id="fileName" name="fileName" placeholder="file path" class="gradient"/>
                                <!--<a  th:href="${uploadUrl}" onclick="submitBtn(event)" class="btn btn-mini btn-info active"></a>-->
                            </div>
 
-                           <!--<div class="field_select" style="width:50%">-->
-                               <!--<select class="gradient" name="merchantId" hidefocus="true" style=" background-color: initial;width: 100%;margin-top: 2%;border: groove;font-family: -webkit-pictograph;font-size: x-small;height: 32px;">-->
-                                   <!--<option value="">商户号</option>-->
-                                   <!--<option th:each="merchant : ${mList}" th:value="${merchant.id}" th:text="${merchant.merchantName}">-->
-                                       <!--&lt;!&ndash;th:selected="${form!=null and merchant.id != null and merchant.id==agency.id}"&ndash;&gt;-->
-                                   <!--</option>-->
-                               <!--</select>-->
-                           <!--</div>-->
-
                            <div class="field_text" style="width:0%; height:0px">
                                <input type="hidden" name="storeChannel" />
                            </div>
                            <div class="field_text" style="width:60%; margin-left: 5%">
-                               <label style="color: red">*</label>
+                               <label th:text=" 商户设备信息"></label>
+                           </div>
+
+                           <div class="field_text" style="width:60%; margin-left: 5%">
+                               <!--<label style="color: red">*</label>-->
                                <input type="text" name="merchantId" placeholder="商户号" class="gradient"/>
                                <span class="input_icon"></span>
                            </div>
@@ -102,11 +101,29 @@
                                <input type="text" name="storeId" placeholder="门店号" class="gradient"/>
                                <span class="input_icon"></span>
                            </div>
+
                            <div class="field_text" style="width:60%; margin-left: 5%">
-                               <input type="text" name="deviceSn" placeholder="设备SN" class="gradient"/>
+                               <input type="text" name="deviceSn" placeholder="设备SN，如：08123456" class="gradient"/>
                                <span class="input_icon"></span>
                            </div>
 
+                           <div class="field_text" style="width:60%; margin-left: 5%">
+                               <label th:text=" 银行卡信息"></label>
+                           </div>
+
+                           <div class="field_text" style="width:60%; margin-left: 5%">
+                               <input type="text" name="bankName" placeholder="发卡行，如：建设银行" class="gradient"/>
+                               <span class="input_icon"></span>
+                           </div>
+
+                           <div class="field_text" style="width:60%; margin-left: 5%">
+                               <input type="text" name="cardNumber" placeholder="卡号,如：621700*********1234" class="gradient"/>
+                               <span class="input_icon"></span>
+                           </div>
+
+                           <div class="field_text" style="width:60%; margin-left: 5%">
+                               <label th:text=" 交易信息"></label>
+                           </div>
                            <div class="filed_text" style="width:60%; margin-bottom: 12px; margin-left: 5%">
                                <input type="text" name="transDate" placeholder="交易日期，如：2017-05-22" class="gradient"/>
                                <span class="input_icon"></span>
@@ -118,21 +135,33 @@
                            </div>
 
                            <div class="field_text" style="width:60%; margin-left: 5%">
-                               <input type="text" name="totalAmount" placeholder="总金额" class="gradient"/>
+                               <input type="text" name="totalAmount" placeholder="总金额，如：100" class="gradient"/>
                                <span class="input_icon input_pass"></span>
                            </div>
 
                            <div class="field_text" style="width:60%; margin-left: 5%">
-                               <input type="text" name="payAmount" placeholder="实付金额" class="gradient"/>
+                               <input type="text" name="payAmount" placeholder="实付金额，如：100" class="gradient"/>
                                <span class="input_icon input_pass"></span>
                            </div>
+
+
+                           <div class="field_text" style="width:60%; margin-left: 5%">
+                               <input type="text" name="transRate" placeholder="签约扣率，如：0.6" class="gradient"/>
+                               <span class="input_icon"></span>
+                           </div>
+
+                           <div class="field_text" style="width:60%; margin-left: 5%">
+                               <input type="text" name="totalProfit" placeholder="手续费，如：0.06" class="gradient"/>
+                               <span class="input_icon"></span>
+                           </div>
+
                            <div class="field_select" style="width:60%; margin-bottom: 28px; margin-left: 5%">
                                <select class="gradient" name="paymentType" hidefocus="true" style=" background-color: initial;width: 100%;margin-top: 2%;border: groove;font-family: -webkit-pictograph;font-size: x-small;height: 32px;">
-                                   <option value="">支付方式编码</option>
-                                   <option value="WECHAT">WECHAT</option>
-                                   <option value="ALIPAY">ALIPAY</option>
-                                   <option value="BANK">BANK</option>
-
+                                   <option value="">支付方式</option>
+                                   <option value="WECHAT">微信</option>
+                                   <option value="ALIPAY">支付宝</option>
+                                   <option value="BANK">银行卡</option>
+                                   <option value="LONGPAY">龙支付</option>
                                </select>
                            </div>
 

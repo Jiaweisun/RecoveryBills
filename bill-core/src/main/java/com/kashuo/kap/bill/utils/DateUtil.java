@@ -150,5 +150,15 @@ public class DateUtil {
         DateFormat df = new SimpleDateFormat("hh:MM:ss");
         return df.parse(strDate);
     }
+    public static String ConverToStrHour(Date date) throws Exception
+    {
+        DateFormat df = new SimpleDateFormat("hh:MM:ss");
+        return df.format(date);
+    }
+
+    public  static String convertDateToString(Date date){
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(date);
+    }
 
 }

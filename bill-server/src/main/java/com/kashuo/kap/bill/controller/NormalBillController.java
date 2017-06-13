@@ -43,13 +43,14 @@ public class NormalBillController extends BaseController{
     }
 
     /**
+     *  TransactionForm form,
      * there is two ways to insert data into db. the one is  load excel file, another is using form.
-     * @param form
+     *@param form
      * @param file
      * @return
      */
-    @RequestMapping(value="/add", method = RequestMethod.POST)
-    public ModelAndView normalAdd(@ModelAttribute TransactionForm form, @RequestParam("fileName") MultipartFile file){
+    @RequestMapping(value="", method = RequestMethod.POST)
+    public ModelAndView normalAdd(@ModelAttribute Transaction form, @RequestParam("fileName") MultipartFile file){
         ModelAndView mav = new ModelAndView();
         log.info("普通单边账 ,{},{}",form,file);
         // 方式1： 文件导入
@@ -81,6 +82,7 @@ public class NormalBillController extends BaseController{
 
         if (store == null) {
             msg = "门店不属于 【" + merchant.getName() + "】 商户，请核实后重新输入！";
+            mav.addObject("msg",msg);
             mav.setViewName("pages/result");
             return mav;
         }
@@ -98,7 +100,7 @@ public class NormalBillController extends BaseController{
             log.info("结果 ,{}",result);
             mav.setViewName("pages/normal/add");
         }else{
-            mav.addObject("msg","成功还是失败！！");
+            mav.addObject("msg","补单成功！！");
             mav.setViewName("pages/result");
         }
         return mav;

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -40,10 +41,24 @@ public class TransactionService {
         return result;
     }
 
-    public boolean normalInsert(TransactionForm form){
-        Transaction record = this.form2Entity(form);//form to entity
+    public Transaction SelectOne(Transaction record){
+        TransactionCondition condition = this.entity2Condition(record);
+        Transaction result =transactionMapper.SelectOneForNormal(condition);
+        return result;
+    }
 
-        int result = insertSelective(record,form.getTransDate(),form.getTransTime());
+    public boolean normalInsert(Transaction record){
+//        Transaction record = this.form2Entity(form);//form to entity
+
+        int result =0;
+        try {
+            String transDate = DateUtil.convertDateToString(record.getTransDate());
+            String transTime = DateUtil.ConverToStrHour(record.getTransTime());
+            result = insertSelective(record,transDate,transTime);//,form.getTransDate(),form.getTransTime()
+        }
+        catch (Exception e){
+            e.toString();
+        }
         if (result <= 0)
             return false;
         return true;
@@ -62,8 +77,8 @@ public class TransactionService {
         record.setStatus(ConstantUtil.ONE);
         record.setAcqChannel(ConstantUtil.acqChannel);
         record.setTransComment(ConstantUtil.transComment);
-        record.setTransDate(record.getTransDate());
-        record.setTransTime(record.getTransTime());
+//        record.setTransDate(record.getTransDate());
+//        record.setTransTime(record.getTransTime());
         record.setCreatedAt(new Date());
         record.setUpdatedAt(new Date());
         return transactionMapper.insert(record);
