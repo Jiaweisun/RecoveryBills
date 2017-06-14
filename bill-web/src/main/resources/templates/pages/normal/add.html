@@ -23,9 +23,17 @@
     <script th:src="@{/vanilla-cream-css/js/libs/jquery-ui.min.js}"></script>
     <script th:src="@{/vanilla-cream-css/js/libs/bootstrap.min.js}"></script>
 
+    <!-- datetime picker-->
+    <script th:src="@{/jquery/js/jquery-1.8.3.min.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrap-datetimepicker.js}"></script>
+    <script th:src="@{/bootstrap/js/locales/bootstrap-datetimepicker.zh-CN.js}"></script>
+
     <!-- Style CSS -->
     <link rel="stylesheet" th:href="@{/vanilla-cream-css/css/bootstrap.css}" />
     <link rel="stylesheet" th:href="@{/vanilla-cream-css/style.css}"  />
+
+    <!-- datetime picker-->
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-datetimepicker.min.css}"  />
     <!-- scripts -->
     <script th:src="@{/vanilla-cream-css/js/general.js}"></script>
 
@@ -40,6 +48,18 @@
 
     <script type="text/javascript" th:inline="javascript">
     /*<![CDATA[*/
+    alert("js");
+//        $('#datetimepicker1').datetimepicker({
+//            format: 'YYYY-MM-DD',
+//            locale: moment.locale('zh-cn')
+//        });
+//        $('#datetimepicker2').datetimepicker({
+//            format: 'YYYY-MM-DD hh:mm',
+//            locale: moment.locale('zh-cn')
+//        });
+
+
+
     function submitBtn(event){
 
         var id = event.currentTarget.id.trim();
@@ -124,7 +144,23 @@
                            <div class="field_text" style="width:60%; margin-left: 5%">
                                <label th:text=" 交易信息"></label>
                            </div>
+
+                           <div class='input-group date' id='datetimepicker1' style="width:60%; margin-bottom: 12px; margin-left: 5%">
+                               <input type='text' class="form-control" name="transDate" placeholder="交易日期，如：2017-05-22" readonly="readonly"/>
+                               <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                           </div>
+
+                           <div class='input-group date' id='datetimepicker2' style="width:60%; margin-bottom: 12px; margin-left: 5%">
+                               <input type='text' class="form-control" name="transTime" placeholder="交易时间，如：13:00:00" readonly="readonly"/>
+                               <span class="input-group-addon">
+                                   <span class="glyphicon glyphicon-calendar"></span>
+                               </span>
+                           </div>
+
                            <div class="filed_text" style="width:60%; margin-bottom: 12px; margin-left: 5%">
+
                                <input type="text" name="transDate" placeholder="交易日期，如：2017-05-22" class="gradient"/>
                                <span class="input_icon"></span>
                            </div>

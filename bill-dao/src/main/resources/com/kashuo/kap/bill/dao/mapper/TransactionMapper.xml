@@ -775,8 +775,14 @@
     <if test="transTime !=null and transTime !=''">
       and ABS(TIME_TO_SEC(TIMEDIFF(#{transTime},DATE_FORMAT(created_at,'%H:%i:%s ')))) &lt;= 60
     </if>
-    <if test="cardNumber !=null and cardNumber !=''">
-      and card_number LIKE CONCAT('%',#{cardNumber},'%')
+    <!--<if test="cardNumber !=null and cardNumber !=''">-->
+      <!--and card_number LIKE CONCAT('%',#{cardNumber},'%')-->
+    <!--</if>-->
+    <if test="preCardNumber !=null and preCardNumber !=''">
+      and card_number LIKE CONCAT('%',#{preCardNumber},'%')
+    </if>
+    <if test="cardNumberEnd !=null and cardNumberEnd !=''">
+      and card_number LIKE CONCAT('%',#{cardNumberEnd},'%')
     </if>
     <if test="status !=null and status !=-1">
       and status = #{status}
@@ -784,9 +790,8 @@
     <if test="paymentType !=null and paymentType !=''">
       and payment_type = #{paymentType}
     </if>
-    order by created_at desc
+    order by created_at asc
     limit 100
-<!-- transDate-->
   </select>
 
 
@@ -819,7 +824,7 @@
     <if test="paymentType !=null and paymentType !=''">
       and payment_type = #{paymentType}
     </if>
-    order by created_at desc
+    order by created_at asc
     limit 100
   </select>
 

@@ -5,6 +5,7 @@ import com.kashuo.kap.bill.domain.Transaction;
 import com.kashuo.kap.bill.model.dto.TransactionCondition;
 import com.kashuo.kap.bill.service.TransactionService;
 import com.kashuo.kap.bill.utils.ConstantUtil;
+import com.kashuo.kap.bill.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -42,7 +44,7 @@ public class BankController extends BaseController{
     }
 
     /**
-     * 当条件为空的时候，默认查询所有，但由于数据量巨大，因此只显示100条。（不推荐无条件查询）
+     * 当条件为空的时候，默认不查询（不推荐无条件查询）
      * @param condition
      * @return
      */
@@ -53,15 +55,7 @@ public class BankController extends BaseController{
         ModelAndView mav = new ModelAndView();
         mav.addObject("condition",condition);
         getAgency(mav);
-        List<Transaction> transactions = new ArrayList<>();
-          if (condition.getPaymentType()== ConstantUtil.LONG)//龙支付
-        {
-            transactions = transactionService.bankSelect(condition, ConstantUtil.LONG);
-
-        }else{
-              // 2. search by condition and redirect to parent page
-              transactions = transactionService.bankSelect(condition,ConstantUtil.OTHER);
-          }
+        List<Transaction> transactions = transactionService.bankSelect(condition,condition.getPaymentType());
         mav.addObject("transactions",transactions);
         mav.setViewName("pages/bank/info");
         log.info(".... search end....");
@@ -69,19 +63,18 @@ public class BankController extends BaseController{
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.GET)
-    public ModelAndView update(@RequestParam("transNo") String transNo,@RequestParam("transTime") String transTime) {
+    public ModelAndView update(@RequestParam("transNo") String transNo,@RequestParam("transDate") String transDate, @RequestParam("transTime") String transTime, @RequestParam("cardNumber") String cardNumber) {
 
         ModelAndView mav = new ModelAndView();
-        Transaction record = transactionService.selectOne(transNo);
-        Integer status = record.getStatus();
-//        if (status ==1 || status ==2 || status == 3||status == 4){
-//            ////
-//            mav.addObject("transNo",record.getTransNo());
-//            mav.setViewName("redirect:/bank/status");
-//            return mav;
-//        }
+        Date date = null,time = null;
+        try {
+            date = DateUtil.ConverToDate(transDate);
+            time = DateUtil.ConverToDate(transTime);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         // 2. update by a column and redirect to parent page
-        transactionService.updateByTransNo(transNo);
+        transactionService.updateByTransNo(transNo, date, time, cardNumber);
         mav.setViewName("redirect:/bank");
 //        "redirect:/emp/list"
         return mav;

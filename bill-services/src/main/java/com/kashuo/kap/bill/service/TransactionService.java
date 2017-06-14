@@ -2,7 +2,6 @@ package com.kashuo.kap.bill.service;
 
 import com.kashuo.kap.bill.dao.StoreMapper;
 import com.kashuo.kap.bill.dao.TransactionMapper;
-import com.kashuo.kap.bill.domain.Store;
 import com.kashuo.kap.bill.domain.Transaction;
 import com.kashuo.kap.bill.model.dto.TransactionCondition;
 import com.kashuo.kap.bill.model.form.TransactionForm;
@@ -12,10 +11,7 @@ import com.kashuo.kap.bill.utils.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -92,51 +88,43 @@ public class TransactionService {
     //bank search
     public List<Transaction> bankSelect(TransactionCondition record,String paymentType){
         List<Transaction> results = new ArrayList<>();
-        switch (paymentType){
-            case ConstantUtil.LONG:
-                results = transactionMapper.bankSelectLong(record);
-                break;
-            case ConstantUtil.OTHER:
-                results = transactionMapper.bankSelect(record);
-                break;
-        }
+        resetCondition(record);
+        if (paymentType == ConstantUtil.LONG)
+            results = transactionMapper.bankSelectLong(record);
+        else
+            results = transactionMapper.bankSelect(record);
         return results;
     }
 
+    private TransactionCondition resetCondition(TransactionCondition record){
+        String cardNumber = record.getCardNumber();
+        String [] str = new String[]{};
+        if(cardNumber.contains("*")){
+            str = cardNumber.split("\\*");
+        }
+        record.setPreCardNumber(str[0]);
+        record.setCardNumberEnd(str[str.length-1]);
+//        log.info("str:{}{}",str[0],str[str.length-1]);
+        return record;
+    }
+
     //bank update
-    public boolean updateByTransNo(String transNo){
+    public boolean updateByTransNo(String transNo,Date transDate,Date transTime,String cardNumber){
 
         Transaction record = this.selectOne(transNo);
-        Integer status = record.getStatus();
-        if (status ==1 || status == 4){
-            ////
-            //返回消息（status: 1 , trans_no: xxxxxx）
-            return false;
-        }
-        // update...
+        if (record.getPaymentType()==ConstantUtil.LONG)//龙支付
+            record.setCardNumber(cardNumber);
+
+        record.setTransDate(transDate);
+        record.setTransTime(transTime);
         updateSelective(record);
         return true;
     }
 
     /************************************  内部    ********************************************/
 
-
-//    //根据金额，sn, 交易日期， 查询交易
-//    public Transaction SelectOne(TransactionCondition record){
-//        Transaction record = this.form2Entity(form);
-////        TransactionCondition condition = this.form2Condition(form);
-//        Transaction result =transactionMapper.SelectOneForNormal(record);
-//        return result;
-//    }
-
-
     public Transaction selectOne(String transNo){
         return transactionMapper.selectOne(transNo);
-    }
-
-    @Deprecated
-    private Transaction SelectOne(String deviceSn, Date transDate,BigDecimal totalAmount, BigDecimal payAmount){
-        return null;
     }
 
     /**
@@ -198,6 +186,5 @@ public class TransactionService {
         record.setUpdatedAt(new Date());
         return transactionMapper.updateByPrimaryKeySelective(record);
     }
-
 
 }

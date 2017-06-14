@@ -14,6 +14,8 @@ public class TransactionCondition {
     private BigDecimal totalAmount;
     private BigDecimal payAmount;
     private String cardNumber;
+    private String preCardNumber;
+    private String cardNumberEnd;
     private Integer status;
     private Integer agencyId;
     private String paymentType;//支付类型
@@ -88,5 +90,21 @@ public class TransactionCondition {
 
     public void setPaymentType(String paymentType) {
         this.paymentType = paymentType;
+    }
+
+    public String getPreCardNumber() {
+        return preCardNumber;
+    }
+
+    public void setPreCardNumber(String preCardNumber) {
+        this.preCardNumber = preCardNumber;
+    }
+
+    public String getCardNumberEnd() {
+        return cardNumberEnd;
+    }
+
+    public void setCardNumberEnd(String cardNumberEnd) {
+        this.cardNumberEnd = cardNumberEnd;
     }
 }
