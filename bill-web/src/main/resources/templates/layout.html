@@ -2,10 +2,11 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<!--<th:block layout:include="fragments/header"/>-->
-<body>
+<th:block layout:include="fragments/header"/>
 <!-- header-->
-<div th:replace="fragments/header :: header"/>
+<!--<div th:replace="fragments/header :: header"/>-->
+<body>
+
 <!--<th:block layout:replace="fragments/navigation"/>-->
 <div class="container-fluid" layout:fragment="content" style="margin-top: 3.4%;HEIGHT:800px"/>
 

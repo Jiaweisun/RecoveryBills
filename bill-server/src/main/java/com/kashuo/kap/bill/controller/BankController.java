@@ -6,6 +6,7 @@ import com.kashuo.kap.bill.model.dto.TransactionCondition;
 import com.kashuo.kap.bill.service.TransactionService;
 import com.kashuo.kap.bill.utils.ConstantUtil;
 import com.kashuo.kap.bill.utils.DateUtil;
+import com.kashuo.kap.bill.utils.NullUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -54,6 +55,10 @@ public class BankController extends BaseController{
         log.info(".... search begin....");
         ModelAndView mav = new ModelAndView();
         mav.addObject("condition",condition);
+        if (NullUtil.isNull(condition.getCardNumber())){
+            mav.setViewName("pages/bank/info");
+            return mav;
+        }
         getAgency(mav);
         List<Transaction> transactions = transactionService.bankSelect(condition,condition.getPaymentType());
         mav.addObject("transactions",transactions);

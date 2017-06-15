@@ -99,12 +99,13 @@ public class TransactionService {
     private TransactionCondition resetCondition(TransactionCondition record){
         String cardNumber = record.getCardNumber();
         String [] str = new String[]{};
-        if(cardNumber.contains("*")){
-            str = cardNumber.split("\\*");
+        if (cardNumber!=null){
+            if(cardNumber.contains("*")){
+                str = cardNumber.split("\\*");
+            }
+            record.setPreCardNumber(str[0]);
+            record.setCardNumberEnd(str[str.length-1]);
         }
-        record.setPreCardNumber(str[0]);
-        record.setCardNumberEnd(str[str.length-1]);
-//        log.info("str:{}{}",str[0],str[str.length-1]);
         return record;
     }
 

@@ -2,6 +2,9 @@ package com.kashuo.kap.bill.domain;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -32,8 +35,10 @@ public class Transaction {
 
     private BigDecimal busiGrossProfit;
 
+    @NotNull(message = "{normal.merchantId}")
     private Integer merchantId;
 
+    @NotNull(message = "{normal.storeId}")
     private Integer storeId;
 
     private String storeChannel;
@@ -58,10 +63,16 @@ public class Transaction {
 
     private String profitStatusMsg;
 
+    @NotNull(message = "{normal.transDate}")
+//    @Pattern(regexp = "/^((?:19|20)\\d\\d)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/", message = "{normal.transDate.format}")
     private Date transDate;
 
+    @NotNull(message = "{normal.transTime}")
     private Date transTime;
 
+    @NotNull(message = "{normal.totalAmount}")
+    @DecimalMin(value="0.00",message="decim最小值是0")
+//    @Pattern(regexp = "/^[+-]?(0|([1-9]\\d{0,11}))(\\.\\d{2})?$/", message = "{normal.totalAmount.format}")
     private BigDecimal totalAmount;
 
     private BigDecimal disAmount;

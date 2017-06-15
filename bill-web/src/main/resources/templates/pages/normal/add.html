@@ -12,54 +12,10 @@
 
 <head>
     <title>单边账新增</title>
-    <meta charset="utf-8" />
-    <meta name="author" content="" />
-    <meta name="keywords" content="" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-    <!-- main JS libs -->
-    <script th:src="@{/vanilla-cream-css/js/libs/modernizr.min.js}"></script>
-    <script th:src="@{/vanilla-cream-css/js/libs/jquery-1.10.0.js}"></script>
-    <script th:src="@{/vanilla-cream-css/js/libs/jquery-ui.min.js}"></script>
-    <script th:src="@{/vanilla-cream-css/js/libs/bootstrap.min.js}"></script>
-
-    <!-- datetime picker-->
-    <script th:src="@{/jquery/js/jquery-1.8.3.min.js}"></script>
-    <script th:src="@{/bootstrap/js/bootstrap-datetimepicker.js}"></script>
-    <script th:src="@{/bootstrap/js/locales/bootstrap-datetimepicker.zh-CN.js}"></script>
-
-    <!-- Style CSS -->
-    <link rel="stylesheet" th:href="@{/vanilla-cream-css/css/bootstrap.css}" />
-    <link rel="stylesheet" th:href="@{/vanilla-cream-css/style.css}"  />
-
-    <!-- datetime picker-->
-    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-datetimepicker.min.css}"  />
-    <!-- scripts -->
-    <script th:src="@{/vanilla-cream-css/js/general.js}"></script>
-
-    <!-- Include all needed stylesheets and scripts here -->
-    <!--[if lt IE 9]>
-    <script th:src="@{/vanilla-cream-css/js/respond.min.js}"></script><![endif]-->
-    <!--[if gte IE 9]>
-    <style type="text/css">
-        .gradient {filter: none !important;}
-    </style>
-    <![endif]-->
 
     <script type="text/javascript" th:inline="javascript">
     /*<![CDATA[*/
-    alert("js");
-//        $('#datetimepicker1').datetimepicker({
-//            format: 'YYYY-MM-DD',
-//            locale: moment.locale('zh-cn')
-//        });
-//        $('#datetimepicker2').datetimepicker({
-//            format: 'YYYY-MM-DD hh:mm',
-//            locale: moment.locale('zh-cn')
-//        });
-
-
-
     function submitBtn(event){
 
         var id = event.currentTarget.id.trim();
@@ -94,16 +50,16 @@
                <!--<h6 class="foo"> 单边账 (以下信息必须全部录入，否则后果自负，谢谢！)</h6>-->
                <div class="widget-container widget_login styled boxed boxed-cream gradient" style="width: 80%">
                    <div class="inner">
-                       <form action="/normal" method="post" class="comment-form" enctype="multipart/form-data">
+                       <form action="/normal" th:object="${transaction}" method="post" class="comment-form" enctype="multipart/form-data">
 
                            <div class="field_text" style="width:60%; margin-left: 5%">
                                <label style="color: brown" th:text=" 以下信息必须全部录入，否则后果自负，谢谢！"></label>
                            </div>
 
-                           <div class="filed_text" style="margin-bottom: 12px; margin-left: 5%">
-                           <input type="file" th:id="fileName" name="fileName" placeholder="file path" class="gradient"/>
-                               <!--<a  th:href="${uploadUrl}" onclick="submitBtn(event)" class="btn btn-mini btn-info active"></a>-->
-                           </div>
+                           <!--<div class="filed_text" style="margin-bottom: 12px; margin-left: 5%">-->
+                           <!--<input type="file" th:id="fileName" name="fileName" placeholder="file path" class="gradient"/>-->
+                               <!--&lt;!&ndash;<a  th:href="${uploadUrl}" onclick="submitBtn(event)" class="btn btn-mini btn-info active"></a>&ndash;&gt;-->
+                           <!--</div>-->
 
                            <div class="field_text" style="width:0%; height:0px">
                                <input type="hidden" name="storeChannel" />
@@ -113,18 +69,17 @@
                            </div>
 
                            <div class="field_text" style="width:60%; margin-left: 5%">
-                               <!--<label style="color: red">*</label>-->
                                <input type="text" name="merchantId" placeholder="商户号" class="gradient"/>
-                               <span class="input_icon"></span>
+                               <p style="color:brown" th:if="${#fields.hasErrors('merchantId')}" th:errors="*{merchantId}">merchantId Error</p>
                            </div>
                            <div class="field_text" style="width:60%; margin-left: 5%">
                                <input type="text" name="storeId" placeholder="门店号" class="gradient"/>
-                               <span class="input_icon"></span>
+                               <p style="color:brown" th:if="${#fields.hasErrors('storeId')}" th:errors="*{storeId}">storeId Error</p>
                            </div>
 
                            <div class="field_text" style="width:60%; margin-left: 5%">
                                <input type="text" name="deviceSn" placeholder="设备SN，如：08123456" class="gradient"/>
-                               <span class="input_icon"></span>
+                               <p style="color:brown" th:if="${#fields.hasErrors('deviceSn')}" th:errors="*{deviceSn}">deviceSn Error</p>
                            </div>
 
                            <div class="field_text" style="width:60%; margin-left: 5%">
@@ -145,50 +100,54 @@
                                <label th:text=" 交易信息"></label>
                            </div>
 
-                           <div class='input-group date' id='datetimepicker1' style="width:60%; margin-bottom: 12px; margin-left: 5%">
-                               <input type='text' class="form-control" name="transDate" placeholder="交易日期，如：2017-05-22" readonly="readonly"/>
-                               <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
+                           <div class="input-group date form_date col-md-5" data-date="" data-date-format="yyyy-mm-dd" data-link-field="transDate" data-link-format="yyyy-mm-dd" style="width:65.8%; margin-bottom: 12px; margin-left: 2.3%">
+                               <input class="form-control" size="16" type="text" name="transDate" placeholder="交易日期，如：2017-05-22" readonly="readonly"/>
+                               <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                               <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                           </div>
+                           <!--<input type="hidden" id="transDate" value="" /><br/>-->
+
+                           <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii:ss" data-link-field="dtp_input3" data-link-format="hh:ii:ss" style="width:65.8%; margin-bottom: 12px; margin-left: 2.3%">
+                               <input class="form-control" size="16" type="text" name="transTime" placeholder="交易时间，如：13:00:00" readonly="readonly"/>
+                               <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                               <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                            </div>
 
-                           <div class='input-group date' id='datetimepicker2' style="width:60%; margin-bottom: 12px; margin-left: 5%">
-                               <input type='text' class="form-control" name="transTime" placeholder="交易时间，如：13:00:00" readonly="readonly"/>
-                               <span class="input-group-addon">
-                                   <span class="glyphicon glyphicon-calendar"></span>
-                               </span>
-                           </div>
+                           <!--<div class='input-group date' id='datetimepicker1' style="width:60%; margin-bottom: 12px; margin-left: 5%">-->
+                               <!--<input type='text' class="form-control" name="transDate" placeholder="交易日期，如：2017-05-22" readonly="readonly"/>-->
+                               <!--<span class="input-group-addon">-->
+                                    <!--<span class="glyphicon glyphicon-calendar"></span>-->
+                                <!--</span>-->
+                               <!--<p style="color:brown" th:if="${#fields.hasErrors('transDate')}" th:errors="*{transDate}">transDate Error</p>-->
+                           <!--</div>-->
 
-                           <div class="filed_text" style="width:60%; margin-bottom: 12px; margin-left: 5%">
-
-                               <input type="text" name="transDate" placeholder="交易日期，如：2017-05-22" class="gradient"/>
-                               <span class="input_icon"></span>
-                           </div>
-
-                           <div class="filed_text" style="width:60%; margin-bottom: 12px; margin-left: 5%">
-                               <input type="text" name="transTime" placeholder="交易时间，如：13:00:00" class="gradient" />
-                               <span class="input_icon"></span>
-                           </div>
+                           <!--<div class='input-group date' id='datetimepicker2' style="width:60%; margin-bottom: 12px; margin-left: 5%">-->
+                               <!--<input type='text' class="form-control" name="transTime" placeholder="交易时间，如：13:00:00" readonly="readonly"/>-->
+                               <!--<span class="input-group-addon">-->
+                                   <!--<span class="glyphicon glyphicon-calendar"></span>-->
+                               <!--</span>-->
+                               <!--<p style="color:brown" th:if="${#fields.hasErrors('transTime')}" th:errors="*{transTime}">transTime Error</p>-->
+                           <!--</div>-->
 
                            <div class="field_text" style="width:60%; margin-left: 5%">
                                <input type="text" name="totalAmount" placeholder="总金额，如：100" class="gradient"/>
-                               <span class="input_icon input_pass"></span>
+                               <p style="color:brown" th:if="${#fields.hasErrors('totalAmount')}" th:errors="*{totalAmount}">totalAmount Error</p>
                            </div>
 
                            <div class="field_text" style="width:60%; margin-left: 5%">
                                <input type="text" name="payAmount" placeholder="实付金额，如：100" class="gradient"/>
-                               <span class="input_icon input_pass"></span>
+                               <p style="color:brown" th:if="${#fields.hasErrors('payAmount')}" th:errors="*{payAmount}">payAmount Error</p>
                            </div>
 
 
                            <div class="field_text" style="width:60%; margin-left: 5%">
                                <input type="text" name="transRate" placeholder="签约扣率，如：0.6" class="gradient"/>
-                               <span class="input_icon"></span>
+                               <p style="color:brown" th:if="${#fields.hasErrors('transRate')}" th:errors="*{transRate}">transRate Error</p>
                            </div>
 
                            <div class="field_text" style="width:60%; margin-left: 5%">
                                <input type="text" name="totalProfit" placeholder="手续费，如：0.06" class="gradient"/>
-                               <span class="input_icon"></span>
+                               <p style="color:brown" th:if="${#fields.hasErrors('totalProfit')}" th:errors="*{totalProfit}">totalProfit Error</p>
                            </div>
 
                            <div class="field_select" style="width:60%; margin-bottom: 28px; margin-left: 5%">
@@ -214,6 +173,28 @@
                </div>
            </div>
         </div>
+        <script type="text/javascript">
+            $('.form_date').datetimepicker({
+                weekStart: 1,
+                todayBtn:  1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2,
+                forceParse: 0
+            });
+            $('.form_time').datetimepicker({
+                weekStart: 1,
+                todayBtn:  1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 1,
+                minView: 0,
+                maxView: 1,
+                forceParse: 0
+            });
+        </script>
+
     </body>
 
     </html>

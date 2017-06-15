@@ -1,10 +1,11 @@
 package com.kashuo.kap.bill.form;
 
+import com.sun.istack.internal.NotNull;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
 public class TransactionForm {
-
 
     private Integer merchantId;
 
