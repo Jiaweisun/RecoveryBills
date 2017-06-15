@@ -1,5 +1,7 @@
 package com.kashuo.kap.bill.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.validation.constraints.DecimalMin;
@@ -35,7 +37,7 @@ public class Transaction {
 
     private BigDecimal busiGrossProfit;
 
-    @NotNull(message = "{normal.merchantId}")
+    @NotNull(message = "{normal.merchantId}")//,groups = {ValidInsertGroup.class}
     private Integer merchantId;
 
     @NotNull(message = "{normal.storeId}")
@@ -49,6 +51,8 @@ public class Transaction {
 
     private BigDecimal transRate;
 
+    @NotNull(message = "{normal.deviceSn}")
+    @Length(min = 6, max = 10, message = "{normal.deviceSn.length}")
     private String deviceSn;
 
     private String storeNumber;
@@ -63,11 +67,12 @@ public class Transaction {
 
     private String profitStatusMsg;
 
-    @NotNull(message = "{normal.transDate}")
-//    @Pattern(regexp = "/^((?:19|20)\\d\\d)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/", message = "{normal.transDate.format}")
+//    @NotNull(message = "{normal.transDate}")
+//    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date transDate;
 
-    @NotNull(message = "{normal.transTime}")
+//    @NotNull(message = "{normal.transTime}")
+//    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="HH:mm:ss", timezone="GMT+8")
     private Date transTime;
 
     @NotNull(message = "{normal.totalAmount}")

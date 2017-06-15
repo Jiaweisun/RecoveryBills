@@ -44,6 +44,6 @@ public class CustomCodeUtil {
     }
 
     public static void main(String[] args){
-        generatedTransNo("2017-06-10\n","20:21:19\n");
+        generatedTransNo("2017-06-14\n","2017-06-14\n");
     }
 }

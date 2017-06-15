@@ -39,17 +39,17 @@
                                 <span class="input_icon input_pass"></span>
                             </div>
 
-                            <div class="input-group date form_date col-md-5" data-date="" data-date-format="yyyy-mm-dd" data-link-field="transDate" data-link-format="yyyy-mm-dd"
-                                 style="float: left; width:18%; margin-right: 2%;">
-                                <input class="form-control" size="16" type="text" name="transDate" placeholder="交易日期，如：2017-05-22" th:value="${condition.transDate}" readonly="readonly"/>
+                            <div class="input-group date form_date col-md-5" data-date="" data-date-format="yyyy-mm-dd" data-link-field="transDate"
+                                 style="float: left; width:20%; margin-right: 2%;">
+                                <input class="form-control" size="16" type="text" name="transDate" placeholder="交易日期：2017-05-22" th:value="${condition.transDate}" readonly="readonly"/>
                                 <!--<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>-->
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                             </div>
 
-                            <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii:ss" data-link-field="dtp_input3" data-link-format="hh:ii:ss"
-                                 style="float: left;  width:18%; margin-right: 2%;">
-                                <input class="form-control" size="16" type="text" name="transTime" placeholder="交易时间，如：13:00:00" th:value="${condition.transTime}" readonly="readonly"/>
-                                <!--<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>-->
+
+                            <div class="input-group date form_time col-md-5" data-date=""  data-link-field="dtp_input3"
+                                 style="float: left;  width:20%; margin-right: 2%;">
+                                <input class="form-control" size="16" type="text" name="transTime" placeholder="交易时间：13:00:00" th:value="${condition.transTime}" />
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                             </div>
                             <!--<div class="filed_text" style="float: left; width:18%; margin-right: 2%;">-->
@@ -71,23 +71,12 @@
                                 <span class="input_icon input_pass"></span>
                             </div>
 
-                            <div class="field_select" style="width: 15%">
-                                <select class="gradient" name="agencyId" hidefocus="true" style=" background-color: initial;width: 100%;margin-top: 2%;border: groove;font-family: -webkit-pictograph;font-size: x-small;height: 32px;">
-                                    <option value="-1">支付方式</option>
-                                    <option th:each="agency : ${agencies}" th:value="${agency.id}" th:text="${agency.name}"
-                                            th:selected="${condition!=null and condition.agencyId != null and condition.agencyId==agency.id}">
-                                    </option>
-                                </select>
-                            </div>
-
-
-                            <!--<div class="field_select" style="width: 18%">-->
-                                <!--<select class="gradient" name="status" hidefocus="true" style=" background-color: initial;width: 100%;margin-top: 2%;border: groove;font-family: -webkit-pictograph;font-size: x-small;height: 32px;">-->
-                                    <!--<option value="-1">状态</option>-->
-                                    <!--<option value="0" th:value="${condition.status}">0</option>-->
-                                    <!--<option value="1" th:value="${condition.status}">1</option>-->
-                                    <!--<option value="2" th:value="${condition.status}">2</option>-->
-                                    <!--<option value="4" th:value="${condition.status}">4</option>-->
+                            <!--<div class="field_select" style="width: 15%">-->
+                                <!--<select class="gradient" name="agencyId" hidefocus="true" style=" background-color: initial;width: 100%;margin-top: 2%;border: groove;font-family: -webkit-pictograph;font-size: x-small;height: 32px;">-->
+                                    <!--<option value="-1">支付方式</option>-->
+                                    <!--<option th:each="agency : ${agencies}" th:value="${agency.id}" th:text="${agency.name}"-->
+                                            <!--th:selected="${condition!=null and condition.agencyId != null and condition.agencyId==agency.id}">-->
+                                    <!--</option>-->
                                 <!--</select>-->
                             <!--</div>-->
 
@@ -125,9 +114,6 @@
                     <td>状态码</td>
                     <td>操作</td>
                 </tr>
-                <!--<tr th:if="${#lists.isEmpty(transactions)}" th:colspan="16" style=" text-align: center; font-size: x-large; color: brown">-->
-                    <!--<td  th:colspan="16" th:rowspan="5" th:text="请选择真实交易数据查询条件查询，谢谢！"></td>-->
-                <!--</tr>-->
                 <tr th:each="transaction: ${transactions}">
                     <!--<td th:text="${transaction.id}"></td>-->
                     <td th:text="${transaction.transNo}"></td>
@@ -179,6 +165,7 @@
                 forceParse: 0
             });
             $('.form_time').datetimepicker({
+                format: 'hh:ii:ss',
                 weekStart: 1,
                 todayBtn:  1,
                 autoclose: 1,
@@ -186,6 +173,7 @@
                 startView: 1,
                 minView: 0,
                 maxView: 1,
+                minuteStep: 3,
                 forceParse: 0
             });
         </script>

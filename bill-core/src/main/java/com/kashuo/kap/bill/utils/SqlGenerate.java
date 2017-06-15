@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 public class SqlGenerate {
     private static final Logger LOG = Logger.getLogger("");
     private static final String out_put_name = LocalDate.now().getDayOfMonth()+"result.txt";
-    private static  final String noramlName = "standard-danbianzhang0613.xlsx";
+    private static  final String noramlName = "standard-danbianzhang0614.xlsx";
     private static  final String bankName = "standard-bank-danbianzhang0602.xlsx";
     private static boolean seq = false;
 
