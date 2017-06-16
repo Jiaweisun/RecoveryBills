@@ -1,5 +1,6 @@
 package com.kashuo.kap.bill.model.dto;
 
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 

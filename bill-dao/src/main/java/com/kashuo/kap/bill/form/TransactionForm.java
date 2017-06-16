@@ -4,6 +4,7 @@ package com.kashuo.kap.bill.form;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.NumberFormat;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
@@ -13,6 +14,7 @@ public class TransactionForm {
 
     @NotBlank(message = "{normal.merchantId}")
 //    @NotNull(message = "{normal.merchantId}")
+    @NumberFormat
     private Integer merchantId;
 
 //    @NotNull(message = "{normal.storeId}")
@@ -24,7 +26,6 @@ public class TransactionForm {
     private String deviceSn;
 
     @NotNull(message = "{normal.transDate}")
-//    @Pattern(regexp = "/^((?:19|20)\\d\\d)-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/", message = "{normal.transDate.format}")
     private String transDate;
     @NotNull(message = "{normal.transTime}")
     private String transTime;

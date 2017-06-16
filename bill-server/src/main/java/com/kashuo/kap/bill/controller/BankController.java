@@ -38,6 +38,7 @@ public class BankController extends BaseController{
     public ModelAndView bank(@ModelAttribute TransactionCondition condition){
         ModelAndView mav = new ModelAndView();
         mav.addObject("condition",condition);
+        mav.addObject("abc","bank");
         getAgency(mav);
         mav.setViewName("pages/bank/info");
         log.info(".... search end....");
@@ -55,10 +56,10 @@ public class BankController extends BaseController{
         log.info(".... search begin....");
         ModelAndView mav = new ModelAndView();
         mav.addObject("condition",condition);
-        if (NullUtil.isNull(condition.getCardNumber())){
-            mav.setViewName("pages/bank/info");
-            return mav;
-        }
+//        if (NullUtil.isNull(condition.getCardNumber())){
+//            mav.setViewName("pages/bank/info");
+//            return mav;
+//        }
         getAgency(mav);
         List<Transaction> transactions = transactionService.bankSelect(condition,condition.getPaymentType());
         mav.addObject("transactions",transactions);
@@ -71,6 +72,11 @@ public class BankController extends BaseController{
     public ModelAndView update(@RequestParam("transNo") String transNo,@RequestParam("transDate") String transDate, @RequestParam("transTime") String transTime, @RequestParam("cardNumber") String cardNumber) {
 
         ModelAndView mav = new ModelAndView();
+        if (transDate.equals("") || transTime.equals("")){
+            mav.addObject("msg","交易日期填写不全，请重新填写！！");
+            mav.setViewName("pages/bank/info");
+            return mav;
+        }
         Date date = null,time = null;
         try {
             date = DateUtil.ConverToDate(transDate);
@@ -79,9 +85,16 @@ public class BankController extends BaseController{
             e.printStackTrace();
         }
         // 2. update by a column and redirect to parent page
-        transactionService.updateByTransNo(transNo, date, time, cardNumber);
-        mav.setViewName("redirect:/bank");
-//        "redirect:/emp/list"
+        boolean result = transactionService.updateByTransNo(transNo, date, time, cardNumber);
+        if (!result)
+        {
+            mav.addObject("msg","更新失败！！");
+        }
+        else {
+            mav.addObject("msg","银行漏单更新成功！！！");
+        }
+//        mav.setViewName("redirect:/bank");
+        mav.setViewName("pages/result");
         return mav;
     }
 

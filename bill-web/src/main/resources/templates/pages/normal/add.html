@@ -47,13 +47,13 @@
 
            <div class="col-sm-8 col-sm-offset-1">
 
-               <!--<h6 class="foo"> 单边账 (以下信息必须全部录入，否则后果自负，谢谢！)</h6>-->
+               <!--<h6 class="foo"> 单边账 (以下信息录入，否则后果自负，谢谢！)</h6>-->
                <div class="widget-container widget_login styled boxed boxed-cream gradient" style="width: 80%">
                    <div class="inner">
                        <form action="/normal" th:object="${transactionForm}" method="post" class="comment-form" enctype="multipart/form-data">
 
                            <div class="field_text" style="width:60%; margin-left: 5%">
-                               <label style="color: brown" th:text=" 以下信息必须全部录入，否则后果自负，谢谢！"></label>
+                               <label style="color: brown" th:text=" 以下信息须谨慎录入，否则后果自负，谢谢！"></label>
                            </div>
 
                            <!--<div class="filed_text" style="margin-bottom: 12px; margin-left: 5%">-->
@@ -108,26 +108,10 @@
                            <input type="hidden" id="transDate" /><br/>
 
                            <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii:ss" data-link-field="dtp_input3" data-link-format="hh:ii:ss" style="width:65.8%; margin-bottom: 12px; margin-left: 2.3%">
-                               <input class="form-control" size="16" type="text" name="transTime" placeholder="交易时间，如：13:00:00" readonly="readonly"/>
+                               <input class="form-control" size="16" type="text" name="transTime" placeholder="交易时间，如：13:00:00"/>
                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                            </div>
-
-                           <!--<div class='input-group date' id='datetimepicker1' style="width:60%; margin-bottom: 12px; margin-left: 5%">-->
-                               <!--<input type='text' class="form-control" name="transDate" placeholder="交易日期，如：2017-05-22" readonly="readonly"/>-->
-                               <!--<span class="input-group-addon">-->
-                                    <!--<span class="glyphicon glyphicon-calendar"></span>-->
-                                <!--</span>-->
-                               <!--<p style="color:brown" th:if="${#fields.hasErrors('transDate')}" th:errors="*{transDate}">transDate Error</p>-->
-                           <!--</div>-->
-
-                           <!--<div class='input-group date' id='datetimepicker2' style="width:60%; margin-bottom: 12px; margin-left: 5%">-->
-                               <!--<input type='text' class="form-control" name="transTime" placeholder="交易时间，如：13:00:00" readonly="readonly"/>-->
-                               <!--<span class="input-group-addon">-->
-                                   <!--<span class="glyphicon glyphicon-calendar"></span>-->
-                               <!--</span>-->
-                               <!--<p style="color:brown" th:if="${#fields.hasErrors('transTime')}" th:errors="*{transTime}">transTime Error</p>-->
-                           <!--</div>-->
 
                            <div class="field_text" style="width:60%; margin-left: 5%">
                                <input type="text" name="totalAmount" placeholder="总金额，如：100" class="gradient"/>
@@ -175,6 +159,7 @@
         </div>
         <script type="text/javascript">
             $('.form_date').datetimepicker({
+//                language: zh,
                 weekStart: 1,
                 todayBtn:  1,
                 autoclose: 1,
@@ -191,6 +176,7 @@
                 startView: 1,
                 minView: 0,
                 maxView: 1,
+                minuteStep: 3,
                 forceParse: 0
             });
         </script>

@@ -43,8 +43,8 @@ public class TransactionService {
         return result;
     }
 
-    public boolean normalInsert(Transaction record){
-//        Transaction record = this.form2Entity(form);//form to entity
+    public boolean normalInsert(TransactionForm form){
+        Transaction record = this.form2Entity(form);//form to entity
 
         int result =0;
         try {
@@ -88,7 +88,10 @@ public class TransactionService {
     //bank search
     public List<Transaction> bankSelect(TransactionCondition record,String paymentType){
         List<Transaction> results = new ArrayList<>();
-        resetCondition(record);
+        if (record.getCardNumber() !=""){
+            resetCondition(record);
+        }
+
         if (paymentType == ConstantUtil.LONG)
             results = transactionMapper.bankSelectLong(record);
         else
@@ -118,7 +121,9 @@ public class TransactionService {
 
         record.setTransDate(transDate);
         record.setTransTime(transTime);
-        updateSelective(record);
+        int result = updateSelective(record);
+        if (result<=0)
+            return false;
         return true;
     }
 

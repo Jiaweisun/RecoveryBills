@@ -70,9 +70,6 @@ public class Transaction {
 //    @NotNull(message = "{normal.transDate}")
 //    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="GMT+8")
     private Date transDate;
-
-//    @NotNull(message = "{normal.transTime}")
-//    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="HH:mm:ss", timezone="GMT+8")
     private Date transTime;
 
     @NotNull(message = "{normal.totalAmount}")
