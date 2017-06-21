@@ -1,9 +1,6 @@
 package com.kashuo.kap.bill.controller;
 
-import com.kashuo.kap.bill.service.ConditionService;
-import com.kashuo.kap.bill.service.MerchantService;
-import com.kashuo.kap.bill.service.StoreService;
-import com.kashuo.kap.bill.service.TransactionService;
+import com.kashuo.kap.bill.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +19,9 @@ public class BaseController {
 
     @Autowired
     protected TransactionService transactionService;
+
+    @Autowired
+    protected NormalService normalService;
 
     @Autowired
     protected MerchantService merchantService;

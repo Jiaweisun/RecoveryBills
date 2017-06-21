@@ -76,7 +76,7 @@ public class NormalBillController extends BaseController{
             return "pages/normal/add";
         }
 
-        Transaction searchResult =  transactionService.SelectOne(form);
+        Transaction searchResult =  normalService.SelectOne(form);
         if(searchResult != null){//已经存在
             Integer status = searchResult.getStatus();
             msg = "deviceSn: "+form.getDeviceSn()+", status: " + status+", trans_no: "+searchResult.getTransNo()+"，请核实后重新输入！";
@@ -86,7 +86,7 @@ public class NormalBillController extends BaseController{
 
         String storeChannelCode = store.getChannelCode();
         form.setStoreChannel(storeChannelCode);
-        boolean tt = transactionService.normalInsert(form);
+        boolean tt = normalService.normalInsert(form);
         if (!tt){
             msg = " failed！";
             result.rejectValue("storeId", "misFormat", msg);
