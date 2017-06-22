@@ -19,7 +19,7 @@ http://logback.qos.ch/manual/configuration.html
     </appender>
 
     <appender name="APP_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${log.directory:-./logs}/${log.app.name:-123}.log</file>
+        <!--<file>${log.directory:-./logs}/${log.app.name:-123}.log</file>-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>
                 ${log.directory:-./logs}/${log.app.name:-kap}.%d{yyyy-MM-dd}.%i.log
