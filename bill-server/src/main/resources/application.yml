@@ -7,12 +7,12 @@ server:
 ## DATASOURCE
 jdbc:
     driverClass: com.mysql.jdbc.Driver
-#    url: jdbc:mysql://58.210.177.89:31066/kopinland_prod?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
-#    username: kop_read
-#    password: ks_kopread_pwd
-    url: jdbc:mysql://localhost:3306/kop_trans?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
-    username: root
-    password:
+    url: jdbc:mysql://58.210.177.89:31066/kopinland_prod?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    username: kop_read
+    password: ks_kopread_pwd
+#    url: jdbc:mysql://localhost:3306/kop_trans?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+#    username: root
+#    password:
 
 # SPRING PROFILES
 spring:

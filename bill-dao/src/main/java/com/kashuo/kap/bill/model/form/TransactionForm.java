@@ -57,7 +57,8 @@ public class TransactionForm {
     private String paymentType;
     private String storeChannel;
 
-    private Integer acquirerId;
+    private Integer acquirerId;//收单机构编号
+    private String acqChannel;//收单机构编码
 
     private Integer agencyId;
 
@@ -186,4 +187,11 @@ public class TransactionForm {
         this.bankName = bankName == null ? null : bankName.trim();
     }
 
+    public String getAcqChannel() {
+        return acqChannel;
+    }
+
+    public void setAcqChannel(String acqChannel) {
+        this.acqChannel = acqChannel;
+    }
 }

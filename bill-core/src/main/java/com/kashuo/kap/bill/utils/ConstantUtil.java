@@ -37,4 +37,10 @@ public class ConstantUtil {
     public static final String BANK_SQL = "D:\\workspace\\kap-all\\RecoveryBills\\file\\银行活动模板SQL.txt";
     public static final String BASE_FILE_PATH = "D:\\workspace\\kap-all\\RecoveryBills\\file\\";
     public static final String rootPath = "d:\\upload\\";
+
+    //sql
+    public static final String NORMAL_SQL_P = "insert into transaction" +
+            "(trans_no,order_no,merchant_id,store_id,store_channel, trans_date,trans_time,total_amount,agency_id,device_sn,terminal_number," +
+            "status,trans_type,pay_amount,trans_rate,total_profit,acquirer_id,acq_channel,payment_type,card_number,bank_name,trans_comment,created_at,updated_at) " +
+            "values( ";
 }

@@ -747,7 +747,10 @@
       and pay_amount = #{payAmount}
     </if>
     <if test="transDate!=null and transDate !=''">
-      and created_at = #{transDate}
+      and trans_date  = #{transDate}
+    </if>
+    <if test="transTime !=null and transTime !=''">
+      and trans_time =  #{transTime}
     </if>
     <!-- transDate-->
   </select>

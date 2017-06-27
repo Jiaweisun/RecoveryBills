@@ -69,16 +69,16 @@
                            </div>
 
                            <div class="field_text" style="width:60%; margin-left: 5%">
-                               <input type="text" name="merchantId" placeholder="商户号" class="gradient"/>
+                               <input type="text" name="merchantId" placeholder="商户号" th:value="${transactionForm.merchantId}" class="gradient"/>
                                <p style="color:brown" th:if="${#fields.hasErrors('merchantId')}" th:errors="*{merchantId}">merchantId Error</p>
                            </div>
                            <div class="field_text" style="width:60%; margin-left: 5%">
-                               <input type="text" name="storeId" placeholder="门店号" class="gradient"/>
+                               <input type="text" name="storeId" placeholder="门店号" th:value="${transactionForm.storeId}" class="gradient"/>
                                <p style="color:brown" th:if="${#fields.hasErrors('storeId')}" th:errors="*{storeId}">storeId Error</p>
                            </div>
 
                            <div class="field_text" style="width:60%; margin-left: 5%">
-                               <input type="text" name="deviceSn" placeholder="设备SN，如：08123456" class="gradient"/>
+                               <input type="text" name="deviceSn" placeholder="设备SN，如：08123456" th:value="${transactionForm.deviceSn}" class="gradient"/>
                                <p style="color:brown" th:if="${#fields.hasErrors('deviceSn')}" th:errors="*{deviceSn}">deviceSn Error</p>
                            </div>
 
@@ -87,12 +87,12 @@
                            </div>
 
                            <div class="field_text" style="width:60%; margin-left: 5%">
-                               <input type="text" name="bankName" placeholder="发卡行，如：建设银行" class="gradient"/>
+                               <input type="text" name="bankName" placeholder="发卡行，如：建设银行"  th:value="${transactionForm.bankName}" class="gradient"/>
                                <span class="input_icon"></span>
                            </div>
 
                            <div class="field_text" style="width:60%; margin-left: 5%">
-                               <input type="text" name="cardNumber" placeholder="卡号,如：621700*********1234" class="gradient"/>
+                               <input type="text" name="cardNumber" placeholder="卡号,如：621700*********1234" th:value="${transactionForm.cardNumber}" class="gradient"/>
                                <span class="input_icon"></span>
                            </div>
 
@@ -101,48 +101,58 @@
                            </div>
 
                            <div class="input-group date form_date col-md-5" data-date="" data-date-format="yyyy-mm-dd" data-link-field="transDate" data-link-format="yyyy-mm-dd" style="width:65.8%; margin-bottom: 12px; margin-left: 2.3%">
-                               <input class="form-control" size="16" type="text" name="transDate" placeholder="交易日期，如：2017-05-22" readonly="readonly"/>
+                               <input class="form-control" size="16" type="text" name="transDate" placeholder="交易日期，如：2017-05-22" th:value="${transactionForm.transDate}" readonly="readonly"/>
                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                            </div>
                            <input type="hidden" id="transDate" /><br/>
 
                            <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii:ss" data-link-field="dtp_input3" data-link-format="hh:ii:ss" style="width:65.8%; margin-bottom: 12px; margin-left: 2.3%">
-                               <input class="form-control" size="16" type="text" name="transTime" placeholder="交易时间，如：13:00:00"/>
+                               <input class="form-control" size="16" type="text" name="transTime" placeholder="交易时间，如：13:00:00" th:value="${transactionForm.transTime}" />
                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                            </div>
 
                            <div class="field_text" style="width:60%; margin-left: 5%">
-                               <input type="text" name="totalAmount" placeholder="总金额，如：100" class="gradient"/>
+                               <input type="text" name="totalAmount" placeholder="总金额，如：100" th:value="${transactionForm.totalAmount}"  class="gradient" />
                                <p style="color:brown" th:if="${#fields.hasErrors('totalAmount')}" th:errors="*{totalAmount}">totalAmount Error</p>
                            </div>
 
                            <div class="field_text" style="width:60%; margin-left: 5%">
-                               <input type="text" name="payAmount" placeholder="实付金额，如：100" class="gradient"/>
+                               <input type="text" name="payAmount" placeholder="实付金额，如：100"  th:value="${transactionForm.payAmount}" class="gradient"/>
                                <p style="color:brown" th:if="${#fields.hasErrors('payAmount')}" th:errors="*{payAmount}">payAmount Error</p>
                            </div>
 
 
-                           <!--<div class="field_text" style="width:60%; margin-left: 5%">-->
-                               <!--<input type="text" name="transRate" placeholder="签约扣率，如：0.6" class="gradient"/>-->
-                               <!--<p style="color:brown" th:if="${#fields.hasErrors('transRate')}" th:errors="*{transRate}">transRate Error</p>-->
-                           <!--</div>-->
-
-                           <!--<div class="field_text" style="width:60%; margin-left: 5%">-->
-                               <!--<input type="text" name="totalProfit" placeholder="手续费，如：0.06" class="gradient"/>-->
-                               <!--<p style="color:brown" th:if="${#fields.hasErrors('totalProfit')}" th:errors="*{totalProfit}">totalProfit Error</p>-->
-                           <!--</div>-->
-
-                           <div class="field_select" style="width:60%; margin-bottom: 28px; margin-left: 5%">
-                               <select class="gradient" name="paymentType" hidefocus="true" style=" background-color: initial;width: 100%;margin-top: 2%;border: groove;font-family: -webkit-pictograph;font-size: x-small;height: 32px;">
-                                   <option value="">支付方式</option>
-                                   <option value="WECHAT">微信</option>
-                                   <option value="ALIPAY">支付宝</option>
-                                   <option value="BANK">银行卡</option>
-                                   <option value="LONGPAY">龙支付</option>
-                               </select>
+                           <div class="field_text" style="width:60%; margin-left: 5%">
+                               <input type="text" name="transRate" placeholder="签约扣率，如：0.6"  th:value="${transactionForm.transRate}" class="gradient"/>
+                               <p style="color:brown" th:if="${#fields.hasErrors('transRate')}" th:errors="*{transRate}">transRate Error</p>
                            </div>
+
+                           <div class="field_text" style="width:60%; margin-left: 5%">
+                               <input type="text" name="totalProfit" placeholder="手续费，如：0.06"  th:value="${transactionForm.totalProfit}" class="gradient"/>
+                               <p style="color:brown" th:if="${#fields.hasErrors('totalProfit')}" th:errors="*{totalProfit}">totalProfit Error</p>
+                           </div>
+                           <div class="field_select" style="width:60%; margin-bottom: 28px; margin-left: 5%">
+                               <select class="gradient" name="agencyId" hidefocus="true" style=" background-color: initial;width: 100%;margin-top: 2%;border: groove;font-family: -webkit-pictograph;font-size: x-small;height: 32px;">
+                                   <option value="-1">支付方式</option>
+                                   <option th:each="agency : ${agencies}" th:value="${agency.id}" th:text="${agency.name}"
+                                   th:selected="${transactionForm!=null and transactionForm.agencyId != null and transactionForm.agencyId==agency.id}">
+                                   </option>
+                               </select>
+
+                           </div>
+
+                           <div class="field_text" style="width:60%; margin-left: 5%">
+                               <input type="text" name="acquirerId" placeholder="分润编码，如：32"  th:value="${transactionForm.acquirerId}" class="gradient"/>
+                               <p style="color:brown" th:if="${#fields.hasErrors('acquirerId')}" th:errors="*{acquirerId}">acquirerId Error</p>
+                           </div>
+
+                           <div class="field_text" style="width:60%; margin-left: 5%">
+                               <input type="text" name="acqChannel" placeholder="收单通道编码"  th:value="${transactionForm.acqChannel}" class="gradient"/>
+                               <p style="color:brown" th:if="${#fields.hasErrors('acqChannel')}" th:errors="*{acqChannel}">acqChannel Error</p>
+                           </div>
+
 
                            <div class="rowSubmit" style="width:60%; margin-left: 5%">
                                <span class="btn btn-hover">

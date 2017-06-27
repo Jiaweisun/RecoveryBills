@@ -49,6 +49,8 @@ public class BaseService {
         result.setDeviceSn(record.getDeviceSn());
         result.setPayAmount(record.getPayAmount());
         result.setTotalAmount(record.getTotalAmount());
+        result.setTransDate(record.getTransDate());
+        result.setTransTime(record.getTransTime());
 //        result.setPaymentType(record.getPaymentType());
 //        result.setMerchantId(Integer.parseInt(record.getMerchantId().trim()));
 //        result.setStoreId(Integer.parseInt(record.getStoreId().trim()));

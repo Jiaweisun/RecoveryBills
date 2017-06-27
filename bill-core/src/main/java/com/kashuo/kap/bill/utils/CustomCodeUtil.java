@@ -9,7 +9,8 @@ import java.util.UUID;
  * 自定义code规则
  * Created by sunjiawei on 2017/5/11.
  */
-public class CustomCodeUtil {
+public class
+CustomCodeUtil {
 
     private static Logger log = LoggerFactory.getLogger(CustomCodeUtil.class);
 
@@ -44,6 +45,6 @@ public class CustomCodeUtil {
     }
 
     public static void main(String[] args){
-        generatedTransNo("2017-06-14\n","2017-06-14\n");
+        generatedTransNo("2017-06-25\n","18:57:40\n");
     }
 }

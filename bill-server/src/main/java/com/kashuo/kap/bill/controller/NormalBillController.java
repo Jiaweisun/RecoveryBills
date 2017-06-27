@@ -1,9 +1,12 @@
 package com.kashuo.kap.bill.controller;
 
 import com.kashuo.kap.bill.domain.Merchant;
+import com.kashuo.kap.bill.domain.ProfitAgency;
 import com.kashuo.kap.bill.domain.Store;
 import com.kashuo.kap.bill.domain.Transaction;
 import com.kashuo.kap.bill.model.form.TransactionForm;
+import com.kashuo.kap.bill.utils.ConstantUtil;
+import com.kashuo.kap.bill.utils.CustomCodeUtil;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -14,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 import java.util.List;
+
+import static java.sql.JDBCType.NULL;
 
 /**
  * 普通单边账
@@ -28,6 +33,8 @@ public class NormalBillController extends BaseController{
     @RequestMapping(value="", method = RequestMethod.GET)
     public String normal(Model m){
         log.info("普通单边账 ");
+        List<ProfitAgency> agencies = conditionService.agencyAll();
+        m.addAttribute("agencies",agencies);
         m.addAttribute("transactionForm",new TransactionForm());
         m.addAttribute("abc","normal");
         return "pages/normal/add";
@@ -85,17 +92,43 @@ public class NormalBillController extends BaseController{
         }
 
         String storeChannelCode = store.getChannelCode();
-        form.setStoreChannel(storeChannelCode);
-        boolean tt = normalService.normalInsert(form);
-        if (!tt){
+
+        if (storeChannelCode == ""||storeChannelCode == null){
             msg = " failed！";
             result.rejectValue("storeId", "misFormat", msg);
             return "pages/normal/add";
         }else{
-            msg = " 补单成功！！";
+
+            String transNo = CustomCodeUtil.generatedTransNo(form.getTransDate(),form.getTransTime());
+            String orderNo = transNo;
+            Integer acquireer_id = 32;
+            String acq_channel = "CCB";
+            if(form.getAgencyId()==1||form.getAgencyId()==2)
+                form.setPaymentType("BANK");
+            else if(form.getAgencyId()==3)
+                form.setPaymentType("WECHART");
+            else if(form.getAgencyId()==4)
+                form.setPaymentType("ALIPAY");
+
+            msg = ConstantUtil.NORMAL_SQL_P+"'"+transNo+" ', '"+transNo+" ', '"+form.getMerchantId()+" ', '"+form.getStoreId()+" ', '"+storeChannelCode+"','"+
+                    form.getTransDate()+" ', '"+form.getTransTime()+" ', "+form.getTotalAmount()+","+form.getAgencyId() +", '"+form.getDeviceSn()+" ', '"+NULL+"',"+1+","+
+                    0+","+form.getPayAmount()+","+form.getTransRate()+","+form.getTotalProfit()+","+32+",'"+acq_channel+"', '"+form.getPaymentType()+
+                    " ', '"+form.getCardNumber()+" ', '"+form.getBankName()+" ', '"+ConstantUtil.transComment+"', now(), now() );";
             model.addAttribute("msg",msg);
             return "pages/result";
         }
+
+//        form.setStoreChannel(storeChannelCode);
+//        boolean tt = normalService.normalInsert(form);
+//        if (!tt){
+//            msg = " failed！";
+//            result.rejectValue("storeId", "misFormat", msg);
+//            return "pages/normal/add";
+//        }else{
+//            msg = " 补单成功！！";
+//            model.addAttribute("msg",msg);
+//            return "pages/result";
+//        }
     }
 
 }

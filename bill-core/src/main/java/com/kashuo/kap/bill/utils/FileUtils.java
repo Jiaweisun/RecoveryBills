@@ -5,9 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.time.LocalDate;
 
 public class FileUtils {
    private  static Logger log = LoggerFactory.getLogger(FileUtils.class);
+    private static final String out_put_name = LocalDate.now().getDayOfMonth()+"result.txt";
 
     /**
      * 保存文件
@@ -73,5 +75,11 @@ public class FileUtils {
             log.info("ex:{},{}",ex,file.getContentType());
 //        }
         return false;
+    }
+
+
+    public static boolean outputText(String content,String path){
+
+        return true;
     }
 }
