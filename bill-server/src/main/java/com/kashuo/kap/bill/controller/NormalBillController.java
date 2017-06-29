@@ -101,18 +101,20 @@ public class NormalBillController extends BaseController{
 
             String transNo = CustomCodeUtil.generatedTransNo(form.getTransDate(),form.getTransTime());
             String orderNo = transNo;
-            Integer acquireer_id = 32;
-            String acq_channel = "CCB";
+//            Integer acquireer_id = 32;
+//            String acq_channel = "CCB";
             if(form.getAgencyId()==1||form.getAgencyId()==2)
                 form.setPaymentType("BANK");
             else if(form.getAgencyId()==3)
-                form.setPaymentType("WECHART");
+                form.setPaymentType("WECHAT");
             else if(form.getAgencyId()==4)
                 form.setPaymentType("ALIPAY");
+            else if(form.getAgencyId()==6)
+                form.setPaymentType("LONGPAY");
 
             msg = ConstantUtil.NORMAL_SQL_P+"'"+transNo+" ', '"+transNo+" ', '"+form.getMerchantId()+" ', '"+form.getStoreId()+" ', '"+storeChannelCode+"','"+
                     form.getTransDate()+" ', '"+form.getTransTime()+" ', "+form.getTotalAmount()+","+form.getAgencyId() +", '"+form.getDeviceSn()+" ', '"+NULL+"',"+1+","+
-                    0+","+form.getPayAmount()+","+form.getTransRate()+","+form.getTotalProfit()+","+32+",'"+acq_channel+"', '"+form.getPaymentType()+
+                    0+","+form.getPayAmount()+","+form.getTransRate()+","+form.getTotalProfit()+","+form.getAcquirerId()+",'"+form.getAcqChannel()+"', '"+form.getPaymentType()+
                     " ', '"+form.getCardNumber()+" ', '"+form.getBankName()+" ', '"+ConstantUtil.transComment+"', now(), now() );";
             model.addAttribute("msg",msg);
             return "pages/result";

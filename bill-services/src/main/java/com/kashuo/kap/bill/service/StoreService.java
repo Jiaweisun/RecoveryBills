@@ -27,7 +27,7 @@ public class StoreService {
      */
     public Store selectByPK(int mid, int sid){
         List<Store> stores = storeMapper.selectByPK(mid, sid);
-        return stores!=null?stores.get(0):null;
+        return (stores!=null&stores.size()>0)?stores.get(0):null;
     }
 
 }
