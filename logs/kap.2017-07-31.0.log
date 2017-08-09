@@ -1,0 +1,512 @@
+2017-07-31 15:51:57,273 [http-nio-127.0.0.1-8030-exec-9] DEBUG c.k.k.b.d.P.selectAll - ==>  Preparing: select id, name, create_time, has_limit, create_by, industry_nonstandard, code from profit_agency 
+2017-07-31 15:51:57,357 [http-nio-127.0.0.1-8030-exec-9] DEBUG c.k.k.b.d.P.selectAll - ==> Parameters: 
+2017-07-31 15:51:57,420 [http-nio-127.0.0.1-8030-exec-9] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.RecoverableDataAccessException: 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: The last packet successfully received from the server was 281,739,360 milliseconds ago.  The last packet sent successfully to the server was 281,739,418 milliseconds ago. is longer than the server configured value of 'wait_timeout'. You should consider either expiring and/or testing connection validity before use in your application, increasing the server configured values for client timeouts, or using the Connector/J connection property 'autoReconnect=true' to avoid this problem.
+### The error may exist in file [D:\workspace\kap-all\RecoveryBills\bill-dao\target\classes\com\kashuo\kap\bill\dao\mapper\ProfitAgencyMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select           id, name, create_time, has_limit, create_by, industry_nonstandard, code         from profit_agency
+### Cause: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: The last packet successfully received from the server was 281,739,360 milliseconds ago.  The last packet sent successfully to the server was 281,739,418 milliseconds ago. is longer than the server configured value of 'wait_timeout'. You should consider either expiring and/or testing connection validity before use in your application, increasing the server configured values for client timeouts, or using the Connector/J connection property 'autoReconnect=true' to avoid this problem.
+; SQL []; The last packet successfully received from the server was 281,739,360 milliseconds ago.  The last packet sent successfully to the server was 281,739,418 milliseconds ago. is longer than the server configured value of 'wait_timeout'. You should consider either expiring and/or testing connection validity before use in your application, increasing the server configured values for client timeouts, or using the Connector/J connection property 'autoReconnect=true' to avoid this problem.; nested exception is com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: The last packet successfully received from the server was 281,739,360 milliseconds ago.  The last packet sent successfully to the server was 281,739,418 milliseconds ago. is longer than the server configured value of 'wait_timeout'. You should consider either expiring and/or testing connection validity before use in your application, increasing the server configured values for client timeouts, or using the Connector/J connection property 'autoReconnect=true' to avoid this problem.] with root cause
+java.net.SocketException: Connection reset by peer: socket write error
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:109)
+	at java.net.SocketOutputStream.write(SocketOutputStream.java:153)
+	at java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:82)
+	at java.io.BufferedOutputStream.flush(BufferedOutputStream.java:140)
+	at com.mysql.jdbc.MysqlIO.send(MysqlIO.java:3634)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2460)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2625)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2551)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1861)
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:1192)
+	at sun.reflect.GeneratedMethodAccessor92.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy76.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:63)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:63)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:325)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:83)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:148)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:141)
+	at sun.reflect.GeneratedMethodAccessor87.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:434)
+	at com.sun.proxy.$Proxy58.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:231)
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:128)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:68)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:53)
+	at com.sun.proxy.$Proxy62.selectAll(Unknown Source)
+	at com.kashuo.kap.bill.service.ConditionService.agencyAll(ConditionService.java:33)
+	at com.kashuo.kap.bill.controller.BankController.getAgency(BankController.java:110)
+	at com.kashuo.kap.bill.controller.BankController.bank(BankController.java:42)
+	at sun.reflect.GeneratedMethodAccessor347.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:116)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:897)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:230)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:105)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:474)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:349)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:783)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:798)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1434)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+2017-07-31 15:51:59,422 [http-nio-127.0.0.1-8030-exec-4] DEBUG c.k.k.b.d.P.selectAll - ==>  Preparing: select id, name, create_time, has_limit, create_by, industry_nonstandard, code from profit_agency 
+2017-07-31 15:51:59,423 [http-nio-127.0.0.1-8030-exec-4] DEBUG c.k.k.b.d.P.selectAll - ==> Parameters: 
+2017-07-31 15:51:59,510 [http-nio-127.0.0.1-8030-exec-4] DEBUG c.k.k.b.d.P.selectAll - <==      Total: 4
+2017-07-31 15:51:59,511 [http-nio-127.0.0.1-8030-exec-4] INFO  c.k.k.bill.controller.BankController - .... search end....
+2017-07-31 15:51:59,529 [http-nio-127.0.0.1-8030-exec-4] ERROR org.thymeleaf.TemplateEngine - [THYMELEAF][http-nio-127.0.0.1-8030-exec-4] Exception processing template "pages/bank/info": Error resolving template "pages/bank/info", template might not exist or might not be accessible by any of the configured Template Resolvers
+2017-07-31 15:51:59,530 [http-nio-127.0.0.1-8030-exec-4] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateInputException: Error resolving template "pages/bank/info", template might not exist or might not be accessible by any of the configured Template Resolvers] with root cause
+org.thymeleaf.exceptions.TemplateInputException: Error resolving template "pages/bank/info", template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.TemplateRepository.getTemplate(TemplateRepository.java:246)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1104)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1060)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1011)
+	at org.thymeleaf.spring4.view.ThymeleafView.renderFragment(ThymeleafView.java:335)
+	at org.thymeleaf.spring4.view.ThymeleafView.render(ThymeleafView.java:190)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1282)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1037)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:980)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:897)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:230)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:105)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:474)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:349)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:783)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:798)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1434)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+2017-07-31 15:52:02,877 [http-nio-127.0.0.1-8030-exec-8] DEBUG c.k.k.b.d.P.selectAll - ==>  Preparing: select id, name, create_time, has_limit, create_by, industry_nonstandard, code from profit_agency 
+2017-07-31 15:52:02,877 [http-nio-127.0.0.1-8030-exec-8] DEBUG c.k.k.b.d.P.selectAll - ==> Parameters: 
+2017-07-31 15:52:02,883 [http-nio-127.0.0.1-8030-exec-8] DEBUG c.k.k.b.d.P.selectAll - <==      Total: 4
+2017-07-31 15:52:02,883 [http-nio-127.0.0.1-8030-exec-8] INFO  c.k.k.bill.controller.BankController - .... search end....
+2017-07-31 15:52:02,884 [http-nio-127.0.0.1-8030-exec-8] ERROR org.thymeleaf.TemplateEngine - [THYMELEAF][http-nio-127.0.0.1-8030-exec-8] Exception processing template "pages/bank/info": Error resolving template "pages/bank/info", template might not exist or might not be accessible by any of the configured Template Resolvers
+2017-07-31 15:52:02,885 [http-nio-127.0.0.1-8030-exec-8] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateInputException: Error resolving template "pages/bank/info", template might not exist or might not be accessible by any of the configured Template Resolvers] with root cause
+org.thymeleaf.exceptions.TemplateInputException: Error resolving template "pages/bank/info", template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.TemplateRepository.getTemplate(TemplateRepository.java:246)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1104)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1060)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1011)
+	at org.thymeleaf.spring4.view.ThymeleafView.renderFragment(ThymeleafView.java:335)
+	at org.thymeleaf.spring4.view.ThymeleafView.render(ThymeleafView.java:190)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1282)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1037)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:980)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:897)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:230)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:105)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:474)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:349)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:783)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:798)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1434)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+2017-07-31 15:52:08,873 [http-nio-127.0.0.1-8030-exec-1] INFO  c.k.k.b.c.NormalBillController - 普通单边账 
+2017-07-31 15:52:08,873 [http-nio-127.0.0.1-8030-exec-1] DEBUG c.k.k.b.d.P.selectAll - ==>  Preparing: select id, name, create_time, has_limit, create_by, industry_nonstandard, code from profit_agency 
+2017-07-31 15:52:08,873 [http-nio-127.0.0.1-8030-exec-1] DEBUG c.k.k.b.d.P.selectAll - ==> Parameters: 
+2017-07-31 15:52:08,878 [http-nio-127.0.0.1-8030-exec-1] DEBUG c.k.k.b.d.P.selectAll - <==      Total: 4
+2017-07-31 15:52:08,936 [http-nio-127.0.0.1-8030-exec-1] ERROR org.thymeleaf.TemplateEngine - [THYMELEAF][http-nio-127.0.0.1-8030-exec-1] Exception processing template "pages/normal/add": Error resolving template "pages/normal/add", template might not exist or might not be accessible by any of the configured Template Resolvers
+2017-07-31 15:52:08,937 [http-nio-127.0.0.1-8030-exec-1] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateInputException: Error resolving template "pages/normal/add", template might not exist or might not be accessible by any of the configured Template Resolvers] with root cause
+org.thymeleaf.exceptions.TemplateInputException: Error resolving template "pages/normal/add", template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.TemplateRepository.getTemplate(TemplateRepository.java:246)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1104)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1060)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1011)
+	at org.thymeleaf.spring4.view.ThymeleafView.renderFragment(ThymeleafView.java:335)
+	at org.thymeleaf.spring4.view.ThymeleafView.render(ThymeleafView.java:190)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1282)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1037)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:980)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:897)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:230)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:105)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:474)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:349)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:783)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:798)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1434)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+2017-07-31 15:52:32,576 [main] INFO  c.k.k.bill.RecoveryBillsApplication - Starting RecoveryBillsApplication on DESKTOP-OELLEIK with PID 8980 (D:\workspace\kap-all\RecoveryBills\bill-server\target\classes started by sunjiawei in D:\workspace\kap-all\RecoveryBills)
+2017-07-31 15:52:32,579 [main] INFO  c.k.k.bill.RecoveryBillsApplication - No active profile set, falling back to default profiles: default
+2017-07-31 15:52:32,838 [main] INFO  o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@36902638: startup date [Mon Jul 31 15:52:32 CST 2017]; root of context hierarchy
+2017-07-31 15:52:33,003 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.3.4.Final
+2017-07-31 15:52:34,191 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$f0a985fd] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-07-31 15:52:34,703 [main] INFO  o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat initialized with port(s): 8030 (http)
+2017-07-31 15:52:34,717 [main] INFO  o.a.catalina.core.StandardService - Starting service Tomcat
+2017-07-31 15:52:34,719 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.5.11
+2017-07-31 15:52:34,846 [localhost-startStop-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2017-07-31 15:52:34,846 [localhost-startStop-1] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2008 ms
+2017-07-31 15:52:35,037 [localhost-startStop-1] INFO  o.s.b.w.s.ServletRegistrationBean - Mapping servlet: 'dispatcherServlet' to [/]
+2017-07-31 15:52:35,044 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-07-31 15:52:35,045 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-07-31 15:52:35,045 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-07-31 15:52:35,045 [localhost-startStop-1] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+2017-07-31 15:52:35,888 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@36902638: startup date [Mon Jul 31 15:52:32 CST 2017]; root of context hierarchy
+2017-07-31 15:52:36,103 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/bank/update],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.kashuo.kap.bill.controller.BankController.update(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+2017-07-31 15:52:36,107 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/bank/status],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.kashuo.kap.bill.controller.BankController.status(java.lang.String)
+2017-07-31 15:52:36,108 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/bank],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.kashuo.kap.bill.controller.BankController.search(com.kashuo.kap.bill.model.dto.TransactionCondition)
+2017-07-31 15:52:36,108 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/bank],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.kashuo.kap.bill.controller.BankController.bank(com.kashuo.kap.bill.model.dto.TransactionCondition)
+2017-07-31 15:52:36,109 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/file/download],methods=[GET]}" onto public void com.kashuo.kap.bill.controller.FileController.download(java.lang.String,javax.servlet.http.HttpServletResponse)
+2017-07-31 15:52:36,109 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/file/upload],methods=[GET]}" onto public void com.kashuo.kap.bill.controller.FileController.upload(org.springframework.web.multipart.MultipartFile)
+2017-07-31 15:52:36,111 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/normal],methods=[GET]}" onto public java.lang.String com.kashuo.kap.bill.controller.NormalBillController.normal(org.springframework.ui.Model)
+2017-07-31 15:52:36,112 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/normal],methods=[POST]}" onto public java.lang.String com.kashuo.kap.bill.controller.NormalBillController.normalAdd(com.kashuo.kap.bill.model.form.TransactionForm,org.springframework.validation.BindingResult,org.springframework.ui.Model)
+2017-07-31 15:52:36,113 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/],methods=[GET]}" onto public java.lang.String com.kashuo.kap.bill.controller.OthersController.hi()
+2017-07-31 15:52:36,113 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/about],methods=[GET]}" onto public java.lang.String com.kashuo.kap.bill.controller.OthersController.about(org.springframework.ui.Model)
+2017-07-31 15:52:36,114 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/contact],methods=[GET]}" onto public java.lang.String com.kashuo.kap.bill.controller.OthersController.contact(org.springframework.ui.Model)
+2017-07-31 15:52:36,115 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-07-31 15:52:36,115 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-07-31 15:52:36,153 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-07-31 15:52:36,153 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-07-31 15:52:36,254 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-07-31 15:52:36,895 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+2017-07-31 15:52:36,923 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-127.0.0.1-8030"]
+2017-07-31 15:52:36,938 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler [http-nio-127.0.0.1-8030]
+2017-07-31 15:52:36,955 [main] INFO  o.a.tomcat.util.net.NioSelectorPool - Using a shared selector for servlet write/read
+2017-07-31 15:52:36,981 [main] INFO  o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat started on port(s): 8030 (http)
+2017-07-31 15:52:36,985 [main] INFO  c.k.k.bill.RecoveryBillsApplication - Started RecoveryBillsApplication in 4.831 seconds (JVM running for 5.68)
+2017-07-31 15:52:40,935 [http-nio-127.0.0.1-8030-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring FrameworkServlet 'dispatcherServlet'
+2017-07-31 15:52:40,935 [http-nio-127.0.0.1-8030-exec-1] INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization started
+2017-07-31 15:52:40,961 [http-nio-127.0.0.1-8030-exec-1] INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization completed in 25 ms
+2017-07-31 15:52:41,008 [http-nio-127.0.0.1-8030-exec-1] INFO  c.k.k.b.c.NormalBillController - 普通单边账 
+2017-07-31 15:52:41,595 [http-nio-127.0.0.1-8030-exec-1] DEBUG c.k.k.b.d.P.selectAll - ==>  Preparing: select id, name, create_time, has_limit, create_by, industry_nonstandard, code from profit_agency 
+2017-07-31 15:52:41,632 [http-nio-127.0.0.1-8030-exec-1] DEBUG c.k.k.b.d.P.selectAll - ==> Parameters: 
+2017-07-31 15:52:41,646 [http-nio-127.0.0.1-8030-exec-1] DEBUG c.k.k.b.d.P.selectAll - <==      Total: 4
+2017-07-31 15:52:41,670 [http-nio-127.0.0.1-8030-exec-1] INFO  org.thymeleaf.TemplateEngine - [THYMELEAF] INITIALIZING TEMPLATE ENGINE
+2017-07-31 15:52:41,736 [http-nio-127.0.0.1-8030-exec-1] INFO  o.t.t.AbstractTemplateResolver - [THYMELEAF] INITIALIZING TEMPLATE RESOLVER: org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver
+2017-07-31 15:52:41,736 [http-nio-127.0.0.1-8030-exec-1] INFO  o.t.t.AbstractTemplateResolver - [THYMELEAF] TEMPLATE RESOLVER INITIALIZED OK
+2017-07-31 15:52:41,736 [http-nio-127.0.0.1-8030-exec-1] INFO  o.t.m.AbstractMessageResolver - [THYMELEAF] INITIALIZING MESSAGE RESOLVER: org.thymeleaf.spring4.messageresolver.SpringMessageResolver
+2017-07-31 15:52:41,736 [http-nio-127.0.0.1-8030-exec-1] INFO  o.t.m.AbstractMessageResolver - [THYMELEAF] MESSAGE RESOLVER INITIALIZED OK
+2017-07-31 15:52:41,740 [http-nio-127.0.0.1-8030-exec-1] INFO  org.thymeleaf.TemplateEngine.CONFIG - [THYMELEAF] TEMPLATE ENGINE CONFIGURATION:
+[THYMELEAF] * Cache Factory implementation: org.thymeleaf.cache.StandardCacheManager
+[THYMELEAF] * Template modes:
+[THYMELEAF]     * VALIDXHTML
+[THYMELEAF]     * LEGACYHTML5
+[THYMELEAF]     * XML
+[THYMELEAF]     * HTML5
+[THYMELEAF]     * VALIDXML
+[THYMELEAF]     * XHTML
+[THYMELEAF] * Template resolvers (in order):
+[THYMELEAF]     * org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver
+[THYMELEAF] * Message resolvers (in order):
+[THYMELEAF]     * org.thymeleaf.spring4.messageresolver.SpringMessageResolver
+[THYMELEAF] * Dialect [1 of 2]: org.thymeleaf.spring4.dialect.SpringStandardDialect
+[THYMELEAF]     * Prefix: "th"
+[THYMELEAF] * Dialect [2 of 2]: nz.net.ultraq.thymeleaf.LayoutDialect
+[THYMELEAF]     * Prefix: "layout"
+[THYMELEAF] TEMPLATE ENGINE CONFIGURED OK
+2017-07-31 15:52:41,740 [http-nio-127.0.0.1-8030-exec-1] INFO  org.thymeleaf.TemplateEngine - [THYMELEAF] TEMPLATE ENGINE INITIALIZED
+2017-07-31 15:52:45,431 [http-nio-127.0.0.1-8030-exec-8] DEBUG c.k.k.b.d.P.selectAll - ==>  Preparing: select id, name, create_time, has_limit, create_by, industry_nonstandard, code from profit_agency 
+2017-07-31 15:52:45,431 [http-nio-127.0.0.1-8030-exec-8] DEBUG c.k.k.b.d.P.selectAll - ==> Parameters: 
+2017-07-31 15:52:45,438 [http-nio-127.0.0.1-8030-exec-8] DEBUG c.k.k.b.d.P.selectAll - <==      Total: 4
+2017-07-31 15:52:45,438 [http-nio-127.0.0.1-8030-exec-8] INFO  c.k.k.bill.controller.BankController - .... search end....
+2017-07-31 15:53:22,831 [http-nio-127.0.0.1-8030-exec-8] INFO  c.k.k.bill.controller.BankController - .... search begin....
+2017-07-31 15:53:22,831 [http-nio-127.0.0.1-8030-exec-8] DEBUG c.k.k.b.d.P.selectAll - ==>  Preparing: select id, name, create_time, has_limit, create_by, industry_nonstandard, code from profit_agency 
+2017-07-31 15:53:22,832 [http-nio-127.0.0.1-8030-exec-8] DEBUG c.k.k.b.d.P.selectAll - ==> Parameters: 
+2017-07-31 15:53:22,838 [http-nio-127.0.0.1-8030-exec-8] DEBUG c.k.k.b.d.P.selectAll - <==      Total: 4
+2017-07-31 15:53:23,079 [http-nio-127.0.0.1-8030-exec-8] DEBUG c.k.k.b.d.T.bankSelect - ==>  Preparing: select id, trans_no, trans_channel, activity_id, activity_name, prefer_type, acquirer_trans_no, order_no, trans_type, emi_type, emi_months, emi_threshold, busi_gross_profit, merchant_id, store_id, store_channel, acquirer_id, agency_id, trans_rate, device_sn, store_number, terminal_number, payment_type, status, profit_status, profit_status_msg, trans_date, trans_time, total_amount, dis_amount, can_dis_amount, pay_amount, subsidy_amount, busi_get_amount, bank_money, prepay_money, prereal_money, total_profit, ks_profit, acquirer_profit, acquirer_terminal_number, acquirer_merchant_number, ref_number, batch_number, voucher_number, bill_date, acq_channel, acquirer_commission_amount, commission_amount, service_charge_amount, card_number, card_enc, bank_name, account_number, user_mobile, coupons, trans_comment, created_at, updated_at from transaction where 1=1 and device_sn = ? and total_amount = ? and pay_amount = ? order by created_at asc limit 100 
+2017-07-31 15:53:23,079 [http-nio-127.0.0.1-8030-exec-8] DEBUG c.k.k.b.d.T.bankSelect - ==> Parameters: 820015301(String), 154(BigDecimal), 77(BigDecimal)
+2017-07-31 15:53:23,085 [http-nio-127.0.0.1-8030-exec-8] DEBUG c.k.k.b.d.T.bankSelect - <==      Total: 0
+2017-07-31 15:53:23,086 [http-nio-127.0.0.1-8030-exec-8] INFO  c.k.k.bill.controller.BankController - .... search end....
+2017-07-31 15:53:25,015 [http-nio-127.0.0.1-8030-exec-7] INFO  c.k.k.bill.controller.BankController - .... search begin....
+2017-07-31 15:53:25,016 [http-nio-127.0.0.1-8030-exec-7] DEBUG c.k.k.b.d.P.selectAll - ==>  Preparing: select id, name, create_time, has_limit, create_by, industry_nonstandard, code from profit_agency 
+2017-07-31 15:53:25,016 [http-nio-127.0.0.1-8030-exec-7] DEBUG c.k.k.b.d.P.selectAll - ==> Parameters: 
+2017-07-31 15:53:25,022 [http-nio-127.0.0.1-8030-exec-7] DEBUG c.k.k.b.d.P.selectAll - <==      Total: 4
+2017-07-31 15:53:25,022 [http-nio-127.0.0.1-8030-exec-7] DEBUG c.k.k.b.d.T.bankSelect - ==>  Preparing: select id, trans_no, trans_channel, activity_id, activity_name, prefer_type, acquirer_trans_no, order_no, trans_type, emi_type, emi_months, emi_threshold, busi_gross_profit, merchant_id, store_id, store_channel, acquirer_id, agency_id, trans_rate, device_sn, store_number, terminal_number, payment_type, status, profit_status, profit_status_msg, trans_date, trans_time, total_amount, dis_amount, can_dis_amount, pay_amount, subsidy_amount, busi_get_amount, bank_money, prepay_money, prereal_money, total_profit, ks_profit, acquirer_profit, acquirer_terminal_number, acquirer_merchant_number, ref_number, batch_number, voucher_number, bill_date, acq_channel, acquirer_commission_amount, commission_amount, service_charge_amount, card_number, card_enc, bank_name, account_number, user_mobile, coupons, trans_comment, created_at, updated_at from transaction where 1=1 and device_sn = ? and total_amount = ? and pay_amount = ? order by created_at asc limit 100 
+2017-07-31 15:53:25,023 [http-nio-127.0.0.1-8030-exec-7] DEBUG c.k.k.b.d.T.bankSelect - ==> Parameters: 820015301(String), 154(BigDecimal), 77(BigDecimal)
+2017-07-31 15:53:25,028 [http-nio-127.0.0.1-8030-exec-7] DEBUG c.k.k.b.d.T.bankSelect - <==      Total: 0
+2017-07-31 15:53:25,028 [http-nio-127.0.0.1-8030-exec-7] INFO  c.k.k.bill.controller.BankController - .... search end....
+2017-07-31 15:53:44,175 [http-nio-127.0.0.1-8030-exec-2] INFO  c.k.k.bill.controller.BankController - .... search begin....
+2017-07-31 15:53:44,176 [http-nio-127.0.0.1-8030-exec-2] DEBUG c.k.k.b.d.P.selectAll - ==>  Preparing: select id, name, create_time, has_limit, create_by, industry_nonstandard, code from profit_agency 
+2017-07-31 15:53:44,176 [http-nio-127.0.0.1-8030-exec-2] DEBUG c.k.k.b.d.P.selectAll - ==> Parameters: 
+2017-07-31 15:53:44,181 [http-nio-127.0.0.1-8030-exec-2] DEBUG c.k.k.b.d.P.selectAll - <==      Total: 4
+2017-07-31 15:53:44,182 [http-nio-127.0.0.1-8030-exec-2] DEBUG c.k.k.b.d.T.bankSelect - ==>  Preparing: select id, trans_no, trans_channel, activity_id, activity_name, prefer_type, acquirer_trans_no, order_no, trans_type, emi_type, emi_months, emi_threshold, busi_gross_profit, merchant_id, store_id, store_channel, acquirer_id, agency_id, trans_rate, device_sn, store_number, terminal_number, payment_type, status, profit_status, profit_status_msg, trans_date, trans_time, total_amount, dis_amount, can_dis_amount, pay_amount, subsidy_amount, busi_get_amount, bank_money, prepay_money, prereal_money, total_profit, ks_profit, acquirer_profit, acquirer_terminal_number, acquirer_merchant_number, ref_number, batch_number, voucher_number, bill_date, acq_channel, acquirer_commission_amount, commission_amount, service_charge_amount, card_number, card_enc, bank_name, account_number, user_mobile, coupons, trans_comment, created_at, updated_at from transaction where 1=1 and device_sn = ? and pay_amount = ? and card_number LIKE CONCAT('%',?,'%') and card_number LIKE CONCAT('%',?,'%') order by created_at asc limit 100 
+2017-07-31 15:53:44,183 [http-nio-127.0.0.1-8030-exec-2] DEBUG c.k.k.b.d.T.bankSelect - ==> Parameters: 820015301(String), 77(BigDecimal), 625976(String), 8798(String)
+2017-07-31 15:53:44,201 [http-nio-127.0.0.1-8030-exec-2] DEBUG c.k.k.b.d.T.bankSelect - <==      Total: 0
+2017-07-31 15:53:44,202 [http-nio-127.0.0.1-8030-exec-2] INFO  c.k.k.bill.controller.BankController - .... search end....
+2017-07-31 15:53:56,638 [http-nio-127.0.0.1-8030-exec-1] INFO  c.k.k.bill.controller.BankController - .... search begin....
+2017-07-31 15:53:56,638 [http-nio-127.0.0.1-8030-exec-1] DEBUG c.k.k.b.d.P.selectAll - ==>  Preparing: select id, name, create_time, has_limit, create_by, industry_nonstandard, code from profit_agency 
+2017-07-31 15:53:56,639 [http-nio-127.0.0.1-8030-exec-1] DEBUG c.k.k.b.d.P.selectAll - ==> Parameters: 
+2017-07-31 15:53:56,644 [http-nio-127.0.0.1-8030-exec-1] DEBUG c.k.k.b.d.P.selectAll - <==      Total: 4
+2017-07-31 15:53:56,646 [http-nio-127.0.0.1-8030-exec-1] DEBUG c.k.k.b.d.T.bankSelect - ==>  Preparing: select id, trans_no, trans_channel, activity_id, activity_name, prefer_type, acquirer_trans_no, order_no, trans_type, emi_type, emi_months, emi_threshold, busi_gross_profit, merchant_id, store_id, store_channel, acquirer_id, agency_id, trans_rate, device_sn, store_number, terminal_number, payment_type, status, profit_status, profit_status_msg, trans_date, trans_time, total_amount, dis_amount, can_dis_amount, pay_amount, subsidy_amount, busi_get_amount, bank_money, prepay_money, prereal_money, total_profit, ks_profit, acquirer_profit, acquirer_terminal_number, acquirer_merchant_number, ref_number, batch_number, voucher_number, bill_date, acq_channel, acquirer_commission_amount, commission_amount, service_charge_amount, card_number, card_enc, bank_name, account_number, user_mobile, coupons, trans_comment, created_at, updated_at from transaction where 1=1 and device_sn = ? and pay_amount = ? and card_number LIKE CONCAT('%',?,'%') and card_number LIKE CONCAT('%',?,'%') order by created_at asc limit 100 
+2017-07-31 15:53:56,646 [http-nio-127.0.0.1-8030-exec-1] DEBUG c.k.k.b.d.T.bankSelect - ==> Parameters: 0820015301(String), 77(BigDecimal), 625976(String), 8798(String)
+2017-07-31 15:53:56,782 [http-nio-127.0.0.1-8030-exec-1] DEBUG c.k.k.b.d.T.bankSelect - <==      Total: 1
+2017-07-31 15:53:56,782 [http-nio-127.0.0.1-8030-exec-1] INFO  c.k.k.bill.controller.BankController - .... search end....
+2017-07-31 15:56:26,368 [http-nio-127.0.0.1-8030-exec-6] INFO  c.k.k.bill.controller.BankController - .... search begin....
+2017-07-31 15:56:26,368 [http-nio-127.0.0.1-8030-exec-6] DEBUG c.k.k.b.d.P.selectAll - ==>  Preparing: select id, name, create_time, has_limit, create_by, industry_nonstandard, code from profit_agency 
+2017-07-31 15:56:26,369 [http-nio-127.0.0.1-8030-exec-6] DEBUG c.k.k.b.d.P.selectAll - ==> Parameters: 
+2017-07-31 15:56:26,375 [http-nio-127.0.0.1-8030-exec-6] DEBUG c.k.k.b.d.P.selectAll - <==      Total: 4
+2017-07-31 15:56:26,377 [http-nio-127.0.0.1-8030-exec-6] DEBUG c.k.k.b.d.T.bankSelect - ==>  Preparing: select id, trans_no, trans_channel, activity_id, activity_name, prefer_type, acquirer_trans_no, order_no, trans_type, emi_type, emi_months, emi_threshold, busi_gross_profit, merchant_id, store_id, store_channel, acquirer_id, agency_id, trans_rate, device_sn, store_number, terminal_number, payment_type, status, profit_status, profit_status_msg, trans_date, trans_time, total_amount, dis_amount, can_dis_amount, pay_amount, subsidy_amount, busi_get_amount, bank_money, prepay_money, prereal_money, total_profit, ks_profit, acquirer_profit, acquirer_terminal_number, acquirer_merchant_number, ref_number, batch_number, voucher_number, bill_date, acq_channel, acquirer_commission_amount, commission_amount, service_charge_amount, card_number, card_enc, bank_name, account_number, user_mobile, coupons, trans_comment, created_at, updated_at from transaction where 1=1 and device_sn = ? and total_amount = ? and pay_amount = ? and DATE_FORMAT(created_at,'%Y-%m-%d') = ? order by created_at asc limit 100 
+2017-07-31 15:56:26,377 [http-nio-127.0.0.1-8030-exec-6] DEBUG c.k.k.b.d.T.bankSelect - ==> Parameters: 0820010829(String), 99(BigDecimal), 49.5(BigDecimal), 2017-07-18(String)
+2017-07-31 15:56:26,406 [http-nio-127.0.0.1-8030-exec-6] DEBUG c.k.k.b.d.T.bankSelect - <==      Total: 2
+2017-07-31 15:56:26,407 [http-nio-127.0.0.1-8030-exec-6] INFO  c.k.k.bill.controller.BankController - .... search end....
+2017-07-31 17:06:07,531 [http-nio-127.0.0.1-8030-exec-8] DEBUG c.k.k.b.d.P.selectAll - ==>  Preparing: select id, name, create_time, has_limit, create_by, industry_nonstandard, code from profit_agency 
+2017-07-31 17:06:07,538 [http-nio-127.0.0.1-8030-exec-8] DEBUG c.k.k.b.d.P.selectAll - ==> Parameters: 
+2017-07-31 17:06:28,921 [http-nio-127.0.0.1-8030-exec-8] INFO  o.s.b.f.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+2017-07-31 17:06:29,029 [http-nio-127.0.0.1-8030-exec-8] INFO  o.s.j.support.SQLErrorCodesFactory - SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
+2017-07-31 17:06:29,063 [http-nio-127.0.0.1-8030-exec-8] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.RecoverableDataAccessException: 
+### Error querying database.  Cause: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet successfully received from the server was 4,202,479 milliseconds ago.  The last packet sent successfully to the server was 21,343 milliseconds ago.
+### The error may exist in file [D:\workspace\kap-all\RecoveryBills\bill-dao\target\classes\com\kashuo\kap\bill\dao\mapper\ProfitAgencyMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select           id, name, create_time, has_limit, create_by, industry_nonstandard, code         from profit_agency
+### Cause: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet successfully received from the server was 4,202,479 milliseconds ago.  The last packet sent successfully to the server was 21,343 milliseconds ago.
+; SQL []; Communications link failure
+
+The last packet successfully received from the server was 4,202,479 milliseconds ago.  The last packet sent successfully to the server was 21,343 milliseconds ago.; nested exception is com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+The last packet successfully received from the server was 4,202,479 milliseconds ago.  The last packet sent successfully to the server was 21,343 milliseconds ago.] with root cause
+java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:170)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at com.mysql.jdbc.util.ReadAheadInputStream.fill(ReadAheadInputStream.java:100)
+	at com.mysql.jdbc.util.ReadAheadInputStream.readFromUnderlyingStreamIfNecessary(ReadAheadInputStream.java:143)
+	at com.mysql.jdbc.util.ReadAheadInputStream.read(ReadAheadInputStream.java:173)
+	at com.mysql.jdbc.MysqlIO.readFully(MysqlIO.java:2954)
+	at com.mysql.jdbc.MysqlIO.reuseAndReadPacket(MysqlIO.java:3375)
+	at com.mysql.jdbc.MysqlIO.reuseAndReadPacket(MysqlIO.java:3365)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3805)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2478)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2625)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2551)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1861)
+	at com.mysql.jdbc.PreparedStatement.execute(PreparedStatement.java:1192)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy74.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:63)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:63)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:325)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:83)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:148)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:141)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:434)
+	at com.sun.proxy.$Proxy58.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:231)
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:128)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:68)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:53)
+	at com.sun.proxy.$Proxy62.selectAll(Unknown Source)
+	at com.kashuo.kap.bill.service.ConditionService.agencyAll(ConditionService.java:33)
+	at com.kashuo.kap.bill.controller.BankController.getAgency(BankController.java:110)
+	at com.kashuo.kap.bill.controller.BankController.bank(BankController.java:42)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:116)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:897)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:861)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:230)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:105)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:192)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:165)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:474)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:349)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:783)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:798)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1434)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)

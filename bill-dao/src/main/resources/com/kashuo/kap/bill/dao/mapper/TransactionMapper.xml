@@ -752,6 +752,7 @@
     <if test="transTime !=null and transTime !=''">
       and trans_time =  #{transTime}
     </if>
+
     <!-- transDate-->
   </select>
 
@@ -822,8 +823,8 @@
       and ABS(TIME_TO_SEC(TIMEDIFF(#{transTime},DATE_FORMAT(created_at,'%H:%i:%s ')))) &lt;= 60
     </if>
     <if test="status !=null and status !=-1">
-      and status = #{status}
-    </if>
+    and status = #{status}
+  </if>
     <if test="paymentType !=null and paymentType !=''">
       and payment_type = #{paymentType}
     </if>

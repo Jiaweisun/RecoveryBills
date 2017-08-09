@@ -1,18 +1,18 @@
 # 值与：之间一定要有一个空格，否则无效
 # Server settings
 server:
-    port: 8020
+    port: 8030
     address: localhost
 
 ## DATASOURCE
 jdbc:
     driverClass: com.mysql.jdbc.Driver
-    url: jdbc:mysql://58.210.177.89:31066/kopinland_prod?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
-    username: kop_read
-    password: ks_kopread_pwd
-#    url: jdbc:mysql://localhost:3306/kop_trans?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
-#    username: root
-#    password:
+#    url: jdbc:mysql://58.210.177.89:31066/kopinland_prod?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+#    username: kop_read
+#    password: ks_kopread_pwd
+    url: jdbc:mysql://localhost:3306/kop_trans?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    username: root
+    password:
 
 # SPRING PROFILES
 spring:

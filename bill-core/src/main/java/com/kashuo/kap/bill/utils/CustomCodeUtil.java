@@ -44,7 +44,23 @@ CustomCodeUtil {
         return sb.toString();
     }
 
+    public static String generatedTransNo(String dateTime){
+        StringBuilder sb = new StringBuilder();
+
+        if (dateTime == null || dateTime =="" || !dateTime.trim().contains(" ")){
+            log.info("日期不能为空，或格式不正确: {}",dateTime);
+            return "";
+        }
+        String dateStr = DateUtil.toString(dateTime.split(" ")[0]);
+       String timeStr = DateUtil.toString(dateTime.split(" ")[1]);
+        sb.append(dateStr).append(timeStr).append(ConstantUtil.handFlag).append(generatedRandomCode(ConstantUtil.ZERO,ConstantUtil.FOUR));
+        log.info("sb: {}",sb);
+
+        return sb.toString();
+    }
+
     public static void main(String[] args){
-        generatedTransNo("2017-06-25\n","18:57:40\n");
+
+        generatedTransNo("2017-06-2518:57:40\n");
     }
 }
